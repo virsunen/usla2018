@@ -1,0 +1,7 @@
+{% load template_tags %}
+<div class="events">
+    {% for e in extra %}
+        {% include "app/event.html" %}
+    {% endfor %}
+</div>
+  

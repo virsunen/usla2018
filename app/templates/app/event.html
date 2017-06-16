@@ -1,0 +1,56 @@
+{% load template_tags %}
+<div class="event">
+    <h1>{{ e.name }}</h1>
+    {% if e.description %}
+    <div class="event_right">
+        {% else %}
+        <div class="event_center">
+            {% endif %}
+            <div class="event_date">
+                <h2>{{ e.start_date|date:"D d M Y"}}</h2>
+                {% if e.end_date > e.start_date %}
+                <p>to</p>
+                <h2>{{ e.end_date|date:"D d M Y"}}</h2>
+                {% endif %}
+            </div>
+            <h3>{{ e.start_time|time:"H:i"}} to {{ e.end_time|time:"H:i"}}</h3>
+            <div class="event_location">
+                {% if e.unique_location and e.unique_location != '' %}
+                <h2>{{ e.unique_location }}</h2>
+                {% elif e.location %}
+                <h2>{{ e.get_location_display }}</h2>
+                {% endif %}
+            </div>
+            <div class="event_price">
+                {% if e.cost == 0 %}
+                <p>Free</p>
+                {% else %}
+                {% if e.cost_has_hst %}
+                <h2>{{ e.cost }}$</h2>
+                <h5><i>{{ e.cost|multiply_hst }}$ with HST</i></h5>
+                {% else %}
+                <h2>{{ e.cost }}$</h2>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+        {% if e.description %}
+        <div class="event_left">
+            <p>{{ e.description }}</p>
+        </div>
+        {% endif %}
+
+        <div class="event_links">
+
+            {% if e.contact_email %}
+            <p><a href="mailto:{{ e.contact_email }}"><i class="fa fa-envelope-o"></i>{{ e.contact_email }}</a></p>
+            {% endif %}
+            {% if e.image %}
+            <p><a href="{{ e.image.url }}"><i class="fa fa-file-image-o"></i>See Image</a></p>
+            {% endif %}
+            {% if e.pdf_file %}
+            <p><a href="{{ e.pdf_file.url }}"><i class="fa fa-file-pdf-o"></i>Download .pdf</a></p>
+            {% endif %}
+        </div>
+</div>
+

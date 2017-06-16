@@ -1,0 +1,45 @@
+{% load template_tags %}
+{% for p in extra %}
+
+<div class="program">
+	<h1><i class="fa {{ p.fa_icon }}"></i>{{ p.name }}</h1>
+	<p>{{ p.description }}</p>
+    <div class="registration_form">
+
+        {% if p.pdf_file %}
+            <h3><a href="{{ p.pdf_file.url }}"><i class="fa fa-file-pdf-o"></i>REGISTRATION FORM</a></h3>
+        {% endif %}
+    </div>
+	<div class="program_dates">
+		<h3>{{ p.start_date|date:"D d M" }} to {{ p.end_date|date:"D d M" }}</h3>
+
+		{% with ps=p|get_program_schedule %}
+           
+            <table>
+                {{ p|get_dow_table_row|safe}}
+                {% for i in ps %}
+                    {{ i|get_ps_table_row|safe}}
+                {% endfor %}
+            </table>
+   
+
+        
+        {% endwith %}
+        
+ 
+	</div>
+    <p>{{ p.sub_description }}</p>
+	<div class="program_links">
+
+        <p>
+		{% if p.contact_email %}
+		<a href="mailto:{{ p.contact_email }}"><i class="fa fa-envelope-o"></i>{{ p.contact_email }}</a>
+		{% endif %}
+		{% if p.image %}
+		<a href="{{ p.event_img.url }}"><i class="fa fa-file-image-o"></i>See image</a>
+		{% endif %}
+        </p>
+	</div>
+
+</div>
+{% endfor %}

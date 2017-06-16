@@ -1,0 +1,86 @@
+{% extends "app/layout.html" %}
+{% load template_tags %}
+{% block content %}
+
+<div class="container" style="background: url({{ page.image.url }}) no-repeat center center fixed; background-size: cover;">
+
+    <div class="header">
+
+        {% if user.is_authenticated %}
+        <div class="user_login">
+            <a href="/admin/"><i class="fa fa-user"></i>{{ user.username }}</a>
+        </div>
+
+        
+
+
+        {% endif %}
+
+        <div class="header_btn">
+            <a href="#" onclick="openMenu();" id="navMenu"><i class="fa fa-navicon"></i></a>
+        </div>
+
+        <div class="header_text">
+            <img src="{{ site_settings.logo_header_image.url }}" />
+            <h1>{{ site_settings.site_name }}</h1>
+            <p>{{ site_settings.site_desc }}</p>
+        </div>
+    
+    </div>
+    <div class="nav_bar">
+        <div class="closeBtn"><a href="#"  onclick="closeMenu();"><i class="fa fa-times"></i></a></div>
+        {% for p_t in pages %}
+            {% if p_t.slug == page.slug %}
+
+                <div class="nav_a_sel">
+            {% else %}
+                <div class="nav_a">
+            {% endif %}
+                    <a href="{% url 'app:page' p_t.slug %}"><i class="fa {{ p_t.fa_icon }}"></i>{{ p_t.title_text }}</a>
+                </div>
+        {% endfor %}
+    </div>
+
+    <div class="page_content">
+        <div class="page_title">
+            <h1>
+            {% if page.fa_icon %}
+
+
+            <i class="fa {{ page.fa_icon }}"></i>
+            
+            {% endif %}
+            {{ page.title_text}}</h1>
+
+        </div>
+        <div class="html_content">
+                {% if page.slug == 'events' %}
+                    <div class="events_nav">
+                        <div class="events_nav_btn_sel" id="cal"><i class="fa fa-calendar"></i><a href="#">Calendar</a></div>
+                        
+                        <div class="events_nav_btn" id="events"><i class="fa fa-list-ol"></i><a href="#">Events</a></div>
+                    </div>
+                    {% include "app/calendar.html" %}
+                    {% include "app/event_list.html" %}
+                {% elif page.slug == 'programs' %}
+                    {% include "app/program_list.html" %}
+                {% elif page.slug == "contact" %}
+                    {% include "app/contact.html" %}
+                {% elif page.slug == "home" %}
+                    <div class="page_body">
+                        <p>{{ page.description|safe}}</p>
+                    </div>
+                {% endif %}
+         </div>
+        
+    </div>
+
+
+    <footer>
+        <p><a href="{{ site_settings.facebook_link }}"><i class="fa fa-facebook"></i>USLA Facebook</a></p>
+        <p>&copy; {{ year }} - usla.ca</p>
+
+
+    </footer>
+</div>
+    {% endblock %}

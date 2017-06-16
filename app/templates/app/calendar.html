@@ -1,0 +1,25 @@
+{% load template_tags %}
+<div class="calendar">
+	<div class="calendar_nav">
+		<div class="calendar_nav_left">
+			<form action="/{{ page.slug }}/" method="post">
+				{% csrf_token %}
+				<input type="hidden" name="left" value="{{ extra2|get_cal_m_y }}" />
+				<button type="submit" class="btn btn-default">
+					<i class="fa fa-caret-left"></i>
+				</button>
+			</form>
+		</div>
+		<p>{{ extra2|get_cal_month_name|safe }} {{ extra2.year }}  </p>
+		<div class="calendar_nav_right">
+			<form action="/{{ page.slug }}/" method="post">
+				{% csrf_token %}
+				<input type="hidden" name="right" value="{{ extra2|get_cal_m_y }}" />
+				<button type="submit" class="btn btn-default">
+					<i class="fa fa-caret-right"></i>
+				</button>
+			</form>
+		</div>
+	</div>
+	{{ extra2|get_calendar|safe }}
+</div>

@@ -1,0 +1,54 @@
+{% load template_tags %}
+
+<div class="contact">
+    <h1>USLA Board of Directors</h1>
+    <div class="board_members">
+        {% for bm in extra.bm %}
+        <div class="member">
+            {% if bm.image %}
+            <img src="{{ bm.image.url }}" />
+            {% endif %}
+
+            <h2>{{ bm.title }}</h2>
+            <h3>{{ bm.name }}</h3>
+            {% if bm.email %}
+            <a href="mailto:{{ bm.email }}"><i class="fa fa-envelope-o"></i>{{ bm.email }}</a>
+            {% endif %}
+            {% if bm.tel_num %}
+            <p>tel - {{ bm.tel_num }}</p>
+            {% endif %}
+            {% if bm.cel_num %}
+            <p>cel - {{ bm.cel_num }}</p>
+            {% endif %}
+        </div>
+
+        {% endfor %}
+    </div>
+    <h1>Committee Chairs</h1>
+    <div class="committee_members">
+        {% for bm in extra.cm %}
+
+
+        <div class="member">
+            {% if bm.image %}
+            <img src="{{ bm.image.url }}" />
+            {% endif %}
+
+            <h2>{{ bm.title }}</h2>
+            <h3>{{ bm.name }}</h3>
+            {% if bm.email %}
+            <a href="mailto:{{ bm.email }}"><i class="fa fa-envelope-o"></i>{{ bm.email }}</a>
+            {% endif %}
+            {% if bm.tel_num %}
+            <p>tel - {{ bm.tel_num }}</p>
+            {% endif %}
+            {% if bm.cel_num %}
+            <p>cel - {{ bm.cel_num }}</p>
+            {% endif %}
+        </div>
+
+        {% endfor %}
+    </div>
+
+
+</div>

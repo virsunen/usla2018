@@ -1,0 +1,1 @@
+[{"model": "app.programschedule", "pk": "Schedule Name", "fields": {"program": "Swimming", "total_available_spaces": 0, "total_reserved_spaces": 0, "start_time": "20:21:13", "end_time": "20:21:13", "monday": false, "tuesday": false, "wednesday": false, "thursday": false, "friday": false, "saturday": false, "sunday": false, "location": "", "note": ""}}]

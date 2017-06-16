@@ -1,0 +1,1118 @@
+body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    font-family: 'Lato', sans-serif;
+}
+
+div {
+
+    padding: 0;
+    margin: 0;
+}
+
+i {
+    padding: 8px;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+
+}
+html {
+
+}
+
+a {
+    text-decoration: none;
+    color: rgba(241, 216, 23, 0.97)
+}
+
+.container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+
+}
+
+.container img {
+
+    position: fixed;
+}
+
+
+.header {
+    width: 100%;
+    background-color: rgba(178, 49, 74, 0.88);
+    color: white;
+
+    overflow: auto;
+    box-shadow: 4px 2px rgba(178, 49, 74, 0.88);
+}
+
+.nav_a, .nav_a_sel {
+    float: left;
+}
+
+
+.nav_bar {
+    background-color: rgba(44, 44, 44, 0.9);
+    padding: 14px;
+    overflow: auto;
+    box-shadow: 1px 2px rgba(78, 69, 74, 0.48);
+}
+
+.nav_a a, .nav_a_sel a {
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.02);
+    padding: 14px;
+    margin-right: 14px;
+
+}
+.nav_a_sel a {
+    color: rgba(178, 49, 74, 0.98);
+    background-color: rgba(255, 255, 255, 0.82);
+}
+    .nav_a i, .nav_a_sel i {
+        margin-right: 8px;
+    }
+
+.nav_a i:hover {
+    color: rgba(255, 255, 255, 0.97);
+}
+
+.nav_a a:hover {
+    color: rgba(255, 255, 255, 0.97);
+    background-color: rgba(255, 255, 255, 0.12);
+    padding: 14px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.page_content {
+
+    background-color: rgba(17, 18, 15, 0.39);
+    width: 100%;
+    margin: 0;
+    overflow: auto;
+    padding: 0;
+}
+
+.page_content img {
+    position:relative;
+}
+
+ul {
+    background: rgba(42, 52, 59, 0.2);
+    overflow: auto;
+    list-style-type: none;
+    width: 100%;
+}
+
+li {
+   
+}
+
+li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    background-color: rgba(255, 255, 255, 0.4);
+    margin-left: 14px;
+    width: 10%;
+    text-decoration: none;
+
+}
+
+ /* Change the link color on hover */
+li a:hover {
+            background-color: #555;
+            color: white;
+            text-decoration: none;
+        }
+
+
+footer {
+
+    width: 100%;
+    color: white;
+    background-color: rgba(5, 5, 5, 0.92);
+    padding-bottom: 24px;
+
+}
+
+
+footer p  {
+    text-align: center;
+    float: none;
+    padding-top: 8px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+
+.page_title, .page_body {
+
+    color: rgba(230, 320, 230, 0.67);
+
+ 
+    width: 100%;
+    background-color: rgba(178, 49, 74, 0.88);
+    padding-top: 14px;
+    padding-bottom: 14px;
+    margin: 0;
+}
+
+.page_title {
+    text-align: center;
+    display: none;
+    color: rgba(178, 49, 74, 0.88);
+    background-color: rgba(242, 242, 242, 0.76);
+}
+
+.page_body {
+    text-align: left;
+    color: rgba(5, 5, 5, 0.97);
+    text-shadow: none;
+    font-weight: 500;
+    padding: 14px;
+    background-color: rgba(255, 255, 255, 0.77);
+    width: 60%;
+    margin: 28px;
+    margin-left: auto;
+    border-radius: 6px;
+    margin-right: auto;
+    border: 1px solid rgba(178, 49, 74, 0.38);
+    box-shadow: 2px 2px rgba(5, 5, 5, 0.17);
+}
+
+.page_title h1 {
+    padding: 4px;
+
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+
+
+.page_body p {
+
+    font-weight: 400;
+    margin: 14px;
+
+}
+
+.page_body h5 {
+    width: 100%;
+    padding-right: 28px;
+    text-align: right;
+    font-size: 16px;
+    font-weight: 600;
+}
+.page_body_text {
+
+
+}
+
+.page_body h2 {
+    margin: 14px;
+    color: rgba(178, 49, 74, 0.98);
+}
+
+.user_login {
+
+
+    font-size: 18px;
+    float: right;
+    margin-right: 14px;
+
+
+}
+
+.user_login a {
+    color: rgba(220, 220, 220, 0.97);
+
+    text-align: right;
+}
+
+.user_login i {
+
+    margin-right: 8px;
+}
+
+.header_text {
+    width: 60%;
+    float: left;
+
+
+}
+
+.header_text h1, .header_text p {
+    padding-left: 28px;
+    margin-top: 8px;
+}
+
+.header_text img {
+    position: relative;
+    width: 106px;
+    height: 80px;
+    margin-right: 14px;
+    float: left;
+}
+
+
+.header h1 {
+    margin: 0;
+    padding: 0;
+
+}
+
+.calendar .cal_row  {
+    margin-left: auto;
+    background-color: rgba(255, 255, 255, 0.4);
+    margin-right: auto;
+}
+
+.cal_row, .cal_row_top{
+    overflow: auto;
+    background-color: rgba(255, 255, 255, 0.92);
+    margin-left: auto;
+}
+
+.cal_item, .cal_item_blank, .cal_item_top {
+    width: calc(14.285% - 2px);
+    height: 80px;
+    text-shadow: none;
+    border: 1px solid black;
+    float: left;
+}
+
+.cal_item_top {
+ 
+    height: 20px;
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: rgba(255, 255, 255, 0.97);
+    text-align: center;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.cal_item h5 {
+    padding: 4px;
+    
+    margin: 0;
+}
+
+.cal_item p {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.17);
+    padding: 6px;
+    margin: 0;
+
+}
+.cal_item {
+    background-color: rgba(255, 255, 255, 0.92);
+
+}
+
+.cal_item_blank {
+    background-color: transparent;
+}
+.header {
+    overflow: auto;
+}
+
+.left_side, .html_content {
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.92);
+}
+.left_side {
+    
+}
+.html_content {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding: 0;
+
+
+}
+
+.events {
+    width: calc(100% - 600px);
+    margin-left: 28px;
+    float: left;
+}
+
+.event, .program {
+ 
+   
+    border: 1px solid rgba(245, 245, 245, 0.5);
+    border-radius: 6px;
+    padding: 2%;
+    margin: 14px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto;
+    color: rgba(255, 255, 255, 0.97);
+    background-color: rgba(5, 2, 7, 0.82);
+}
+
+.event {
+    width: 100%;
+}
+
+.event_left {
+    width: 54%;
+    float: left;
+    padding: 3%;
+}
+
+.event_right {
+    text-align: center;
+
+    width: 38%;
+    float: left;
+}
+
+.event h1 {
+    color: rgba(208, 80, 101, 0.98);
+    font-size: 26px;
+    text-align: center;
+    padding: 18px;
+}
+
+
+.event h2 {
+    
+    font-size: 20px;
+}
+
+.event h3 {
+  
+    color: rgba(235, 233, 233, 0.97);
+    font-size: 18px;
+    font-style: italic;
+
+}
+
+.event_links {
+    width: 100%;
+    overflow: auto;
+    padding-top: 32px;
+
+}
+
+.event a, .program a {
+
+    font-size: 16px;
+    letter-spacing: 1px;
+    width: 33%;
+    float: right;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    text-align: center;
+  
+}
+
+
+.program {
+    text-shadow: none;
+    width: 80%;
+   overflow:auto;
+    padding: 34px;
+
+}
+
+.program p {
+    padding: 2px;
+    width: 60%;
+}
+
+
+.program_dates {
+    margin-top: 14px;
+    border: 1px solid rgba(232, 232, 232, 0.32);
+    border-radius: 6px;
+    background-color: rgba(244, 244, 244, 0.12);
+}
+
+.program_dates h3 {
+    padding: 2px;
+    
+}
+.program_dates table {
+   
+    color: rgba(32, 32, 32, 0.97);
+    margin-left: auto;
+    margin-right: auto;
+    border-width: 1px;
+    border-radius: 4px;
+    padding: 14px;
+    
+}
+
+.program_dates b {
+    color: rgba(178, 49, 74, 0.98);
+    font-weight: 500;
+
+}
+.program_dates p {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 14px;
+}
+
+
+.program_dates td {
+    width: 12%;
+    background-color: rgba(255, 252, 252, 0.92);
+    padding: 8px;
+    text-align: center;
+    border: 1px solid rgba(178, 49, 74, 0.38);
+  
+    border-radius: 4px;
+}
+
+.program h3 {
+    text-align: center;
+    width: 100%;
+}
+
+
+
+.registration_form a, .registration_form h3 {
+    width: 100%;
+    float: none;
+}
+
+
+.board_members, .committee_members {
+    width: 100%;
+    overflow: auto;
+
+}
+
+.board_members {
+  
+}
+.contact {
+    clear: both;
+    overflow: auto;
+}
+.contact h1 {
+    color: rgba(255, 255, 255, 0.98);
+    font-size: 28px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    width: 100%;
+
+    text-align: center;
+}
+.member {
+    width: calc(20% - 4px);
+
+
+    height: 366px;
+    text-align: center;
+    float: left;
+    color: white;
+    background-color: rgba(25,24, 24, 0.92);
+    border: 1px solid rgba(178, 49, 74, 0.38);
+}
+
+.member h1, .member h2, .member p {
+    font-size: 0.9em;
+
+}
+
+.member img {
+    width: 120px;
+    height: 162px;
+    opacity: 0.97;
+
+
+    margin-top: 14px;
+    margin-left: auto;
+    margin-right: auto;
+ 
+}
+
+.calendar {
+    width: 34%;
+    margin-top: 2%;
+    float: left;
+
+
+}
+
+.calendar_nav {
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.62)
+}
+
+.calendar i {
+    font-size: 12px;
+    padding: 4px;
+}
+.calendar_nav p {
+    width: 60%;
+    text-align: center;
+
+    padding-top: 12px;
+
+    color: white;
+    float: left;
+}
+
+
+.calendar_nav_left form, .calendar_nav_right form {
+    width: 20%;
+    float: left;
+    padding-top: 6px;
+    padding-bottom: 6px;
+
+}
+
+.calendar_nav button {
+    background: none;
+    background-color: Transparent;
+  
+    border: none;
+    color: white;
+}
+
+
+
+.cal_prog_schedules {
+    display: none;
+    position: absolute;
+    background: white;
+}
+
+.cal_day {
+    text-align: center;
+    background-color: rgba(178, 49, 74, 0.94);
+    color: rgba(242, 242, 242, 0.97);
+    width: 32px;
+    font-size: 14px;
+    padding: 4px; 
+    border-bottom-right-radius: 6px;
+    border-width: 1px;
+}
+
+.cal_prog_small p, .cal_prog_small b, .cal_prog_schedule p {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(55, 55, 55, 0.92);
+}
+
+.cal_prog_btn {
+    width: 100%;
+    border: none;
+    background: transparent;
+    background-color: rgba(238, 238, 238, 0.18);
+    color: rgba(178, 49, 74, 0.88);
+}
+
+
+.calendar_nav_right form {
+    text-align: right;
+}
+.events {
+    width: 60%;
+    margin-left: 2%;
+}
+
+
+
+
+#navMenu {
+    color: white;
+
+    width: 20px;
+    height: 20px;
+    padding: 14px;
+    float: left;
+    display: none;
+
+}
+
+.closeBtn {
+    display: none;
+    color: white;
+}
+
+
+
+@media screen and (max-width: 1280px) {
+    .member {
+        width: calc(25% - 4px);
+    }
+
+    .contact h1 {
+        font-size: 24px;
+    }
+
+    .event {
+        width: 70%;
+    }
+
+        .event h1 {
+            font-size: 22px;
+            padding: 12px;
+        }
+
+    .page_body {
+        width: 80%;
+    }
+
+    .program_links {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+        .program_links a, .program_links p {
+            text-align: center;
+        }
+}
+
+@media screen and (max-width: 1080px) {
+    .member {
+        width: calc(33% - 4px);
+    }
+    .contact h1 {
+        background-color: rgba(255, 255,255, 0.17);
+        font-size: 20px;
+    }
+    .event {
+        width: 80%;
+    }
+   .event h1 {
+        font-size: 18px;
+        padding: 8px;
+
+   }
+
+    .program p {
+        width: 86%;
+    }
+    .program_dates p, .program_dates h4 {
+        margin: 0;
+        padding: 2px;
+        margin-top: 8px;
+    }
+
+    .cal_row_top {
+        height: 30px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+ 
+    }
+
+    .cal_day {
+        width: 22px;
+        font-size: 12px;
+        padding: 1px;
+        height: 22px;
+        border-bottom-right-radius: 4px;
+    }
+
+    .calendar {
+        width: 30%;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        margin-left: 12px;
+    }
+
+
+    .cal_item, .cal_item_blank, .cal_item_top {
+        height: 60px;
+    }
+
+    .events {
+        width: 60%;
+        margin-left: 2%;
+    }
+
+    .html_content {
+        width: 96%;
+    }
+    .page_body {
+        width: 80%;
+    }
+
+    .page_body h2 {
+        margin: 14px;   
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .member {
+        width: calc(50% - 4px);
+    }
+    .contact h1 {
+        font-size: 16px;
+    }
+    .event {
+        width: 90%;
+    }
+    .event_left {
+        width: 90%;
+
+        padding: 5%;
+    }
+
+    .event_right {
+        width: 98%;
+        padding: 1%;
+    }
+    .event_links {
+        width: 100%; 
+        float: none;
+        overflow: auto;
+    }
+    .event a {
+        width: 100%;
+        float: none;
+    }
+
+    .event h1 {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .event_right h2 {
+        padding: 4px;
+        margin: 0px;
+    }
+
+    .program {
+   
+        width: 90%;
+
+        padding: 22px;
+    }
+    .closeBtn {
+        display: inline;
+    }
+    .program p {
+        width: 92%;
+    }
+    .program_dates table {
+        color: rgba(32, 32, 32, 0.97);
+        margin-left: auto;
+        margin-right: auto;
+ 
+        padding: 6px;
+    }
+
+    .program_dates p, .program_dates h4 {
+        margin: 0;
+        padding: 2px;
+        margin-top: 6px;
+    }
+    .cal_row_top {
+        padding: 0;
+        margin: 0;
+        height: 24px;
+    }
+    .cal_item_top {
+
+        padding: 0px;
+        margin: 0;
+        height: 20px;
+
+    }
+    .cal_day {
+        width: 22px;
+        font-size: 12px;
+
+        padding: 1px;
+        height: 22px;
+        border-bottom-right-radius: 4px;
+    }
+
+    .cal_prog_small p, .cal_prog_small b, .cal_prog_schedule p {
+        font-size: 12px;
+    }
+
+    .calendar {
+        width: 42%;
+        float: left;
+   
+    }
+
+    .events {
+        width: 50%;
+    }
+
+
+    .cal_item, .cal_item_blank {
+
+        height: 72px;
+    
+    }
+
+
+    .html_content {
+        width: 96%;
+    }
+
+    .nav_bar {
+        position: fixed;
+        display: none;
+        z-index: 100;
+        background-color: black;
+
+        padding: 34px;
+        width: calc(100% - 68px);
+
+
+    }
+    
+    .nav_bar a {
+        border: 1px solid white;
+        width: 90%;
+    }
+
+    .nav_a, .nav_a_sel {
+
+        float: none;
+        margin-top: 28px;
+
+        
+    }
+
+    .page_body {
+        width: 80%;
+    }
+
+    .page_body h2 {
+       
+        font-size: 14px;
+    }
+
+    #navMenu {
+      
+        display: inline;
+        float: left;
+        padding: 0;
+        margin: 0;
+    }
+
+    .header_text h1, .header_text p {
+        display: none;
+
+    }
+
+    .header_text {
+        width: 53px;
+        margin-left: calc(50% - 28px);
+    }
+
+    .header {
+        position: fixed;
+        padding: 0;
+
+        height: 48px;
+        z-index: 99;
+        background-color: rgba(178, 49, 74, 0.98);
+    }
+   .user_login {
+       width: 30%;
+       font-size: 14px;
+       padding: 0;
+       position: relative;
+       
+       text-align: right;
+
+   }
+
+   .header i {
+       margin-left: 8px;
+       margin-top: 8px;
+   }
+
+    .user_login i {
+        margin-right: 4px;
+    }
+
+    .header_text img {
+        float: none;
+        text-align: center;
+        width: 53px;
+        height: 40px;
+        display: block;
+        margin-left: auto;
+        margin-top: 6px;
+        margin-right: auto;
+        
+    }
+
+    .page_title {
+        width: 100%;
+        padding: 0;
+        display: block;
+        margin: 0;
+        margin-top: 48px;
+  
+    }
+
+    .page_title h1{
+        text-align: center;
+        font-size: 16px;
+        margin: 0;
+        width: 100%;
+        color: white;
+        padding: 0;
+        background-color: rgba(42, 42, 42, 0.96);
+    }
+
+}
+
+@media screen and (max-width: 540px) {
+    .member {
+        width: calc(100% - 4px);
+    }
+
+    .page_body {
+        width: 96%;
+        margin: 2%;
+        margin-top: 60px;
+        padding: 0;
+    }
+
+        .page_body h2 {
+            font-size: 12px;
+        }
+
+    .contact h1 {
+        font-size: 12px;
+    }
+
+    .event a {
+        width: 100%;
+        font-size: 0.9em;
+        padding: 0;
+    }
+
+    .event_links a {
+        width: 100%;
+        font-size: 0.9em;
+        padding: 0;
+    }
+
+    .event_left {
+        padding: 5%;
+        width: 90%;
+    }
+
+    .event_right {
+        padding-left: 1%;
+        padding-right: 1%;
+        width: 98%;
+    }
+
+    .program p {
+        width: 96%;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .event h1 {
+        font-size: 20px;
+        padding: 8px;
+        margin: 0;
+    }
+
+    .event h2 {
+        font-size: 16px;
+        padding: 4px;
+        margin: 0;
+    }
+
+
+    .event h3, .event h5 {
+        font-size: 14px;
+        padding: 4px;
+        margin: 0;
+    }
+
+    .program {
+        width: 98%;
+        padding: 1%;
+    }
+
+    .program_dates td {
+        padding: 2px;
+        margin: 0;
+        font-size: 12px;
+    }
+
+    .program_dates p, .program_dates h4 {
+        margin: 0;
+        padding: 2px;
+        margin-top: 4px;
+    }
+
+    .cal_prog_small p, .cal_prog_small b, .cal_prog_schedule p {
+        font-size: 10px;
+    }
+
+    .calendar {
+        width: 100%;
+        margin: 0;
+        margin-top: 14px;
+    }
+    .events {
+        width: 94%;
+        margin: 3%;
+    }
+}
