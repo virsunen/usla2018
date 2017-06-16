@@ -97,28 +97,28 @@ WSGI_APPLICATION = 'usla.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-# [START dbconfig]
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'usla',
-#        'HOST': '127.0.0.1',
-#        'PORT': '5432',
-#        'USER': 'virsunen',
-#        'PASSWORD': 'dog40god'
-#    }
-#}
-
+#[START dbconfig]
 DATABASES = {
-   'default': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'usla',
-        'HOST': '/opt/bitnami/postgresql',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
         'USER': 'virsunen',
         'PASSWORD': 'dog40god'
-   }
+    }
 }
+
+#DATABASES = {
+#   'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'usla',
+#        'HOST': '/opt/bitnami/postgresql',
+#        'PORT': '5432',
+#        'USER': 'virsunen',
+#        'PASSWORD': 'dog40god'
+#   }
+#}
 
 EXAMPLE_DATABASES = {
     'default': {
@@ -142,7 +142,9 @@ else:
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Canada/Eastern'
+
+TIME_INPUT_FORMATS = ['%I:%M %p',]
 
 USE_I18N = True
 
@@ -160,13 +162,13 @@ USE_TZ = True
 #STATIC_URL = 'http://storage.googleapis.com/usla-app/static/'
 #STATIC_ROOT = "/opt/bitnami/apps/django/django_projects/usla/static"
 #STATIC_URL = '/static/'
-#STATIC_ROOT = 'C:/Users/Matthew/appengine/django_cloudsql/static'
+STATIC_ROOT = 'C:/Users/Matthew/appengine/django_cloudsql/static'
 #MEDIA_ROOT = "/opt/bitnami/apps/django/django_projects/usla/media"
-#MEDIA_ROOT = 'C:/Users/Matthew/appengine/django_cloudsql/media'
+MEDIA_ROOT = 'C:/Users/Matthew/appengine/django_cloudsql/media'
 
 
 
-STATIC_ROOT = "/opt/bitnami/apps/django/django_projects/usla/static"
+#STATIC_ROOT = "/opt/bitnami/apps/django/django_projects/usla/static"
 STATIC_URL = '/static/'
-MEDIA_ROOT = "/opt/bitnami/apps/django/django_projects/usla/media"
+#MEDIA_ROOT = "/opt/bitnami/apps/django/django_projects/usla/media"
 MEDIA_URL = '/media/'

@@ -1,6 +1,8 @@
 """
 Definition of models.
 """
+
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save, pre_save
 from django.db import models
@@ -14,6 +16,7 @@ from django.db.models.signals import post_delete
 from django.dispatch import receiver
 from django.core.cache import cache
 from django.core.validators import RegexValidator
+from django.forms.widgets import TimeInput
 import os
 
 
@@ -29,6 +32,24 @@ def get_upload_program_to_files(instance, filename):
 
 def get_upload_members_to_images(instance, filename):
     return 'images/members/%s' % (instance.name, filename)
+
+def get_upload_gallery_image_to_images(instance, filename):
+    return 'images/gallery/%s/%s/%s' % (instance.gallery, instance.id, filename)
+
+def get_upload_news_item_to_images(instance, filename):
+    return 'images/news/%d' % (instance.id, filename)
+
+def get_upload_news_item_to_files(instance, filename):
+    return 'files/news/%d' % (instance.id, filename)
+
+TIME_ERROR_STR = "Start Time can't be after End Time!"
+DATE_ERROR_STR = "Start Date can't be after the End Date!"
+
+class TwelveHourTimeField(models.TimeField):
+    input_formats=('%I:%M %p',)
+    format= '%I:%M %p'
+    
+    
 
 class SingletonModel(models.Model):
 
@@ -54,6 +75,7 @@ class SingletonModel(models.Model):
             if not created:
                 obj.set_cache()
         return cache.get(cls.__name__)
+
 
 class SiteSettings(SingletonModel):
 
@@ -92,12 +114,14 @@ class CommitteeChairPositions(AdminPositions):
 
 class AdminMember(models.Model):
 
+
     order = models.IntegerField(default=100)
     name = models.CharField(max_length=100, default="John Doe")
     email = models.EmailField(blank=True)
     phone_regex = RegexValidator(regex=r'^\+?1?[\d-]{9,18}$', message="Phone number invalid.")
     tel_num = models.CharField(validators=[phone_regex], blank=True, max_length=16)
     cel_num = models.CharField(validators=[phone_regex], blank=True, max_length=16)
+    image = models.ImageField(upload_to=get_upload_members_to_images, blank=True)
 
 
     def __str__(self):
@@ -110,32 +134,44 @@ class AdminMember(models.Model):
 
 
 
-
 class CommitteeMember(AdminMember):
-    
+  
     title = models.ForeignKey(CommitteeChairPositions, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=get_upload_members_to_images, blank=True)
 
 
 
 class BoardMember(AdminMember):
-    
+  
     title = models.ForeignKey(BoardPositions, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=get_upload_members_to_images, blank=True)
+
     
+class NewsItem(models.Model):
+
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=120)
+    description = models.TextField(blank=True)
+   
+    publish_date = models.DateField(default=now)
+    author = models.ForeignKey(User, null=True, blank=True)
+    pdf_file = models.FileField(upload_to=get_upload_news_item_to_files, blank=True)
+    image = models.ImageField(upload_to=get_upload_news_item_to_images, blank=True)
+
+    
+    def __str__(self):
+        return self.title
 
 
-
-class Member(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    department = models.CharField(max_length=100)
+class SiteMemberProfile(models.Model):
+    user = models.OneToOneField(User, blank=True)
+    board_member = models.ForeignKey(BoardPositions, blank=True)
+    committee_member = models.ForeignKey(CommitteeChairPositions, blank=True)
 
 
 class Page(models.Model):
 
 
     title_text = models.CharField(primary_key=True, max_length=50, default='The Title')
-    slug = models.CharField(default="url", blank=True, max_length=50)
+    slug = models.CharField(default="url", blank=True, max_length=50, editable=False)
    
     fa_icon = models.CharField(blank=True, max_length=30)
     sub_description = models.CharField(max_length=100, default='The Title Description')
@@ -178,6 +214,14 @@ class UslaLocations(models.Model):
         ordering = ["name"]
 
 
+def check_is_pdf(the_filename):
+    if not the_filename.endswith(".pdf"):
+        raise ValidationError("PDF FILE: Please upload a .pdf file!")
+
+def check_is_img(the_filename):
+    if not the_filename.endswith(".jpg") or not the_filename.endswith(".png") or not the_filename.endswith(".gif"):
+        raise ValidationError("IMAGE: Please upload a .png, .jpg, or .gif image!")
+
 def check_day(the_day, ps):
     if (the_day == 0 and ps.monday):
         return True
@@ -208,11 +252,6 @@ class Program(models.Model):
  
     start_date = models.DateField(default=now)
     end_date = models.DateField(default=now)
-
-    start_time = models.TimeField(default=now)
-    end_time = models.TimeField(default=now)
-
-
 
     sub_description = models.TextField(blank=True)
 
@@ -254,6 +293,11 @@ class Program(models.Model):
     def __unicode__(self):
         return self.name
 
+    def clean(self):
+        
+   
+        if self.start_date > self.end_date:
+            raise ValidationError(DATE_ERROR_STR)
 
     class Meta:
         ordering = ["name"]
@@ -278,7 +322,10 @@ class ProgramSchedule(models.Model):
     location = models.CharField(max_length=2, choices=get_locations(), blank=True)
     note = models.CharField(max_length=200, blank=True)
     
-
+    def clean(self):
+      
+        if self.start_time > self.end_time:
+            raise ValidationError(TIME_ERROR_STR)
 
     def __str__(self):
         return self.name
@@ -287,6 +334,20 @@ class ProgramSchedule(models.Model):
     class Meta:
         ordering = ["start_time"]
 
+def clean_type1(self):
+    if (self.image):
+        check_is_img(self.image.filename)
+        
+    if (self.pdf_file): 
+        check_is_pdf(self.pdf_file.name)
+
+    if self.start_date > self.end_date:
+        raise ValidationError(DATE_ERROR_STR)
+
+    if self.start_time > self.end_time and self.start_date == self.end_date:
+        raise ValidationError(TIME_ERROR_STR)
+
+
 
 class EventAbs(models.Model):
 
@@ -294,12 +355,13 @@ class EventAbs(models.Model):
     name = models.CharField(max_length=100, default="Event Name")
     start_date = models.DateField(default=now)
     end_date = models.DateField(default=now)
-    start_time = models.TimeField(default=now)
+    start_time = TwelveHourTimeField(default=now)
     end_time = models.TimeField(default=now, blank=True)
     location = models.CharField(max_length=2, choices=get_locations(), blank=True)
     unique_location = models.CharField(max_length=100, blank=True)
     cost = models.IntegerField(default=0)
     cost_has_hst = models.BooleanField(default=True)
+    is_annual_event = models.BooleanField(default=False)
     image = models.ImageField(upload_to='images/events/', blank=True)
     pdf_file = models.FileField(upload_to='files/events/', blank=True)
     description = models.TextField(blank=True);
@@ -337,9 +399,17 @@ class EventAbs(models.Model):
     def __str__(self):
         return self.name
     
+
+    def clean(self):
+        clean_type1(self)
+
+
+
     class Meta:
         abstract = True
         ordering = ["start_date", "start_time"]
+
+
 
 class ProgramEvent(EventAbs):
 
@@ -355,6 +425,53 @@ class Event(EventAbs):
 
 
 
+class Gallery(models.Model):
+    description = models.CharField(max_length=140, blank=True)
+
+    class Meta:
+        abstract = True
+
+
+class EventGallery(Gallery):
+    type = models.ForeignKey(Event, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.type.name
+
+class ProgramGallery(Gallery):
+    type = models.ForeignKey(Program, on_delete=models.CASCADE)
+    pass
+
+class USLAGallery(Gallery):
+    name =  models.CharField(max_length=140, unique=True)
+    pass
+
+
+class GalleryImages(models.Model):
+    id = models.AutoField(primary_key=True)
+
+    description = models.CharField(max_length=140, blank=True)
+    
+    def __str__(self):
+        return str(self.id)
+
+    class Meta:
+        abstract = True
+
+
+
+class EventGalleryImages(GalleryImages):
+    image = models.ImageField(upload_to=get_upload_gallery_image_to_images)
+    gallery = models.ForeignKey(EventGallery, on_delete=models.CASCADE)
+
+
+class ProgramGalleryImages(GalleryImages):
+    image = models.ImageField(upload_to=get_upload_gallery_image_to_images)
+    gallery = models.ForeignKey(ProgramGallery, on_delete=models.CASCADE)
+
+class USLAGalleryPhoto(GalleryImages):
+    image = models.ImageField(upload_to=get_upload_gallery_image_to_images)
+    gallery = models.ForeignKey(USLAGallery, on_delete=models.CASCADE)
 
 
 @receiver(post_delete, sender=Event)
