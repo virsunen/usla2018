@@ -33,7 +33,7 @@ class EventGalleryImagesInline(admin.TabularInline):
     model = EventGalleryImages
     fields = ['image', 'description']
 
-        
+     
 
     def get_extra(self, request, obj=None, **kwargs):
         print("TWO")
@@ -49,13 +49,16 @@ class EventGalleryImagesInline(admin.TabularInline):
 class EventGalleryAdmin(admin.ModelAdmin):
     inlines = [
     EventGalleryImagesInline,]
+    fields = ['type', 'description']
+
 
     def get_exclude(self, request, obj=None):
         if (obj):
-            self.inlines = [EventGalleryImagesInline,]
+            fields = ['description']
+
             return []
         else:
-            self.inlines = []
+     
             return []
 
 

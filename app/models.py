@@ -1,7 +1,10 @@
 """
 Definition of models.
 """
+from PIL import Image, ImageOps
 
+import shutil
+from django.core.files import File
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save, pre_save
@@ -17,24 +20,35 @@ from django.dispatch import receiver
 from django.core.cache import cache
 from django.core.validators import RegexValidator
 from django.forms.widgets import TimeInput
+from django.core.files.base import ContentFile
+from io import StringIO
+from django.core.files.storage import default_storage as storage
+from django.conf import settings
+from io import BytesIO
 import os
+
+
+TIME_ERROR_STR = "Start Time can't be after End Time!"
+DATE_ERROR_STR = "Start Date can't be after the End Date!"
+THUMB_SIZE = (200, 200)
+
 
 
 def get_upload_to_pages(instance, filename):
     return 'images/pages/%s/%s' % (instance.slug, filename)
 
 def get_upload_program_to_images(instance, filename):
-    return 'images/programs/%s/%s' % (instance.name, filename)
+    return 'images/programs/%s/%s' % (slugify(instance.name), filename)
 
 def get_upload_program_to_files(instance, filename):
-    return 'files/programs/%s/%s' % (instance.name, filename)
+    return 'files/programs/%s/%s' % (slugify(instance.name), filename)
 
 
 def get_upload_members_to_images(instance, filename):
-    return 'images/members/%s' % (instance.name, filename)
+    return 'images/members/%s/%s' % (slugify(instance.name), filename)
 
 def get_upload_gallery_image_to_images(instance, filename):
-    return 'images/gallery/%s/%s/%s' % (instance.gallery, instance.id, filename)
+    return 'images/gallery/%s/%s/%s' % (slugify(instance.gallery), instance.id, filename)
 
 def get_upload_news_item_to_images(instance, filename):
     return 'images/news/%d' % (instance.id, filename)
@@ -42,8 +56,8 @@ def get_upload_news_item_to_images(instance, filename):
 def get_upload_news_item_to_files(instance, filename):
     return 'files/news/%d' % (instance.id, filename)
 
-TIME_ERROR_STR = "Start Time can't be after End Time!"
-DATE_ERROR_STR = "Start Date can't be after the End Date!"
+
+
 
 class TwelveHourTimeField(models.TimeField):
     input_formats=('%I:%M %p',)
@@ -427,13 +441,27 @@ class Event(EventAbs):
 
 class Gallery(models.Model):
     description = models.CharField(max_length=140, blank=True)
+    slug = models.CharField(default="url", blank=True, max_length=50, editable=False)
+    
 
     class Meta:
         abstract = True
 
 
+
 class EventGallery(Gallery):
-    type = models.ForeignKey(Event, on_delete=models.CASCADE)
+    type = models.OneToOneField(Event, primary_key=True, on_delete=models.CASCADE)
+    
+    def clean(self):
+        objs = EventGallery.objects.filter(type=self.type)
+        if self.pk is None:
+            if EventGallery.objects.filter(type=self.type):
+                raise ValidationError("This Gallery Already Exists!")
+    
+    def save(self, *args, **kwargs):
+        
+        self.slug = slugify(self.type)
+        super(EventGallery, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.type.name
@@ -445,54 +473,144 @@ class ProgramGallery(Gallery):
 class USLAGallery(Gallery):
     name =  models.CharField(max_length=140, unique=True)
     pass
-
+ 
 
 class GalleryImages(models.Model):
     id = models.AutoField(primary_key=True)
 
     description = models.CharField(max_length=140, blank=True)
+    image = models.ImageField(upload_to=get_upload_gallery_image_to_images)
+    image_thumb = models.ImageField(upload_to=get_upload_gallery_image_to_images, blank=True)
+    first_save = True
+
+    def save(self, *args, **kwargs):
+
+        if self.pk is None:
+            saved_image = self.image
+            self.image = None
+            super(GalleryImages, self).save(*args, **kwargs)
+            self.image = saved_image
+            
+        
+
+        super(GalleryImages, self).save(*args, **kwargs)
+
+        if self.first_save:
+            self.first_save = False
+            self.make_thumbnail()   
+
+
+    def make_thumbnail(self):
+        """
+        Create and save the thumbnail for the photo (simple resize with PIL).
+        """
+
+        img_path = (settings.MEDIA_ROOT + str('/') + self.image.name)
+        thumb_path = str('thumb_') + os.path.basename(self.image.name)
+        
+        if os.path.isfile(thumb_path):
+            return
+      
+        
+        try:
+            big_image = Image.open(img_path)
+        except:
+            raise Exception('make_thumbnail: Couldn\'t Open Image!')
+       
+        try:
+
+            thumb_img = ImageOps.fit(big_image, (200, 200), Image.ANTIALIAS)
+            f = BytesIO()
+            thumb_img.save(f, format='png')
+            self.image_thumb.save(thumb_path, ContentFile(f.getvalue()), save=True)
+
+        except:
+            raise Exception("Thumb Image Exception!")
+            
+        big_image.close()
+        thumb_img.close()
+   
     
+
     def __str__(self):
         return str(self.id)
+
 
     class Meta:
         abstract = True
 
+def get_first_available(objs):
+    max_num = 0
+    for o in objs:
+        if (o.id > max_num):
+            max_num = o.id
+    return max_num
 
 
 class EventGalleryImages(GalleryImages):
-    image = models.ImageField(upload_to=get_upload_gallery_image_to_images)
+  
     gallery = models.ForeignKey(EventGallery, on_delete=models.CASCADE)
+        
 
 
 class ProgramGalleryImages(GalleryImages):
-    image = models.ImageField(upload_to=get_upload_gallery_image_to_images)
+    
     gallery = models.ForeignKey(ProgramGallery, on_delete=models.CASCADE)
 
-class USLAGalleryPhoto(GalleryImages):
-    image = models.ImageField(upload_to=get_upload_gallery_image_to_images)
+class USLAGalleryImages(GalleryImages):
+
     gallery = models.ForeignKey(USLAGallery, on_delete=models.CASCADE)
 
 
+@receiver(post_delete, sender=EventGallery)
+def delete_empty_folder(sender, **kwargs):
+     
+    obj = kwargs['instance']
+    path = settings.MEDIA_ROOT + str('/images/gallery/') + slugify(str(obj.type)) + str('/')
+    print(path)
+    os.removedirs(path)
+  
+@receiver(post_delete, sender=USLAGalleryImages)
+@receiver(post_delete, sender=ProgramGalleryImages)
+@receiver(post_delete, sender=EventGalleryImages)
 @receiver(post_delete, sender=Event)
 @receiver(post_delete, sender=Page)
 @receiver(post_delete, sender=CommitteeMember)
 @receiver(post_delete, sender=BoardMember)
 def event_post_delete_handler(sender, **kwargs):
     obj = kwargs['instance']
+    if (type(obj) is EventGalleryImages):
+        if obj.image_thumb:
+            storage, path = obj.image_thumb.storage, obj.image_thumb.path
+            if path and storage:
+                storage.delete(path)
+   
     if obj.image:
         storage, path = obj.image.storage, obj.image.path
         if path and storage:
             storage.delete(path)
-        
-    if obj.pdf_file:
-        pdf_storage, pdf_path = obj.pdf_file.storage, obj.pdf_file.path
+            try:
+                os.rmdir(os.path.dirname(os.path.abspath(path)))
+            except:
+                pass
+
+    try:
+        if obj.pdf_file:
+            pdf_storage, pdf_path = obj.pdf_file.storage, obj.pdf_file.path
     
-        if pdf_storage and pdf_path:
-            pdf_storage.delete(pdf_path)
+            if pdf_storage and pdf_path:
+                pdf_storage.delete(pdf_path)
+                try:
+                    os.rmdir(os.path.dirname(os.path.abspath(pdf_path)))
+                except:
+                    pass
+    except Exception:
+        pass
 
 
-
+@receiver(pre_save, sender=USLAGalleryImages)
+@receiver(pre_save, sender=ProgramGalleryImages)
+@receiver(pre_save, sender=EventGalleryImages)
 @receiver(pre_save, sender=BoardMember)
 @receiver(pre_save, sender=CommitteeMember)
 @receiver(pre_save, sender=Page)
@@ -500,9 +618,14 @@ def event_post_delete_handler(sender, **kwargs):
 def delete_old_image(sender, instance, *args, **kwargs):
     
     try:
-        existing_image = sender.objects.get(pk=instance.pk)
+        obj = sender.objects.get(pk=instance.pk)
     except sender.DoesNotExist:
         pass
     else:
-        if instance.image and existing_image.image != instance.image:
-            existing_image.image.delete(False)
+        if obj.image and obj.image != instance.image:
+            obj.image.delete(False)
+        if (type(instance) is EventGalleryImages):
+            if instance.image_thumb and obj.image_thumb != instance.image_thumb:
+                obj.image_thumb.delete(False)
+
+
