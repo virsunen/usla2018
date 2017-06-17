@@ -1,0 +1,24 @@
+{% extends "app/layout.html" %}
+{% load template_tags %}
+{% block content %}
+
+<div class="v_gallery">
+    <h1>{{ gallery.type }}</h1>
+    <div class="v_thumbnails">
+        {% for g_i in g_images %}
+        {% if g_i == g_images.0 %}
+        <div class="thumb_img_sel">
+            {% else %}
+            <div class="thumb_img">
+                {% endif %}
+                <a href="#" class="thumb_btn" id="{{ g_i.image.url }}"><img class="v_thumb_image" src="{{ g_i.image_thumb.url }}" /></a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="v_container" style="display: none;" >
+            <img class="v_main_image" src="{{ g_images.0.image.url }}" />
+        </div>
+
+    </div>
+
+{% endblock %}

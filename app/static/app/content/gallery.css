@@ -1,0 +1,74 @@
+.container {
+
+}
+
+.v_gallery {
+    width: 100%;
+    min-height: calc(100vh - 200px);
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.17);
+    background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(rgba(0, 0, 0, 0.97), rgba(28, 9, 14, 0.98),rgba(244, 244, 244, 0.98)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.97), rgba(28, 9, 14, 0.98), rgba(0, 0, 0, 0.17), rgba(244, 244, 244, 0.98)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(0, 0, 0, 0.97), rgba(28, 9, 14, 0.98),rgba(244, 244, 244, 0.98)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(0, 0, 0, 0.97), rgba(28, 9, 14, 0.98),rgba(244, 244, 244, 0.98));
+}
+
+.v_gallery h1 {
+    color: rgba(255, 255, 255, 0.97);
+    background-color: rgba(5, 5, 5, 0.62);
+    padding: 14px;
+    margin: 0;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 400;
+    text-shadow: 2px 2px black;
+}
+.thumb_img img, .thumb_img_sel img {
+    width: 100px;
+    position: relative;
+    float: left;
+    margin: 20px;
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.77);
+    border: 1px solid rgba(0, 0, 0, 0.77);
+    height: 100px;
+}
+
+.v_container {
+    width: 60%;
+    float: left;
+    margin: 20px;
+    
+    margin-bottom: 40px;
+
+}
+
+.v_container img {
+    position: relative;
+    width: 90%;
+    padding: 1px;
+    border-radius: 2px;
+    background-color: rgba(12, 15, 15, 0.62);
+    margin-right: 5%;
+   
+    border: 1px solid rgba(50, 50, 50, 0.27);
+}
+
+
+
+.v_thumbnails {
+    border-top: 1px solid rgba(0, 0, 0, 0.77);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.77);
+    background-color:rgba(255, 255, 255, 0.92);
+    margin-top: 20px;
+    border: 1px solid rgba(225, 219, 220, 0.48);
+    border-radius: 6px;
+    width: 286px;
+    margin-left: 5%;
+    margin-right: 5%;
+    float: left;
+    overflow: auto;
+}
+
