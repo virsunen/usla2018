@@ -98,27 +98,27 @@ WSGI_APPLICATION = 'usla.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 #[START dbconfig]
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'usla',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-        'USER': 'virsunen',
-        'PASSWORD': 'dog40god'
-    }
-}
-
 #DATABASES = {
-#   'default': {
+#    'default': {
 #        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'usla',
-#        'HOST': '/opt/bitnami/postgresql',
+#        'NAME': 'usla_online',
+#        'HOST': '127.0.0.1',
 #        'PORT': '5432',
 #        'USER': 'virsunen',
 #        'PASSWORD': 'dog40god'
-#   }
+#    }
 #}
+
+DATABASES = {
+   'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'usla',
+        'HOST': '/opt/bitnami/postgresql',
+        'PORT': '5432',
+        'USER': 'virsunen',
+        'PASSWORD': 'dog40god'
+   }
+}
 
 EXAMPLE_DATABASES = {
     'default': {
@@ -160,11 +160,11 @@ USE_TZ = True
 # is commented to serve static content from GCS
 # STATIC_URL = 'https://storage.googleapis.com/<your-gcs-bucket>/static/'
 #STATIC_URL = 'http://storage.googleapis.com/usla-app/static/'
-#STATIC_ROOT = "/opt/bitnami/apps/django/django_projects/usla/static"
+STATIC_ROOT = "/opt/bitnami/apps/django/django_projects/usla/static"
 #STATIC_URL = '/static/'
-STATIC_ROOT = 'C:/Users/Matthew/appengine/django_cloudsql/static'
-#MEDIA_ROOT = "/opt/bitnami/apps/django/django_projects/usla/media"
-MEDIA_ROOT = 'C:/Users/Matthew/appengine/django_cloudsql/media'
+#STATIC_ROOT = 'C:/Users/Matthew/appengine/django_cloudsql/static'
+MEDIA_ROOT = "/opt/bitnami/apps/django/django_projects/usla/media"
+#MEDIA_ROOT = 'C:/Users/Matthew/appengine/django_cloudsql/media'
 
 
 

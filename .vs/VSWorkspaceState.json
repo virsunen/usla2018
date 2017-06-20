@@ -2,17 +2,16 @@
   "ExpandedNodes": [
     "",
     "\\app",
+    "\\app\\migrations",
+    "\\app\\migrations\\__pycache__",
     "\\app\\static",
     "\\app\\static\\app",
-    "\\app\\static\\app\\scripts",
+    "\\app\\static\\app\\content",
     "\\app\\templates",
-    "\\app\\templates\\app",
-    "\\conf",
-    "\\dat",
-    "\\media",
-    "\\static",
-    "\\static\\admin"
+    "\\app\\templatetags",
+    "\\app\\__pycache__",
+    "\\usla"
   ],
-  "SelectedNode": "\\usla\\urls.py",
+  "SelectedNode": "\\app\\templatetags\\template_tags.py",
   "PreviewInSolutionExplorer": false
 }
