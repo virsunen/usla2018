@@ -16,7 +16,9 @@ class SiteMemberAdmin(admin.ModelAdmin):
         obj.save()
 
     def get_queryset(self, request):
-        group_name = str(list(request.user.groups.all())[0].name)
+        group_name = ''
+        if len(list(request.user.groups.all())) > 0:
+            group_name = str(list(request.user.groups.all())[0].name)
         qs = super(SiteMemberAdmin, self).get_queryset(request)
         if request.user.is_superuser or group_name == "UslaSiteAdmin":
             return qs
