@@ -94,12 +94,9 @@ function showCloseBtn() {
 function checkHeader() {
     if ($(window).width() <= 1080) {
 
-        if ($(window).width() > $(window).height()) {
            
-            $(".header").css({ "display": "none" });
-        } else {
-            $(".header").css({ "display": "block" });
-        }
+        $(".header").css({ "display": "none" });
+  
     } else {
         $(".header").css({ "display": "block" });
     }
