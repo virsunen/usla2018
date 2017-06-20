@@ -41,7 +41,7 @@ $(document).ready(function () {
         }
         $(".v_thumb_image").css('border-color', 'rgba(0, 0, 0, 0.77)');
         $(this).parent().find(".v_thumb_image").css('border-color', 'rgba(255, 241, 0, 0.97)');
-
+        checkHeader();
 
         hideThumbnails();
         $(".v_container img").hide().attr('src', this.id).fadeIn(1000);
@@ -53,6 +53,7 @@ $(document).ready(function () {
     $(".v_close_btn").click(function (e) {
         hideImage();
         $(".v_thumb_image").css('border-color', 'rgba(0, 0, 0, 0.77)');
+        $(".header").css({ "display": "block" });
     });
 
 
@@ -88,4 +89,19 @@ function hideCloseBtn() {
 
 function showCloseBtn() {
     $(".v_close_div").css('display', 'block');
+}
+
+function checkHeader() {
+    if ($(window).width() <= 1080) {
+
+        if ($(window).width() > $(window).height()) {
+           
+            $(".header").css({ "display": "none" });
+        } else {
+            $(".header").css({ "display": "block" });
+        }
+    } else {
+        $(".header").css({ "display": "block" });
+    }
+
 }
