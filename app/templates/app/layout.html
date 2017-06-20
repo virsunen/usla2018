@@ -34,20 +34,33 @@
             </div>
 
         </div>
-        {% block content %}{% endblock %}
-        <footer>
-            <p><a href="{{ site_settings.facebook_link }}"><i class="fa fa-facebook"></i>USLA Facebook</a></p>
-            <p>&copy; {{ year }} - usla.ca</p>
+        <div class="nav_bar">
+            <div class="closeBtn"><a href="#" onclick="closeMenu();"><i class="fa fa-times"></i></a></div>
+            {% for p_t in pages %}
+            {% if p_t.slug == page.slug %}
 
-        </footer>
-    </div>
+            <div class="nav_a_sel">
+                {% else %}
+                <div class="nav_a">
+                    {% endif %}
+                    <a href="{% url 'app:page' p_t.slug %}"><i class="fa {{ p_t.fa_icon }}"></i>{{ p_t.title_text }}</a>
+                </div>
+                {% endfor %}
+            </div>
+            {% block content %}{% endblock %}
+            <footer>
+                <p><a href="{{ site_settings.facebook_link }}"><i class="fa fa-facebook"></i>USLA Facebook</a></p>
+                <p>&copy; {{ year }} - usla.ca</p>
+
+            </footer>
+        </div>
 
     <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
     <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
     <script src="{% static 'app/scripts/respond.js' %}"></script>
-    <script src="{% static 'app/scripts/jquery-1.10.2.min.js' %}"></script>
     <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
     <script src="{% static 'app/scripts/usla.js' %}"></script>
+    <script src="{% static 'app/scripts/gallery.js' %}"></script>
     {% block scripts %}{% endblock %}
 
 </body>

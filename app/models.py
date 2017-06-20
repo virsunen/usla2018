@@ -51,10 +51,10 @@ def get_upload_gallery_image_to_images(instance, filename):
     return 'images/gallery/%s/%s/%s' % (slugify(instance.gallery), instance.id, filename)
 
 def get_upload_news_item_to_images(instance, filename):
-    return 'images/news/%d' % (instance.id, filename)
+    return 'images/newsitems/%s' % (filename)
 
 def get_upload_news_item_to_files(instance, filename):
-    return 'files/news/%d' % (instance.id, filename)
+    return 'files/newsitems/%s' % (filename)
 
 
 
@@ -101,9 +101,13 @@ class SiteSettings(SingletonModel):
     logo_header_image = models.ImageField(upload_to='images/site/', blank=True)
     logo_btm_image = models.ImageField(upload_to='images/site/', blank=True)
 
-        
+    
+    
     def __str__(self):
         return self.site_name + " Settings"
+
+    class Meta:
+        verbose_name_plural = " Site Settings"
 
 class AdminPositions(models.Model):
     title = models.CharField(max_length=100, primary_key=True, default='The Title')
@@ -118,13 +122,15 @@ class AdminPositions(models.Model):
 
 
 class BoardPositions(AdminPositions):
-    pass
 
+    class Meta:
+        verbose_name_plural = "Board Positions"
 
 
 class CommitteeChairPositions(AdminPositions):
-    pass
 
+    class Meta:
+        verbose_name_plural = "Committee Chair Positions"
 
 class AdminMember(models.Model):
 
@@ -159,6 +165,11 @@ class BoardMember(AdminMember):
     title = models.ForeignKey(BoardPositions, on_delete=models.CASCADE)
 
     
+class FrontPageLinks(models.Model):
+    url = models.URLField(primary_key=True);
+    link_text = models.CharField(max_length=60)
+
+
 class NewsItem(models.Model):
 
     id = models.AutoField(primary_key=True)
@@ -177,8 +188,8 @@ class NewsItem(models.Model):
 
 class SiteMemberProfile(models.Model):
     user = models.OneToOneField(User, blank=True)
-    board_member = models.ForeignKey(BoardPositions, blank=True)
-    committee_member = models.ForeignKey(CommitteeChairPositions, blank=True)
+    board_member = models.ForeignKey(BoardPositions, null=True, blank=True)
+    committee_member = models.ForeignKey(CommitteeChairPositions, null=True, blank=True)
 
 
 class Page(models.Model):
@@ -226,6 +237,7 @@ class UslaLocations(models.Model):
     
     class Meta:
         ordering = ["name"]
+        verbose_name_plural = "USLA Locations"
 
 
 def check_is_pdf(the_filename):
@@ -272,7 +284,8 @@ class Program(models.Model):
     contact_name = models.CharField(blank=True, max_length=100)
     contact_email = models.EmailField(blank=True)
     contact_tel = models.CharField(blank=True, max_length=16)
-    
+    author = models.ForeignKey(User, null=True, blank=True)
+
     def has_schedule_at_date(self, the_date):
         ps_o = ProgramSchedule.objects.filter(program=self.id)
         ret_val = False
@@ -335,7 +348,7 @@ class ProgramSchedule(models.Model):
     name = models.CharField(primary_key=True, max_length=60, default=" Name")
     location = models.CharField(max_length=2, choices=get_locations(), blank=True)
     note = models.CharField(max_length=200, blank=True)
-    
+    author = models.ForeignKey(User, null=True, blank=True)
     def clean(self):
       
         if self.start_time > self.end_time:
@@ -380,7 +393,7 @@ class EventAbs(models.Model):
     pdf_file = models.FileField(upload_to='files/events/', blank=True)
     description = models.TextField(blank=True);
     contact_email = models.EmailField(blank=True)
-
+    author = models.ForeignKey(User, null=True, blank=True)
     def has_event_at_date(self, the_date):
         return self.start_date <= the_date and the_date <= self.end_date
 
@@ -433,6 +446,7 @@ class ProgramEvent(EventAbs):
         return '<h6><i>' + self.get_progrma_display() + '</i></h6>' + self.get_html_str()
 
 class Event(EventAbs):
+
     pass
 
 
@@ -442,10 +456,11 @@ class Event(EventAbs):
 class Gallery(models.Model):
     description = models.CharField(max_length=140, blank=True)
     slug = models.CharField(default="url", blank=True, max_length=50, editable=False)
-    
+    author = models.ForeignKey(User, null=True, blank=True)
 
     class Meta:
         abstract = True
+
 
 
 
@@ -457,14 +472,21 @@ class EventGallery(Gallery):
         if self.pk is None:
             if EventGallery.objects.filter(type=self.type):
                 raise ValidationError("This Gallery Already Exists!")
-    
+
     def save(self, *args, **kwargs):
         
         self.slug = slugify(self.type)
         super(EventGallery, self).save(*args, **kwargs)
 
+    def has_gallery_images():
+        x = EventGalleryImages.objects.all();
+        return (len(list(x)) > 0)
+
     def __str__(self):
         return self.type.name
+
+    class Meta:
+        verbose_name_plural = "Event Galeries"
 
 class ProgramGallery(Gallery):
     type = models.ForeignKey(Program, on_delete=models.CASCADE)
@@ -479,10 +501,11 @@ class GalleryImages(models.Model):
     id = models.AutoField(primary_key=True)
 
     description = models.CharField(max_length=140, blank=True)
+    date = models.DateField(default=None, blank=True, null=True)
     image = models.ImageField(upload_to=get_upload_gallery_image_to_images)
     image_thumb = models.ImageField(upload_to=get_upload_gallery_image_to_images, blank=True)
     first_save = True
-
+    author = models.ForeignKey(User, null=True, blank=True)
     def save(self, *args, **kwargs):
 
         if self.pk is None:

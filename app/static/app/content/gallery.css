@@ -8,32 +8,41 @@
     margin-left: auto;
     margin-right: auto;
     overflow: auto;
-    background: rgba(0, 0, 0, 0.17);
+    background: rgba(25, 25, 24, 0.98);
     background: red; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(rgba(0, 0, 0, 0.97), rgba(28, 9, 14, 0.98),rgba(244, 244, 244, 0.98)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(rgba(0, 0, 0, 0.97), rgba(28, 9, 14, 0.98), rgba(0, 0, 0, 0.17), rgba(244, 244, 244, 0.98)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(rgba(0, 0, 0, 0.97), rgba(28, 9, 14, 0.98),rgba(244, 244, 244, 0.98)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(rgba(0, 0, 0, 0.97), rgba(28, 9, 14, 0.98),rgba(244, 244, 244, 0.98));
+    background: -webkit-linear-gradient(rgba(40, 40, 40, 0.97), rgba(228, 229, 214, 0.98),rgba(44, 44, 44, 0.98)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(40, 40, 40, 0.97), rgba(28, 9, 14, 0.98), rgba(0, 0, 0, 0.17), rgba(44, 44, 44, 0.98)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(40, 40, 40, 0.97), rgba(28, 29, 214, 0.98),rgba(44, 44, 44, 0.98)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(40, 40, 40, 0.97), rgba(28, 9, 14, 0.98),rgba(44, 44, 44, 0.98));
 }
 
 .v_gallery h1 {
     color: rgba(255, 255, 255, 0.97);
-    background-color: rgba(5, 5, 5, 0.62);
+    background-color: rgba(25, 25, 24, 0.98);
     padding: 14px;
     margin: 0;
     text-align: center;
     font-size: 24px;
     font-weight: 400;
-    text-shadow: 2px 2px black;
+  
+ 
 }
 .thumb_img img, .thumb_img_sel img {
     width: 100px;
     position: relative;
     float: left;
-    margin: 20px;
-    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.77);
+    margin: 10px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.77);
     border: 1px solid rgba(0, 0, 0, 0.77);
     height: 100px;
+    padding: 1px;
+}
+
+
+
+.thumb_img_sel img {
+    border: 1px solid rgba(255, 241, 0, 0.97);
+  
 }
 
 .v_container {
@@ -55,20 +64,137 @@
    
     border: 1px solid rgba(50, 50, 50, 0.27);
 }
-
+.v_gallery h3 {
+    font-size: 16px;
+    padding-bottom: 14px;
+    background-color: rgba(25, 25, 24, 0.98);
+    font-style: italic;
+    color: rgba(224, 224, 224, 0.93);
+    margin-top: 0px;
+    font-weight: 300;
+    text-align: center;
+}
 
 
 .v_thumbnails {
     border-top: 1px solid rgba(0, 0, 0, 0.77);
     border-bottom: 1px solid rgba(0, 0, 0, 0.77);
-    background-color:rgba(255, 255, 255, 0.92);
+    background-color: rgba(255, 255, 255, 0.04);
     margin-top: 20px;
     border: 1px solid rgba(225, 219, 220, 0.48);
-    border-radius: 6px;
-    width: 286px;
+
+    width: 252px;
     margin-left: 5%;
     margin-right: 5%;
     float: left;
     overflow: auto;
 }
 
+.v_close_div {
+    width: 40px;
+    right: 4px;
+    position: fixed;
+    z-index: 100;
+    display: none;
+}
+.close_btn {
+ 
+    width: 60px;
+   
+
+}
+
+.v_close_div a {
+    font-size: 34px;
+    text-align: right;
+    float: none;
+    color: rgba(255, 241, 244, 0.97);
+    text-shadow: 2px 2px 2px black;
+}
+
+
+@media screen and (max-width: 1080px) {
+    .v_container {
+        width: 100%;
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.86);
+        margin: 0;
+        top: 48px;
+   
+        padding-top: 14px;
+        min-height: calc(100vh);
+    }
+    .v_close_div {
+        display: block;
+    }
+        .v_container img {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+    .v_gallery {
+        width: 100%;
+        padding-top: 64px;
+        min-height: calc(100vh - 154px);
+    }
+
+    .v_thumbnails {
+        width: 100%;
+        margin: 0;
+        margin-top: 40px;
+        padding: 0;
+        border: none;
+
+    }
+
+    .v_container h1, .v_gallery h3, .v_gallery h1 {
+        color: rgba(255, 255, 255, 0.97);
+        text-align: center;
+        display: block;
+        margin: 0;
+        padding: 0;
+        background-color: transparent;
+    }
+    .v_gallery h1 {
+        font-size: 18px;
+        padding-bottom:8px;
+
+    }
+
+
+    .thumb_img img, .thumb_img_sel img {
+        width: calc(25% - 4px);
+        position: relative;
+        padding: 0;
+
+        float: left;
+        margin: 1px;
+        box-shadow: none;
+        border: 1px solid rgba(0, 0, 0, 0.77);
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .thumb_img img, .thumb_img_sel img {
+        width: calc(33% - 4px);
+    }
+
+
+    .v_thumbnails {
+        width: 100%;
+        margin: 0;
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .thumb_img img, .thumb_img_sel img {
+        width: calc(50% - 4px);
+    }
+    .v_thumbnails {
+        width: 100%;
+        margin: 0;
+        margin-top: 10px;
+    }
+}

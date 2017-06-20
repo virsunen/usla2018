@@ -1,11 +1,11 @@
 from django import template
 from django.utils import timezone
-from app.models import Page, Event, Program, ProgramSchedule, ProgramEvent
+from app.models import Page, Event, Program, ProgramSchedule, ProgramEvent, EventGallery
 from app.views import CalendarObj
 import app.models
 import calendar
 from datetime import date, time, datetime
-
+from django.conf import settings
 
 register = template.Library()
 DAYS_OF_WEEK = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] 
@@ -59,6 +59,21 @@ def get_dow_table_row(program):
     ret_str += '</tr>'
     return ret_str
 
+
+@register.filter(name='get_event_gallery', is_safe=True)
+def get_event_gallery(event):
+
+    obj = EventGallery.objects.filter(type=event)
+    if (obj):
+        return "../gallery/" + obj[0].slug
+    else:
+        return ("#")
+
+@register.filter(name='has_event_gallery')
+def has_event_gallery(event):
+
+    obj = EventGallery.objects.filter(type=event)
+    return len(list(obj)) > 0
 
 @register.filter(name='get_ps_table_row', is_safe=True)        
 def get_ps_table_row(program_schedule):
@@ -119,7 +134,6 @@ def get_cal_m_y(cal):
 def get_cal_month_name(cal):
     current_month = calendar.month_name[cal.month]
     return current_month
-
 
 @register.filter(name='get_calendar', is_safe=True)        
 def get_calendar(cal):

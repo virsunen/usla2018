@@ -39,10 +39,12 @@ class CalendarObj():
 usla_calendar = CalendarObj(None, None, None)
 
 def gallery(request, slug):
+     
+    site_settings = SiteSettings.objects.all()[0]
     the_gallery = get_object_or_404(EventGallery, slug=slug)
     the_images = EventGalleryImages.objects.filter(gallery=the_gallery.pk)
     print(len(list(the_images)))
-    return render(request, 'app/gallery.html', {'gallery': the_gallery, 'g_images': the_images})
+    return render(request, 'app/gallery.html', {'gallery': the_gallery, 'g_images': the_images, 'site_settings': site_settings,})
 
 
 def indexView(request):

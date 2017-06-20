@@ -20,12 +20,7 @@ $(window).resize(function () {
     }
 
 });
-$(window).load(function () {
 
-
-    $(".v_container").hide();
-    $(".v_container").fadeIn(1000);
-});
 
 
 $(document).ready(function () {
@@ -56,11 +51,6 @@ $(document).ready(function () {
     $(".events_nav_btn_sel").click(function (e) {
 
         toggleCalEvents(this);
-    });
-
-    $(".thumb_btn").click(function (e) {
-  
-        $(".v_container img").hide().fadeOut(100).attr('src', this.id).fadeIn(1000);
     });
 
 

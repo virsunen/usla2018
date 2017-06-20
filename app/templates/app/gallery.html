@@ -4,19 +4,26 @@
 
 <div class="v_gallery">
     <h1>{{ gallery.type }}</h1>
-    <div class="v_thumbnails">
+    {% if gallery.description %}
+        <h3>{{ gallery.description }}</h3>
+    {% endif %}
+    <div class="v_thumbnails" style="display: none;">
         {% for g_i in g_images %}
         {% if g_i == g_images.0 %}
         <div class="thumb_img_sel">
             {% else %}
-            <div class="thumb_img">
+            <div class="thumb_img ">
                 {% endif %}
-                <a href="#" class="thumb_btn" id="{{ g_i.image.url }}"><img class="v_thumb_image" src="{{ g_i.image_thumb.url }}" /></a>
+                <a href="#" class="thumb_btn" id="{{ g_i.image.url }}" description="{{ g_i.description }}" ><img class="v_thumb_image" src="{{ g_i.image_thumb.url }}" /></a>
             </div>
             {% endfor %}
         </div>
         <div class="v_container" style="display: none;" >
+            <div class="v_close_div">
+                <a href="#" class="v_close_btn"><i class="fa fa-close"></i></a>
+            </div>
             <img class="v_main_image" src="{{ g_images.0.image.url }}" />
+            <p>{{ g_images.0.description }}</p>
         </div>
 
     </div>

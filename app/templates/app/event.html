@@ -52,5 +52,8 @@
             <p><a href="{{ e.pdf_file.url }}"><i class="fa fa-file-pdf-o"></i>Download .pdf</a></p>
             {% endif %}
         </div>
+        {% if e|has_event_gallery %}
+            <a href="{{ e|get_event_gallery }}">See Gallery</a>
+        {% endif %}
 </div>
 

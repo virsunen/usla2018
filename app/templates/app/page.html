@@ -3,19 +3,7 @@
 {% block content %}
 
 
-<div class="nav_bar">
-    <div class="closeBtn"><a href="#" onclick="closeMenu();"><i class="fa fa-times"></i></a></div>
-    {% for p_t in pages %}
-    {% if p_t.slug == page.slug %}
 
-    <div class="nav_a_sel">
-        {% else %}
-        <div class="nav_a">
-            {% endif %}
-            <a href="{% url 'app:page' p_t.slug %}"><i class="fa {{ p_t.fa_icon }}"></i>{{ p_t.title_text }}</a>
-        </div>
-        {% endfor %}
-    </div>
     <div class="page_content">
         <div class="page_title">
             <h1>
