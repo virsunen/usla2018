@@ -21,12 +21,17 @@
 }
 
 
-    .page_title, .page_body h2, .program_dates b, .cal_prog_btn{
+.fp_links h1, .page_title, .page_body h2, .program_dates b, .cal_prog_btn{
         color: rgba(224, 0, 52, 0.88);
     }
 .event h1, .event_list_item h5, .cal_prog_schedule h5 {
     color: rgba(224, 40, 82, 0.98);
 }
+
+.fp_links h1 {
+    color: rgba(255, 255, 255, 0.97);
+}
+
 body {
     padding: 0;
     margin: 0;
@@ -95,6 +100,61 @@ a {
  }    
 .nav_a, .nav_a_sel {
     float: left;
+}
+footer img {
+    position: relative;
+    width: 80px;
+    height: auto;
+    margin-left: calc(50% - 40px);
+}
+
+.fp_links {
+    margin-left: 5%;
+    width: 30%;
+    padding: 28px;
+    border-radius: 6px;
+    padding: 14px;
+    margin-top: 28px;
+    font-size: 20px;
+    border: 1px solid rgba(224, 225, 222, 0.38);
+    background-color: rgba(0, 0, 0, 0.67);
+    text-shadow: 2px 1px 1px black;
+}
+
+
+.fp_links, .page_body {
+    float: left;
+}
+.fp_links h1 {
+    font-size: 22px;
+    font-weight: 100;
+    font-style: italic;
+}
+
+.fp_links a {
+    width: 100%;
+
+}
+
+.fp_links p {
+    margin-top: 8px;
+}
+
+
+.fp_history p {
+    margin-top: 14px;
+}
+
+.history_link {
+    width: 100%;
+    margin-top: 28px;
+    text-align: center;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    float: left;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    position: relative;
 }
 
 
@@ -236,7 +296,13 @@ footer p  {
 }
 
 
+footer img {
+    position:relative;
+    width: 80px;
+    height: auto;
+    margin-left: calc(100% -40px)
 
+}
 .page_title, .page_body {
 
     color: rgba(240, 340, 240, 0.86);
@@ -419,7 +485,7 @@ footer p  {
     padding: 0;
     overflow: auto;
 }
-    .html_content::after, .fp_links::after, .fd_history::after {
+    .html_content::after {
         content: " ";
         display: block;
         height: 0;
@@ -439,7 +505,7 @@ footer p  {
 
 
 .event, .program, .cal_prog_schedules {
-    border: 1px solid rgba(245, 245, 245, 0.5);
+
     border-radius: 6px;
     padding: 2%;
   
@@ -465,6 +531,7 @@ footer p  {
 
 .event {
     width: 100%;
+        border: 1px solid rgba(245, 245, 245, 0.3);
 }
 
 .event_center {
@@ -863,6 +930,42 @@ footer p  {
     .member {
         width: calc(33% - 4px);
     }
+
+
+    .fp_history {
+        width: calc(92% - 2px);
+        float: left;
+        margin: 0;
+        padding-top: 28px;
+        padding-bottom: 28px;
+        padding-left: 4%;
+        padding-right: 4%;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        box-shadow: none;
+        margin-bottom: 28px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+    }
+    .fp_links {
+        text-align: center;
+        font-size: 0.9em;
+        padding: 0;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        margin: 0;
+        margin-top: 14px;
+        margin-bottom: 14px;
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    .fp_links h1 {
+        font-size: 16px;
+    }
     .contact h1 {
         background-color: rgba(255, 255,255, 0.17);
         font-size: 20px;
@@ -940,7 +1043,10 @@ footer p  {
         width: 96%;
     }
     .page_body {
-        width: 80%;
+        margin-left: 10%;
+        width: 76%;
+        padding: 2%;
+
     }
 
     .page_body h2 {
@@ -963,79 +1069,6 @@ footer p  {
     }
 }
 
-footer img {
-    position: relative;
-    width: 80px;
-    height: auto;
-    margin-left: calc(50% - 40px);
-}
-
-.fp_links {
-    margin-left: 5%;
-    width: 30%;
-    border-radius: 6px;
-    padding: 14px;
-    margin-top: 28px;
-    font-size: 20px;
-
-    background-color: rgba(20, 20, 20, 0.87);
-}
-
-
-.fp_links, .page_body {
-    float: left;
-}
-.fp_links h1 {
-    font-size: 14px;
-
-    font-style: italic;
-    color: white;
-}
-
-.fp_links a {
-    width: 100%;
-
-}
-
-.fp_links p {
-    margin-top: 8px;
-}
-
-.fp_history {
-    width: calc(92% - 2px);
-    float: left;
-    margin: 0;
-
-    padding-top: 28px;
-    padding-bottom: 28px;
-    padding-left: 4%;
-    padding-right: 4%;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-    box-shadow: none;
-    margin-bottom: 28px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-}
-
-.fp_history p {
-    margin-top: 14px;
-}
-
-.history_link {
-    width: 100%;
-    margin-top: 28px;
-    text-align: center;
-    padding-top: 14px;
-    padding-bottom: 14px;
-    float: left;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    position: relative;
-}
 
 @media screen and (max-width: 880px) {
     .member {
@@ -1209,6 +1242,9 @@ footer img {
     }
 
     .page_body {
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
         width: 80%;
     }
 
@@ -1297,7 +1333,10 @@ footer img {
 
 
 
-
+    .page_body p {
+        font-size: 16px;
+        margin: 14px;
+    }
 
 
 }
@@ -1306,12 +1345,23 @@ footer img {
     .member {
         width: calc(100% - 4px);
     }
+    .fp_links {
+        width: 90%;
+        margin-left: 5%;
+    }
 
-
+    .fp_links h1 {
+        font-size: 18px;
+    }
+        .fp_links a {
+        font-size: 14px;
+    }
     footer {
         width: 96%;
         padding: 2%;
     }
+
+
     .page_body {
         width: 92%;
         margin: 4%;
@@ -1323,8 +1373,8 @@ footer img {
         }
 
     .page_body p {
-        font-weight: 400;
-        margin: 12px;
+        font-size: 14px;
+        margin: 8px;
     }
 
     .contact h1 {
@@ -1475,9 +1525,6 @@ footer img {
         display: inline;
     }
 
-    .page_title h1 {
-        display: none;
-    }
 }
 
 

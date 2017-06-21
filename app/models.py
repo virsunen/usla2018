@@ -182,8 +182,10 @@ class NewsItem(models.Model):
    
     publish_date = models.DateField(default=now)
     author = models.ForeignKey(User, null=True, blank=True)
+
     pdf_file = models.FileField(upload_to=get_upload_news_item_to_files, blank=True)
     image = models.ImageField(upload_to=get_upload_news_item_to_images, blank=True)
+
 
     
     def __str__(self):
@@ -196,6 +198,19 @@ class SiteMemberProfile(models.Model):
     committee_member = models.ForeignKey(CommitteeChairPositions, null=True, blank=True)
 
 
+    def get_position(self):
+        
+        if self.board_member:
+            return self.board_member.title
+        elif self.committee_member:
+            return self.committee_member.title
+        else:
+            return None
+    
+    def __str__(self):
+        return self.user.username
+
+
 class Page(models.Model):
 
 
@@ -204,7 +219,7 @@ class Page(models.Model):
    
     fa_icon = models.CharField(blank=True, max_length=30)
     sub_description = models.CharField(max_length=100, default='The Title Description')
-    image = models.ImageField(upload_to=get_upload_to_pages, blank=True)
+    image = models.ImageField(upload_to=get_upload_to_pages)
     description = models.TextField(default='Page Description');
     page_order = models.IntegerField(default=0)
     

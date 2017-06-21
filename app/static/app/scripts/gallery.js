@@ -22,21 +22,25 @@ $(window).load(function () {
 
 
 $(window).resize(function () {
-    resizeThumbnails();
-    if ($(window).width() <= 1080) {
-        showCloseBtn();
-        if ($(".v_thumbnails").css("display") == "none" || $(".v_container").css("display") != "none") {
-            checkHeader();
+
+    if (window.location.href.indexOf("gallery") !== -1) {
+        resizeThumbnails();
+        if ($(window).width() <= 1080) {
+            showCloseBtn();
+            if ($(".v_thumbnails").css("display") == "none" || $(".v_container").css("display") != "none") {
+                checkHeader();
+            } else {
+                showThumbnails();
+            }
+
         } else {
             showThumbnails();
-        }
-      
-    } else {
-        showThumbnails();
-        hideCloseBtn();
-        $(".v_container").fadeIn(300);
+            hideCloseBtn();
+            $(".v_container").fadeIn(300);
 
+        }
     }
+
 });
 
 $(document).ready(function () {

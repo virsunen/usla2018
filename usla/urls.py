@@ -16,7 +16,6 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
 from datetime import datetime
 from django.conf.urls import url
 import django.contrib.auth.views
@@ -49,7 +48,7 @@ urlpatterns = [url(r'^login/$',
 
         url(r'^admin/', admin.site.urls),
         url(r'^myadmin/', admin_site.urls),
-        url(r'^', include('app.urls'))]
+        url(r'^', include('app.urls'))] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 # This enables static files to be served from the Gunicorn server

@@ -6,7 +6,15 @@
     </div>
 
     {% if e.author %}
-        <h4>{{ e.author }}</h4>
+    <h4>
+       
+        {% if e.author|get_board_position %}
+            {{ e.author|get_board_position }}
+        {% else %}
+            {{ e.author }}
+        {% endif %}
+    </h4>
+      
     {% endif %}
     <h1>{{ e.title }}</h1>
     

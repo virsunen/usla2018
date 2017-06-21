@@ -1,6 +1,6 @@
 from django import template
 from django.utils import timezone
-from app.models import Page, Event, Program, ProgramSchedule, ProgramEvent, EventGallery
+from app.models import Page, Event, Program, ProgramSchedule, ProgramEvent, EventGallery, SiteMemberProfile
 from app.views import CalendarObj
 import app.models
 import calendar
@@ -134,6 +134,11 @@ def get_cal_m_y(cal):
 def get_cal_month_name(cal):
     current_month = calendar.month_name[cal.month]
     return current_month
+
+@register.filter(name='get_board_position', is_safe=True)
+def get_board_position(user):
+    objs = SiteMemberProfile.objects.filter(user=user)
+    return str(objs[0].get_position())
 
 @register.filter(name='get_calendar', is_safe=True)        
 def get_calendar(cal):
