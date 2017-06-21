@@ -21,18 +21,26 @@ $(window).resize(function () {
 
 });
 
+
+
 $(document).ready(function () {
 
     $(".cal_item").click(function (e) {
         // Fade out events and load day's programs and events
-
+        e.preventDefault();
         if (toggleCal("#ps" + this.id)) {
             $(this).css("background-color", "rgba(255, 241, 0, 0.97)");
         } 
 
     });
 
+    $(".history_btn").click(function (e) {
+        e.preventDefault();
+        toggleSlide(".fp_history", this);
+    });
+
     $(".closeCalDay").click(function (e) {
+        e.preventDefault();
         var parentId = $(this).parent().id;
         toggleCal(parentId);
     });
@@ -40,20 +48,35 @@ $(document).ready(function () {
 
 
     $(".events_nav_btn").click(function (e) {
-
+        e.preventDefault();
         toggleCalEvents(this);
 
     
 
     });
     $(".events_nav_btn_sel").click(function (e) {
-
+        e.preventDefault();
         toggleCalEvents(this);
-
-
-
     });
+
+
 });
+
+function toggleSlide(theDiv, theClass) {
+    if ($(theDiv).css("display") == "none") {
+        $(theDiv).slideDown(270, function () {
+            $(theClass.id + "_down").fadeOut(120);
+            $(theClass.id + "_up").fadeIn(120);
+        });
+    } else {
+        alert(theClass.id + "_down");
+        $(theDiv).slideUp(270, function () {
+            $(theClass.id + "_down").fadeIn(120);
+            $(theClass.id + "_up").fadeOut(120);
+        });
+    }
+  
+}
 
 function toggleCalEvents(theItem) {
 

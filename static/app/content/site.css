@@ -1,3 +1,19 @@
+
+/* Global Colors */
+.header, .cal_day {
+    background-color: rgba(224, 0, 52, 0.88);
+}
+.page_title, .page_body {
+    background-color: rgba(224, 0, 52, 0.88);
+}
+
+
+    .page_title, .page_body h2, .program_dates b, .cal_prog_btn{
+        color: rgba(224, 0, 52, 0.88);
+    }
+.event h1, .event_list_item h5, .cal_prog_schedule h5 {
+    color: rgba(224, 40, 82, 0.98);
+}
 body {
     padding: 0;
     margin: 0;
@@ -47,13 +63,23 @@ a {
 
 .header {
     width: 100%;
-    background-color: rgba(178, 49, 74, 0.88);
     color: white;
 
     overflow: auto;
     box-shadow: 1px 2px rgba(8, 9, 4, 0.38);
 }
 
+
+.back_btn {
+    float: left;
+    font-size: 24px;
+    margin-top: 28px;
+}
+
+.back_btn a {
+        color: white;
+
+ }    
 .nav_a, .nav_a_sel {
     float: left;
 }
@@ -179,7 +205,8 @@ footer {
     color: white;
     background-color: rgba(5, 5, 5, 0.92);
     padding: 2%;
-
+    border-top: 1px solid rgba(244, 244, 244, 0.17);
+    
 
 
 }
@@ -201,9 +228,7 @@ footer p  {
 
     color: rgba(240, 340, 240, 0.86);
 
- 
-    width: 100%;
-    background-color: rgba(178, 49, 74, 0.88);
+
     padding-top: 14px;
     padding-bottom: 14px;
     margin: 0;
@@ -212,22 +237,24 @@ footer p  {
 .page_title {
     text-align: center;
     display: none;
-    color: rgba(178, 49, 74, 0.88);
+  
     background-color: rgba(242, 242, 242, 0.76);
 }
 
-.page_body {
+.page_body, .fp_history {
     text-align: left;
     color: rgba(5, 5, 5, 0.97);
     text-shadow: none;
     font-weight: 500;
     padding: 14px;
-    background-color: rgba(255, 255, 255, 0.77);
-    width: 72%;
+
+    background-color: rgba(255, 255, 255, 0.87);
+    width: 50%;
     margin-top: 28px;
-    margin-left: auto;
+    margin: 0;
     border-radius: 6px;
-    margin-right: auto;
+    float: left;
+    margin-top: 28px;
     border: 1px solid rgba(178, 49, 74, 0.38);
     box-shadow: 2px 2px rgba(5, 5, 5, 0.17);
 }
@@ -255,7 +282,7 @@ footer p  {
 .page_body h2 {
     margin: 14px;
     padding: 0;
-    color: rgba(178, 49, 74, 0.98);
+
 }
 
 .user_login {
@@ -299,7 +326,6 @@ footer p  {
 
     float: left;
 }
-
 
 .header h1 {
     margin: 0;
@@ -381,8 +407,9 @@ footer p  {
 
 .events {
     width: calc(100% - 600px);
-    margin-left: 28px;
+    margin-left: 5%;
     float: left;
+    max-width: 600px;
 }
 
 .events_nav {
@@ -444,21 +471,19 @@ footer p  {
     rgba(248, 226, 241, 0.98);
 }
 
-.event h1, .event_list_item h5, .cal_prog_schedule h5 {
-    color: rgba(228, 126, 141, 0.98);
-}
+
 
 .event h1 {
 
-    font-size: 26px;
+    font-size: 24px;
     text-align: center;
-    padding: 18px;
+    padding: 8px;
 }
 
 
 .event h2 {
     
-    font-size: 20px;
+    font-size: 18px;
 }
 .event_list_item p {
     width: 90%;
@@ -563,7 +588,7 @@ footer p  {
 }
 
 .program_dates b {
-    color: rgba(178, 49, 74, 0.98);
+
     font-weight: 600;
     font-size: 12px;
 
@@ -726,7 +751,6 @@ footer p  {
 
 .cal_day {
     text-align: center;
-    background-color: rgba(178, 49, 74, 0.94);
     color: rgba(242, 242, 242, 0.97);
     width: 34%;
     font-size: 14px;
@@ -746,7 +770,7 @@ footer p  {
     border: none;
     background: transparent;
     background-color: rgba(238, 238, 238, 0.18);
-    color: rgba(178, 49, 74, 0.88);
+
 }
 
 
@@ -899,6 +923,72 @@ footer p  {
     .program h1 {
         font-size: 26px;
     }
+
+
+    .back_btn {
+
+        font-size: 16px;
+        padding-top: 0;
+        margin-top: 0;
+        margin-right: -26px;
+    }
+}
+
+footer img {
+    position: relative;
+    width: 80px;
+    height: auto;
+    margin-left: calc(50% - 40px);
+}
+
+.fp_links {
+    margin-left: 5%;
+    width: 30%;
+    border-radius: 6px;
+    padding: 14px;
+    margin-top: 28px;
+    float: left;
+    background-color: rgba(70, 29, 40, 0.47);
+}
+
+.fp_links h1 {
+    font-size: 14px;
+
+    font-style: italic;
+    color: white;
+}
+
+.fp_links a {
+    width: 100%;
+
+}
+
+.fp_history {
+    width: 80%;
+
+    margin: 0;
+    padding: 14px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    box-shadow: none;
+    margin-bottom: 28px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.fp_history p {
+    margin-top: 14px;
+}
+
+.history_link {
+    width: 90%;
+    margin-top: 28px;
+    text-align: right;
+    padding: 14px;
+    background-color: rgba(0, 0, 0, 0.14);
+    float: left;
+    position: relative;
 }
 
 @media screen and (max-width: 880px) {
@@ -1107,7 +1197,7 @@ footer p  {
 
         height: 48px;
         z-index: 99;
-        background-color: rgba(178, 49, 74, 0.98);
+
     }
    .user_login {
    
@@ -1343,3 +1433,5 @@ footer p  {
         display: none;
     }
 }
+
+

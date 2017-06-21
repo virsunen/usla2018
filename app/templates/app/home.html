@@ -1,0 +1,26 @@
+{% load template_tags %}
+<div class="page_body">
+    <p>{{ page.description|safe}}</p>
+</div>
+{% include "app/fp_links.html" %}
+{% if site_settings.site_history %}
+<div class="history_link">
+
+
+    <a id="history_btn" class="history_btn" href="#">
+        {% if site_settings.site_history_lbl %}
+        {{ site_settings.site_history_lbl }}
+        {% else %}
+        See History
+        {% endif %}
+            <i id="history_btn_up" class="fa fa-chevron-up"></i>
+            <i id="history_btn_down" style="display:none;" class="fa fa-chevron-down"></i>
+    </a>
+</div>
+
+
+
+<div class="fp_history" style="display:none;">
+    {{ site_settings.site_history|safe }}
+</div>
+{% endif %}

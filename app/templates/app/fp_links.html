@@ -1,0 +1,7 @@
+{% load template_tags %}
+<div class="fp_links">
+    <h1>Friends of USLA</h1>
+    {% for e in extra %}
+    <p></p><a href="{{e.url}}">{{e.link_text}}</a></p>
+    {% endfor %}
+</div>

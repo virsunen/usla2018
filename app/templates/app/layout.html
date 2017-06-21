@@ -24,11 +24,20 @@
 
             {% endif %}
 
-            <div class="header_btn">
+            
+                {% if the_prev_url %}
+                <div class="back_btn">
+                <a href="{{ the_prev_url }}" id="prev_btn"><i class="fa fa-arrow-left"></i></a>
+                </div>
+                {% else %}
+                <div class="header_btn">
                 <a href="#" onclick="openMenu();" id="navMenu"><i class="fa fa-navicon"></i></a>
-            </div>
+                </div>
+                {% endif %}
+          
             <div class="header_text">
                 <img src="{{ site_settings.logo_header_image.url }}" />
+   
                 <h1>{{ site_settings.site_name }}</h1>
                 <p>{{ site_settings.site_desc }}</p>
             </div>
@@ -47,13 +56,19 @@
                 </div>
                 {% endfor %}
             </div>
+
             {% block content %}{% endblock %}
+            </div>
             <footer>
+                {% if site_settings.logo_btm_image %}
+                <img src="{{ site_settings.logo_btm_image.url }}" />
+                {% endif %}
+
                 <p><a href="{{ site_settings.facebook_link }}"><i class="fa fa-facebook"></i>USLA Facebook</a></p>
                 <p>&copy; {{ year }} - usla.ca</p>
 
             </footer>
-        </div>
+
 
     <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
     <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
