@@ -25,8 +25,14 @@ $(window).resize(function () {
     resizeThumbnails();
     if ($(window).width() <= 1080) {
         showCloseBtn();
-        showThumbnails();
+        if ($(".v_thumbnails").css("display") == "none" || $(".v_container").css("display") != "none") {
+            checkHeader();
+        } else {
+            showThumbnails();
+        }
+      
     } else {
+        showThumbnails();
         hideCloseBtn();
         $(".v_container").fadeIn(300);
 
@@ -52,6 +58,7 @@ $(document).ready(function () {
   
     $(".v_close_btn").click(function (e) {
         hideImage();
+        showThumbnails();
         $(".v_thumb_image").css('border-color', 'rgba(0, 0, 0, 0.77)');
         $(".header").css({ "display": "block" });
     });
