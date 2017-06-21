@@ -10,7 +10,8 @@ import calendar
 from datetime import date, time, datetime
 from django.views import generic
 
-from .models import Page, Event, Program, CommitteeMember, BoardMember, ProgramSchedule, ProgramEvent, SiteSettings, EventGallery, EventGalleryImages
+from .models import Page, Event, Program, CommitteeMember, BoardMember, ProgramSchedule, ProgramEvent, \
+SiteSettings, EventGallery, EventGalleryImages, FrontPageLinks, NewsItem
 
 
 
@@ -43,8 +44,11 @@ def gallery(request, slug):
     site_settings = SiteSettings.objects.all()[0]
     the_gallery = get_object_or_404(EventGallery, slug=slug)
     the_images = EventGalleryImages.objects.filter(gallery=the_gallery.pk)
+    the_prev_url = "../../events/"
     print(len(list(the_images)))
-    return render(request, 'app/gallery.html', {'gallery': the_gallery, 'g_images': the_images, 'site_settings': site_settings,})
+    return render(request, 'app/gallery.html', {'gallery': the_gallery, 'g_images': the_images, 'site_settings': site_settings, 'the_prev_url': the_prev_url})
+
+
 
 
 def indexView(request):
@@ -95,8 +99,10 @@ def page(request, slug):
         extra = Program.objects.all()
     elif page.slug == 'contact':
         extra = ContactObj(BoardMember.objects.all(), CommitteeMember.objects.all())
+    elif page.slug == "news":
+        extra = NewsItem.objects.all()
     elif page.slug == 'home':
-        extra = usla_calendar
+        extra = FrontPageLinks.objects.all()
 
 
 

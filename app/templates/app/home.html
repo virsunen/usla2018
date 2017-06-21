@@ -1,8 +1,12 @@
 {% load template_tags %}
+
+
 <div class="page_body">
     <p>{{ page.description|safe}}</p>
 </div>
+{% if extra %}
 {% include "app/fp_links.html" %}
+{% endif %}
 {% if site_settings.site_history %}
 <div class="history_link">
 

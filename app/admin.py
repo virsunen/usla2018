@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import Page, Program, Event, ProgramSchedule, BoardPositions, \
 CommitteeChairPositions, BoardMember, CommitteeMember, ProgramEvent, UslaLocations, \
-SiteSettings, SiteMemberProfile, NewsItem, EventGallery, EventGalleryImages
+SiteSettings, SiteMemberProfile, NewsItem, EventGallery, EventGalleryImages, FrontPageLinks
 
 MEMBER_FIELDS =  (('title', 'order'), 'name', 'email', ('tel_num', 'cel_num'), 'image')
 
@@ -37,6 +37,7 @@ class UserAdmin(BaseUserAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
+
 
 
 class MyAdminSite(AdminSite):
@@ -78,8 +79,9 @@ class EventGalleryAdmin(SiteMemberAdmin):
             return []
 
 
-
-
+@admin.register(FrontPageLinks)
+class FrontPageLinksAdmin(admin.ModelAdmin):
+    pass
 
 
 @admin.register(SiteSettings)
@@ -120,10 +122,7 @@ class PageAdmin(admin.ModelAdmin):
 
 @admin.register(NewsItem)
 class NewsItem(SiteMemberAdmin):
-    pass
-     
-    
-
+    fields = ('title', 'description', 'publish_date', 'pdf_file', 'image')
 
 
 @admin.register(Event)

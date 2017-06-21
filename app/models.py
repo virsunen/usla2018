@@ -96,6 +96,8 @@ class SiteSettings(SingletonModel):
 
     site_name = models.CharField(default="usla", max_length=40)
     site_desc = models.CharField(default="", max_length=80)
+    site_history = models.TextField(blank=True)
+    site_history_lbl = models.CharField(max_length=80, blank=True)
     contact = models.EmailField(default='info@usla.ca')
     facebook_link = models.URLField(blank=True)
     logo_header_image = models.ImageField(upload_to='images/site/', blank=True)
@@ -168,7 +170,9 @@ class BoardMember(AdminMember):
 class FrontPageLinks(models.Model):
     url = models.URLField(primary_key=True);
     link_text = models.CharField(max_length=60)
-
+   
+    def __str__(self):
+        return self.url
 
 class NewsItem(models.Model):
 
