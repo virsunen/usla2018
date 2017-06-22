@@ -1,11 +1,31 @@
 
 /* Global Colors */
 .header, .cal_day {
-    background-color: rgba(224, 0, 52, 0.88);
+    background-color: rgba(224, 0, 52, 0.92);
 }
+
+.nav_a_sel, .nav_a:hover {
+    background-color: rgba(224, 0, 52, 0.62);
+}
+
 .page_title, .page_body {
     background-color: rgba(224, 0, 52, 0.88);
 }
+
+    .page_title h1, .nav_a_sel a{
+        color: rgba(242, 242, 242, 0.97);
+    }
+.event h5, .nav_a a {
+
+        color: rgba(212, 212, 212, 0.97);
+    }
+.contact h1 {
+    background-color: rgba(0, 0, 0, 0.43);
+}
+    .nav_a  {
+    background-color: rgba(0, 0, 0, 0.43);
+}
+
 
 .event h4 {
     color: rgba(251, 134, 50, 1);
@@ -14,7 +34,9 @@
 .history_link {
     background-color: rgba(251, 134, 50, 0.82);
 }
-
+.nav_bar {
+    background-color: rgba(30, 30, 30, 0.89);
+}
 .history_link a {
     font-size: 28px;
     color: white;
@@ -25,7 +47,7 @@
         color: rgba(224, 0, 52, 0.88);
     }
 .event h1, .event_list_item h5, .cal_prog_schedule h5 {
-    color: rgba(224, 40, 82, 0.98);
+    color: rgba(224, 70, 142, 0.98);
 }
 
 .fp_links h1 {
@@ -84,7 +106,7 @@ a {
     color: white;
 
     overflow: auto;
-    box-shadow: 1px 2px rgba(8, 9, 4, 0.38);
+
 }
 
 
@@ -101,6 +123,17 @@ a {
 .nav_a, .nav_a_sel {
     float: left;
 }
+
+.nav_a {
+
+    overflow: hidden;
+}
+
+    .nav_a a {
+        width: auto;
+        display: block;
+
+    }
 footer img {
     position: relative;
     width: 80px;
@@ -159,22 +192,21 @@ footer img {
 
 
 .nav_bar {
-    background-color: rgba(44, 44, 44, 0.9);
-    padding: 14px;
+    padding:0;
+
     overflow: auto;
-    box-shadow: 1px 2px rgba(78, 69, 74, 0.48);
+    box-shadow: 2px 2px rgba(8, 9, 8, 0.04);
 }
 
-.nav_a a, .nav_a_sel a {
-    color: rgba(255, 255, 255, 0.8);
-    background-color: rgba(255, 255, 255, 0.02);
+.nav_a, .nav_a_sel {
     padding: 14px;
-    margin-right: 14px;
-
+    border: 1px solid rgba(228, 229, 228, 0.14);
 }
+
+
+
 .nav_a_sel a {
-    color: rgba(178, 49, 74, 0.98);
-    background-color: rgba(255, 255, 255, 0.82);
+    font-weight: 400;
 }
     .nav_a i, .nav_a_sel i {
         margin-right: 8px;
@@ -184,10 +216,9 @@ footer img {
     color: rgba(255, 255, 255, 0.97);
 }
 
-.nav_a a:hover {
+.nav_a:hover {
     color: rgba(255, 255, 255, 0.97);
-    background-color: rgba(255, 255, 255, 0.12);
-    padding: 14px;
+
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -231,7 +262,7 @@ input[type="checkbox"].input-validation-error {
 
 .page_content {
 
-    background-color: rgba(17, 18, 15, 0.39);
+    background-color: rgba(17, 18, 15, 0.29);
     width: 100%;
     margin: 0;
     overflow: auto;
@@ -530,7 +561,7 @@ footer img {
     margin-right: auto;
     overflow: auto;
     color: rgba(255, 255, 255, 0.97);
-    background-color: rgba(5, 2, 7, 0.82);
+    background-color: rgba(5, 2, 7, 0.78);
 }
 
 .cal_prog_schedule, .event_list_item {
@@ -748,6 +779,7 @@ footer img {
 .contact h1 {
     color: rgba(255, 255, 255, 0.98);
     font-size: 28px;
+    margin: 0;
     padding-top: 14px;
     padding-bottom: 14px;
     width: 100%;
@@ -755,7 +787,7 @@ footer img {
     text-align: center;
 }
 .member {
-    width: calc(20% - 4px);
+    width: calc(20% - 2px);
 
 
     height: 366px;
@@ -925,9 +957,9 @@ footer img {
     text-shadow: none;
     margin: 0;
     width: 100%;
-    color: white;
+  
     padding: 0;
-    background-color: rgba(42, 42, 42, 0.96);
+    background-color: rgba(0, 0, 0, 0.96);
     
 }
 .page_title h1 {
@@ -944,17 +976,21 @@ footer img {
 
 @media screen and (max-width: 1080px) {
     .member {
-        width: calc(33% - 4px);
+        width: calc(33% + 0.5px);
     }
 
 
+
+    .news_events {
+        width: 70%;
+    }
 
 
     .fp_links h1 {
         font-size: 16px;
     }
     .contact h1 {
-        background-color: rgba(255, 255,255, 0.17);
+
         font-size: 20px;
     }
     .event {
@@ -1071,7 +1107,7 @@ footer img {
 
 @media screen and (max-width: 880px) {
     .member {
-        width: calc(50% - 4px);
+        width: calc(50% - 2px);
     }
     .contact h1 {
         font-size: 16px;
@@ -1092,9 +1128,10 @@ footer img {
     }
 
     .event a {
-        width: 96%;
+        text-align: right;
         font-size: 14px;
-        float: none;
+        padding-right: 8px;
+ 
 
     }
 
@@ -1114,9 +1151,7 @@ footer img {
 
         padding: 1%;
     }
-    .closeBtn {
-        display: inline;
-    }
+
     .program p {
         width: 92%;
     }
@@ -1219,16 +1254,18 @@ footer img {
         position: fixed;
         display: none;
         z-index: 100;
-        background-color: black;
+
 
         padding: 34px;
+        padding-top: 14px;
         width: calc(100% - 68px);
 
 
     }
     
     .nav_bar a {
-        border: 1px solid white;
+        border: none;
+
         width: 90%;
     }
 
@@ -1337,10 +1374,34 @@ footer img {
         margin: 14px;
     }
 
+    .news_events {
+        width: 80%;
+    }
 
+    .event h3, .event h5 {
+        font-size: 14px;
+        padding: 4px;
+        margin: 0;
+    }
+
+    .closeBtn {
+        display: inline;
+        float: right;
+    }
+
+    .closeBtn a {
+        border: none;
+        background-color: transparent;
+        font-size: 24px;
+    }
 }
 
 @media screen and (max-width: 600px) {
+
+    .closeBtn {
+        margin-top: -14px;
+        margin-right: -14px;
+    }
     .member {
         width: calc(100% - 4px);
     }
@@ -1361,6 +1422,9 @@ footer img {
     }
 
 
+    .events h2, h3, h4, h5 {
+        font-size: 0.85em;
+    }
     .page_body {
         width: 92%;
         margin: 4%;
@@ -1380,22 +1444,22 @@ footer img {
         font-size: 12px;
     }
 
+
     .event a {
-        width: 90%;
-        font-size: 0.9em;
-        padding: 0;
-        margin: 0;
-        padding: 0;
+
+        font-size: 12px;
+        padding-right: 6px;
     }
 
     .event_links p {
         margin: 0;
-        padding: 0;
+        margin-right: 12px;
+        width: 100%;
     }
 
     .event_links a {
-   
-        font-size: 14px;
+        font-size: 12px;
+        width: 100%;
     }
 
     .event_left {
@@ -1416,24 +1480,32 @@ footer img {
     }
 
     .event h1 {
-        font-size: 20px;
+        font-size: 16px;
         padding: 8px;
         margin: 0;
     }
 
-    .event h2 {
-        font-size: 16px;
-        padding: 4px;
-        margin: 0;
+    .event p {
+        font-size: 14px;
     }
 
-
-    .event h3, .event h5 {
+    .event h2 {
         font-size: 14px;
         padding: 4px;
         margin: 0;
     }
+    .event h4 {
+        font-size: 14px;
+    }
 
+    .event h3, .event h5 {
+        font-size: 12px;
+        padding: 4px;
+        margin: 0;
+    }
+    .news_events {
+        width: 90%;
+    }
     .program {
         width: 98%;
         padding: 1%;

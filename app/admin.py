@@ -20,7 +20,7 @@ class SiteMemberAdmin(admin.ModelAdmin):
         if len(list(request.user.groups.all())) > 0:
             group_name = str(list(request.user.groups.all())[0].name)
         qs = super(SiteMemberAdmin, self).get_queryset(request)
-        if request.user.is_superuser or group_name == "UslaSiteAdmin":
+        if request.user.is_superuser or group_name == "SiteAdministrators":
             return qs
         return qs.filter(author=request.user)
 
