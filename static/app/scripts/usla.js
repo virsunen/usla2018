@@ -64,15 +64,18 @@ $(document).ready(function () {
 
 function toggleSlide(theDiv, theClass) {
     if ($(theDiv).css("display") == "none") {
+       
         $(theDiv).slideDown(270, function () {
-            $(theClass.id + "_down").fadeOut(120);
-            $(theClass.id + "_up").fadeIn(120);
+            $("#" + theClass.id + "_up").fadeOut(0);
+            $("#" + theClass.id + "_down").fadeIn(0);
+      
         });
     } else {
-        alert(theClass.id + "_down");
+
         $(theDiv).slideUp(270, function () {
-            $(theClass.id + "_down").fadeIn(120);
-            $(theClass.id + "_up").fadeOut(120);
+            $("#" + theClass.id + "_up").fadeIn(0);
+            $("#" + theClass.id + "_down").fadeOut(0);
+   
         });
     }
   

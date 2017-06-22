@@ -7,6 +7,19 @@
     background-color: rgba(224, 0, 52, 0.88);
 }
 
+.event h4 {
+    color: rgba(251, 134, 50, 1);
+}
+
+.history_link {
+    background-color: rgba(251, 134, 50, 0.82);
+}
+
+.history_link a {
+    font-size: 28px;
+    color: white;
+}
+
 
     .page_title, .page_body h2, .program_dates b, .cal_prog_btn{
         color: rgba(224, 0, 52, 0.88);
@@ -247,18 +260,19 @@ footer p  {
     text-shadow: none;
     font-weight: 500;
     padding: 14px;
-
     background-color: rgba(255, 255, 255, 0.87);
     width: 50%;
     margin-top: 28px;
     margin: 0;
     border-radius: 6px;
-    float: left;
     margin-top: 28px;
     border: 1px solid rgba(178, 49, 74, 0.38);
     box-shadow: 2px 2px rgba(5, 5, 5, 0.17);
 }
 
+.fp_history {
+    margin-top: 0;
+}
 
 .page_body p {
 
@@ -403,8 +417,14 @@ footer p  {
     margin-right: auto;
     min-height: calc(100vh - 180px);
     padding: 0;
+    overflow: auto;
 }
-
+    .html_content::after {
+        content: " ";
+        display: block;
+        height: 0;
+        clear: both;
+    }
 .events {
     width: calc(100% - 600px);
     margin-left: 5%;
@@ -419,7 +439,7 @@ footer p  {
 
 
 .event, .program, .cal_prog_schedules {
-    border: 1px solid rgba(245, 245, 245, 0.5);
+
     border-radius: 6px;
     padding: 2%;
   
@@ -445,6 +465,7 @@ footer p  {
 
 .event {
     width: 100%;
+        border: 1px solid rgba(245, 245, 245, 0.3);
 }
 
 .event_center {
@@ -475,11 +496,15 @@ footer p  {
 
 .event h1 {
 
-    font-size: 24px;
+    font-size: 22px;
     text-align: center;
     padding: 8px;
+    margin: 0;
 }
-
+.event h4, .event h5 {
+    margin: 0;
+    padding: 4px;
+}
 
 .event h2 {
     
@@ -784,7 +809,12 @@ footer p  {
 }
 
 
-
+.news_events {
+    margin-top: 14px;
+    width: 50%;
+    margin-left: auto;
+    margin-right:auto;
+}
 
 #navMenu {
     color: white;
@@ -833,6 +863,17 @@ footer p  {
 @media screen and (max-width: 1080px) {
     .member {
         width: calc(33% - 4px);
+    }
+
+
+    .fp_links {
+        margin-left: 5%;
+        width: 100%;
+        background-color: rgba(20, 20, 20, 0.87);
+    }
+
+    .fp_links h1 {
+        font-size: 16px;
     }
     .contact h1 {
         background-color: rgba(255, 255,255, 0.17);
@@ -943,16 +984,21 @@ footer img {
 
 .fp_links {
     margin-left: 5%;
-    width: 30%;
+    width: 35%;
     border-radius: 6px;
     padding: 14px;
     margin-top: 28px;
-    float: left;
-    background-color: rgba(70, 29, 40, 0.47);
+    font-size: 20px;
+
+    background-color: rgba(20, 20, 20, 0.87);
 }
 
+
+.fp_links, .page_body {
+    float: left;
+}
 .fp_links h1 {
-    font-size: 14px;
+    font-size: 24px;
 
     font-style: italic;
     color: white;
@@ -963,18 +1009,28 @@ footer img {
 
 }
 
-.fp_history {
-    width: 80%;
+.fp_links p {
+    margin-top: 8px;
+}
 
+.fp_history {
+    width: calc(92% - 2px);
+    float: left;
     margin: 0;
-    padding: 14px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+
+    padding-top: 28px;
+    padding-bottom: 28px;
+    padding-left: 4%;
+    padding-right: 4%;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
     box-shadow: none;
     margin-bottom: 28px;
     margin-left: auto;
     margin-right: auto;
-
+    position: relative;
 }
 
 .fp_history p {
@@ -982,12 +1038,14 @@ footer img {
 }
 
 .history_link {
-    width: 90%;
+    width: 100%;
     margin-top: 28px;
-    text-align: right;
-    padding: 14px;
-    background-color: rgba(0, 0, 0, 0.14);
+    text-align: center;
+    padding-top: 14px;
+    padding-bottom: 14px;
     float: left;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
     position: relative;
 }
 
