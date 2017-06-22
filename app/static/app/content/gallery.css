@@ -115,7 +115,7 @@
         background-color: rgba(0, 0, 0, 0.86);
         margin: 0;
         top: 48px;
-   
+        z-index: 200;
         padding-top: 14px;
         min-height: calc(100vh);
     }
@@ -133,7 +133,7 @@
     .v_gallery {
         width: 100%;
         padding-top: 64px;
-        min-height: calc(100vh - 154px);
+        min-height: calc(100vh - 200px);
     }
 
     .v_thumbnails {

@@ -13,7 +13,7 @@
                 <h2>{{ e.end_date|date:"D d M Y"}}</h2>
                 {% endif %}
             </div>
-            <h3>{{ e.start_time|time:"H:i"}} to {{ e.end_time|time:"H:i"}}</h3>
+            <h3>{{ e.start_time}} to {{ e.end_time}}</h3>
             <div class="event_location">
                 {% if e.unique_location and e.unique_location != '' %}
                 <h2>{{ e.unique_location }}</h2>
