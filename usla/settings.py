@@ -30,7 +30,7 @@ DEBUG = True
 # have ALLOWED_HOSTS = ['*'] when the app is deployed. If you deploy a Django
 # app not on App Engine, make sure to set an appropriate host here.
 # See https://docs.djangoproject.com/en/1.10/ref/settings/
-ALLOWED_HOSTS = ['104.196.211.70', u'104.196.211.70', '35.185.56.185', u'35.185.56.185', 'usla.ca', 'www.usla.ca', 'localhost']
+ALLOWED_HOSTS = ['35.186.167.119', u'35.186.167.119', '104.196.211.70', u'104.196.211.70', '35.185.56.185', u'35.185.56.185', 'usla.ca', 'www.usla.ca', 'localhost']
 
 # Application definition
 
@@ -98,27 +98,27 @@ WSGI_APPLICATION = 'usla.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 #[START dbconfig]
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'usla_online',
-#        'HOST': '127.0.0.1',
-#        'PORT': '5432',
-#        'USER': 'virsunen',
-#        'PASSWORD': 'dog40god'
-#    }
-#}
-
 DATABASES = {
-   'default': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'usla',
-        'HOST': '/opt/bitnami/postgresql',
+        'NAME': 'usla_online',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
         'USER': 'virsunen',
         'PASSWORD': 'dog40god'
-   }
+    }
 }
+
+#DATABASES = {
+#   'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'usla',
+#        'HOST': '/opt/bitnami/postgresql',
+#        'PORT': '5432',
+#        'USER': 'virsunen',
+#        'PASSWORD': 'dog40god'
+#   }
+#}
 
 EXAMPLE_DATABASES = {
     'default': {
@@ -160,11 +160,11 @@ USE_TZ = True
 # is commented to serve static content from GCS
 # STATIC_URL = 'https://storage.googleapis.com/<your-gcs-bucket>/static/'
 #STATIC_URL = 'http://storage.googleapis.com/usla-app/static/'
-STATIC_ROOT = "/opt/bitnami/apps/django/django_projects/usla/static"
+#STATIC_ROOT = "/opt/bitnami/apps/django/django_projects/usla/static"
 #STATIC_URL = '/static/'
-#STATIC_ROOT = 'C:/Users/Matthew/appengine/django_cloudsql/static'
-MEDIA_ROOT = "/opt/bitnami/apps/django/django_projects/usla/media"
-#MEDIA_ROOT = 'C:/Users/Matthew/appengine/django_cloudsql/media'
+STATIC_ROOT = 'C:/Users/Matthew/usla_online/static'
+#MEDIA_ROOT = "/opt/bitnami/apps/django/django_projects/usla/media"
+MEDIA_ROOT = 'C:/Users/Matthew/usla_online/media'
 
 
 
