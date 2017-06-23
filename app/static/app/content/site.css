@@ -580,7 +580,7 @@ footer img {
 }
 
 .cal_prog_schedule, .event_list_item {
-    border-top: 1px solid rgba(245, 245, 245, 0.93);
+
     margin-top: 14px;
 }
 
@@ -593,7 +593,7 @@ footer img {
 
 .event {
     width: 100%;
-        border: 1px solid rgba(245, 245, 245, 0.3);
+    border: 1px solid rgba(245, 245, 245, 0.3);
 }
 
 .event_center {
