@@ -3,8 +3,10 @@
 .header, .cal_day {
     background-color: rgba(224, 0, 52, 0.92);
 }
-
-.nav_a_sel, .nav_a:hover {
+.nav_a_sel {
+    background-color: rgba(224, 0, 52, 0.42);
+} 
+.nav_a:hover {
     background-color: rgba(224, 0, 52, 0.62);
 }
 
