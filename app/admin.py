@@ -3,7 +3,7 @@ from django.contrib.admin import AdminSite
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import Page, Program, Event, ProgramSchedule, BoardPositions, \
-CommitteeChairPositions, BoardMember, CommitteeMember, ProgramEvent, UslaLocations, \
+CommitteeChairPositions, ProgramEvent, UslaLocations, \
 SiteSettings, SiteMemberProfile, NewsItem, EventGallery, EventGalleryImages, FrontPageLinks
 
 MEMBER_FIELDS =  (('title', 'order'), 'name', 'email', ('tel_num', 'cel_num'), 'image')
@@ -97,18 +97,11 @@ class UslaLocationsAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(BoardMember)
-class BoardMemberAdmin(admin.ModelAdmin):
-    fields = MEMBER_FIELDS
-
 
 @admin.register(CommitteeChairPositions)
 class CommitteeChairPositionsAdmin(admin.ModelAdmin):
     pass
 
-@admin.register(CommitteeMember)
-class CommitteeMemberAdmin(admin.ModelAdmin):
-    fields = MEMBER_FIELDS
 
 
 

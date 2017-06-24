@@ -9,9 +9,9 @@ from django.template import loader
 import calendar
 from datetime import date, time, datetime
 from django.views import generic
-
-from .models import Page, Event, Program, CommitteeMember, BoardMember, ProgramSchedule, ProgramEvent, \
-SiteSettings, EventGallery, EventGalleryImages, FrontPageLinks, NewsItem
+from django.contrib.auth.models import User
+from .models import Page, Event, Program, ProgramSchedule, ProgramEvent, \
+SiteSettings, EventGallery, EventGalleryImages, FrontPageLinks, NewsItem, SiteMemberProfile
 
 
 
@@ -98,7 +98,11 @@ def page(request, slug):
     elif page.slug == 'programs':
         extra = Program.objects.all()
     elif page.slug == 'contact':
-        extra = ContactObj(BoardMember.objects.all(), CommitteeMember.objects.all())
+        board_members = SiteMemberProfile.objects.exclude(board_member=None)
+        committee_members = SiteMemberProfile.objects.exclude(committee_member=None)
+
+
+        extra = ContactObj(board_members, committee_members)
     elif page.slug == "news":
         extra = NewsItem.objects.all()
     elif page.slug == 'home':

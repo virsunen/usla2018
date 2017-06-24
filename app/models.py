@@ -90,6 +90,17 @@ class SingletonModel(models.Model):
                 obj.set_cache()
         return cache.get(cls.__name__)
 
+class AdminPositions(models.Model):
+    title = models.CharField(max_length=100, primary_key=True, default='The Title')
+    order = models.IntegerField(default=100)
+    
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        abstract = True
+        ordering = ["order"]
+
 
 class SiteSettings(SingletonModel):
 
@@ -111,17 +122,6 @@ class SiteSettings(SingletonModel):
     class Meta:
         verbose_name_plural = " Site Settings"
 
-class AdminPositions(models.Model):
-    title = models.CharField(max_length=100, primary_key=True, default='The Title')
-    order = models.IntegerField(default=100)
-    
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        abstract = True
-        ordering = ["order"]
-
 
 class BoardPositions(AdminPositions):
 
@@ -134,37 +134,7 @@ class CommitteeChairPositions(AdminPositions):
     class Meta:
         verbose_name_plural = "Committee Chair Positions"
 
-class AdminMember(models.Model):
 
-
-    order = models.IntegerField(default=100)
-    name = models.CharField(max_length=100, default="John Doe")
-    email = models.EmailField(blank=True)
-    phone_regex = RegexValidator(regex=r'^\+?1?[\d-]{9,18}$', message="Phone number invalid.")
-    tel_num = models.CharField(validators=[phone_regex], blank=True, max_length=16)
-    cel_num = models.CharField(validators=[phone_regex], blank=True, max_length=16)
-    image = models.ImageField(upload_to=get_upload_members_to_images, blank=True)
-
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        abstract = True
-        ordering = ["order"]
-
-
-
-
-class CommitteeMember(AdminMember):
-  
-    title = models.ForeignKey(CommitteeChairPositions, on_delete=models.CASCADE)
-
-
-
-class BoardMember(AdminMember):
-  
-    title = models.ForeignKey(BoardPositions, on_delete=models.CASCADE)
 
     
 class FrontPageLinks(models.Model):
@@ -201,6 +171,19 @@ class SiteMemberProfile(models.Model):
     tel_num = models.CharField(validators=[phone_regex], blank=True, max_length=16)
     cel_num = models.CharField(validators=[phone_regex], blank=True, max_length=16)
     image = models.ImageField(upload_to=get_upload_members_to_images, blank=True)
+
+
+    def board_position(self):
+        if self.board_member:
+            return self.board_member.title
+        else:
+            return ""
+
+    def committee_position(self):
+        if self.board_member:
+            return self.board_member.title
+        else:
+            return ""
 
     def get_position(self):
         
@@ -621,8 +604,8 @@ def delete_empty_folder(sender, **kwargs):
 @receiver(post_delete, sender=EventGalleryImages)
 @receiver(post_delete, sender=Event)
 @receiver(post_delete, sender=Page)
-@receiver(post_delete, sender=CommitteeMember)
-@receiver(post_delete, sender=BoardMember)
+@receiver(post_delete, sender=NewsItem)
+@receiver(post_delete, sender=SiteMemberProfile)
 def event_post_delete_handler(sender, **kwargs):
     obj = kwargs['instance']
     if (type(obj) is EventGalleryImages):
@@ -657,8 +640,8 @@ def event_post_delete_handler(sender, **kwargs):
 @receiver(pre_save, sender=USLAGalleryImages)
 @receiver(pre_save, sender=ProgramGalleryImages)
 @receiver(pre_save, sender=EventGalleryImages)
-@receiver(pre_save, sender=BoardMember)
-@receiver(pre_save, sender=CommitteeMember)
+@receiver(pre_save, sender=NewsItem)
+@receiver(pre_save, sender=SiteMemberProfile)
 @receiver(pre_save, sender=Page)
 @receiver(pre_save, sender=Event)
 def delete_old_image(sender, instance, *args, **kwargs):

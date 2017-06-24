@@ -9,10 +9,10 @@
             <img src="{{ bm.image.url }}" />
             {% endif %}
 
-            <h2>{{ bm.title }}</h2>
-            <h3>{{ bm.name }}</h3>
-            {% if bm.email %}
-            <a href="mailto:{{ bm.email }}"><i class="fa fa-envelope-o"></i>{{ bm.email }}</a>
+            <h2>{{ bm.board_position }}</h2>
+            <h3>{{ bm.user.first_name }} {{ bm.user.last_name }}</h3>
+            {% if bm.user.email %}
+            <a href="mailto:{{ bm.user.email }}"><i class="fa fa-envelope-o"></i>{{ bm.user.email }}</a>
             {% endif %}
             {% if bm.tel_num %}
             <p>tel - {{ bm.tel_num }}</p>
@@ -34,10 +34,10 @@
             <img src="{{ bm.image.url }}" />
             {% endif %}
 
-            <h2>{{ bm.title }}</h2>
-            <h3>{{ bm.name }}</h3>
-            {% if bm.email %}
-            <a href="mailto:{{ bm.email }}"><i class="fa fa-envelope-o"></i>{{ bm.email }}</a>
+            <h2>{{ bm.committee_position }}</h2>
+            <h3>{{ bm.user.first_name }} {{ bm.user.last_name }}</h3>
+            {% if bm.user.email %}
+            <a href="mailto:{{ bm.user.email }}"><i class="fa fa-envelope-o"></i>{{ bm.user.email }}</a>
             {% endif %}
             {% if bm.tel_num %}
             <p>tel - {{ bm.tel_num }}</p>
