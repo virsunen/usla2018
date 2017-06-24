@@ -138,7 +138,10 @@ def get_cal_month_name(cal):
 @register.filter(name='get_board_position', is_safe=True)
 def get_board_position(user):
     objs = SiteMemberProfile.objects.filter(user=user)
-    return str(objs[0].get_position())
+    if len(list(objs)) > 0:
+        return str(objs[0].get_position())
+    else:
+        return ""
 
 @register.filter(name='get_calendar', is_safe=True)        
 def get_calendar(cal):

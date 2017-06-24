@@ -45,7 +45,7 @@ def get_upload_program_to_files(instance, filename):
 
 
 def get_upload_members_to_images(instance, filename):
-    return 'images/members/%s/%s' % (slugify(instance.name), filename)
+    return 'images/members/%s' % (filename)
 
 def get_upload_gallery_image_to_images(instance, filename):
     return 'images/gallery/%s/%s/%s' % (slugify(instance.gallery), instance.id, filename)
@@ -113,7 +113,7 @@ class SiteSettings(SingletonModel):
 
 class AdminPositions(models.Model):
     title = models.CharField(max_length=100, primary_key=True, default='The Title')
-    order = models.IntegerField(default=0)
+    order = models.IntegerField(default=100)
     
     def __str__(self):
         return self.title
@@ -196,7 +196,11 @@ class SiteMemberProfile(models.Model):
     user = models.OneToOneField(User, blank=True)
     board_member = models.ForeignKey(BoardPositions, null=True, blank=True)
     committee_member = models.ForeignKey(CommitteeChairPositions, null=True, blank=True)
-
+    email_forward = models.EmailField(blank=True)
+    phone_regex = RegexValidator(regex=r'^\+?1?[\d-]{9,18}$', message="Phone number invalid.")
+    tel_num = models.CharField(validators=[phone_regex], blank=True, max_length=16)
+    cel_num = models.CharField(validators=[phone_regex], blank=True, max_length=16)
+    image = models.ImageField(upload_to=get_upload_members_to_images, blank=True)
 
     def get_position(self):
         
@@ -205,7 +209,7 @@ class SiteMemberProfile(models.Model):
         elif self.committee_member:
             return self.committee_member.title
         else:
-            return None
+            return ""
     
     def __str__(self):
         return self.user.username
