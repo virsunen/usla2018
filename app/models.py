@@ -180,8 +180,8 @@ class SiteMemberProfile(models.Model):
             return ""
 
     def committee_position(self):
-        if self.board_member:
-            return self.board_member.title
+        if self.committee_member:
+            return self.committee_member.title
         else:
             return ""
 
