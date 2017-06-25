@@ -41,6 +41,7 @@ EMAIL_HOST_USER = 'virsunen'
 EMAIL_HOST_PASSWORD = 'dog40god'
 EMAIL_PORT = 2525
 EMAIL_USE_SSL = True
+EMAIL_BACKEND = "sgbackend.SendGridBackend"
 
 # Application definition
 
