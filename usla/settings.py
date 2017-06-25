@@ -32,6 +32,18 @@ DEBUG = True
 # See https://docs.djangoproject.com/en/1.10/ref/settings/
 ALLOWED_HOSTS = ['104.196.186.32', u'104.196.186.32', '104.196.211.70', u'104.196.211.70', '35.185.56.185', u'35.185.56.185', 'usla.ca', 'www.usla.ca', 'localhost']
 
+
+# Email Config
+
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'admin@usla.ca'
+SERVER_EMAIL = 'admin@usla.ca'
+EMAIL_HOST = 'smtp.zoho.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'admin@usla.ca'
+EMAIL_HOST_PASSWORD = 'Rat>cats'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -160,15 +172,15 @@ USE_TZ = True
 # is commented to serve static content from GCS
 # STATIC_URL = 'https://storage.googleapis.com/<your-gcs-bucket>/static/'
 #STATIC_URL = 'http://storage.googleapis.com/usla-app/static/'
-STATIC_ROOT = "/opt/bitnami/apps/django/django_projects/usla/static"
+#STATIC_ROOT = "/opt/bitnami/apps/django/django_projects/usla/static"
 #STATIC_URL = '/static/'
 #STATIC_ROOT = 'C:/Users/Matthew/usla_online/static'
-MEDIA_ROOT = "/opt/bitnami/apps/django/django_projects/usla/media"
+#MEDIA_ROOT = "/opt/bitnami/apps/django/django_projects/usla/media"
 #MEDIA_ROOT = 'C:/Users/Matthew/usla_online/media'
 
 
 
-#STATIC_ROOT = "/opt/bitnami/apps/django/django_projects/usla/static"
+STATIC_ROOT = "/opt/bitnami/apps/django/django_projects/usla/static"
 STATIC_URL = '/static/'
-#MEDIA_ROOT = "/opt/bitnami/apps/django/django_projects/usla/media"
+MEDIA_ROOT = "/opt/bitnami/apps/django/django_projects/usla/media"
 MEDIA_URL = '/media/'

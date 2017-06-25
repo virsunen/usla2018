@@ -14,6 +14,7 @@
 
 from django.conf import settings
 from django.conf.urls import include, url
+from django.contrib.auth import views as auth_views
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from datetime import datetime
@@ -26,8 +27,7 @@ import app.views
 
 
 
-
-urlpatterns = [url(r'^login/$',
+urlpatterns = [url(r'^accounts/login/$',
         django.contrib.auth.views.login,
         {
             'template_name': 'app/login.html',
@@ -39,15 +39,18 @@ urlpatterns = [url(r'^login/$',
             }
         },
         name='login'),
-        url(r'^logout$',
+        url(r'^accounts/logout$',
             django.contrib.auth.views.logout,
         {
             'next_page': '/',
         },
         name='logout'),
-
         url(r'^admin/', admin.site.urls),
-        url(r'^myadmin/', admin_site.urls),
+        url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),
+        url(r'^password_reset/done/$', auth_views.password_reset_done, name='password_reset_done'),
+        url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        auth_views.password_reset_confirm, name='password_reset_confirm'),
+        url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
         url(r'^', include('app.urls'))] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
