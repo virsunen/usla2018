@@ -35,13 +35,12 @@ ALLOWED_HOSTS = ['104.196.186.32', u'104.196.186.32', '104.196.211.70', u'104.19
 
 # Email Config
 
-
+DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'admin@usla.ca'
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'virsunen'
 EMAIL_HOST_PASSWORD = 'dog40god'
 EMAIL_PORT = 2525
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Application definition
