@@ -36,12 +36,12 @@ ALLOWED_HOSTS = ['104.196.186.32', u'104.196.186.32', '104.196.211.70', u'104.19
 # Email Config
 
 SERVER_EMAIL = 'admin@usla.ca'
-DEFAULT_FROM_EMAIL = 'no-reply@usla.ca'
+DEFAULT_FROM_EMAIL = 'noreply@usla.ca'
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'virsunen'
 EMAIL_HOST_PASSWORD = 'dog40god'
 EMAIL_PORT = 2525
-EMAIL_USE_TLS = True
+EMAIL_USE_SSL = True
 
 # Application definition
 
