@@ -38,6 +38,7 @@ EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'virsunen'
 EMAIL_HOST_PASSWORD = 'dog40god'
 EMAIL_PORT = 2525
+DEFAULT_FROM_EMAIL = 'noreply@usla.ca'
 EMAIL_USE_TLS = True
 
 
