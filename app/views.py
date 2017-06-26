@@ -11,7 +11,7 @@ from datetime import date, time, datetime
 from django.views import generic
 from django.contrib.auth.models import User
 from .models import Page, Event, Program, ProgramSchedule, ProgramEvent, \
-SiteSettings, EventGallery, EventGalleryImages, FrontPageLinks, NewsItem, SiteMemberProfile
+SiteSettings, EventGallery, EventGalleryImages, FrontPageLinks, NewsItem, SiteMemberProfile, BoardPositions
 
 
 
@@ -98,9 +98,10 @@ def page(request, slug):
     elif page.slug == 'programs':
         extra = Program.objects.all()
     elif page.slug == 'contact':
-        board_members = SiteMemberProfile.objects.exclude(board_member=None)
-        committee_members = SiteMemberProfile.objects.exclude(committee_member=None)
-
+        board_members = SiteMemberProfile.objects.exclude(board_member=None).order_by('board_member')
+        print(str(board_members))
+        committee_members = SiteMemberProfile.objects.exclude(committee_member=None).order_by('committee_member')
+        print(str(committee_members))
 
         extra = ContactObj(board_members, committee_members)
     elif page.slug == "news":

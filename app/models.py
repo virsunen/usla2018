@@ -99,7 +99,7 @@ class AdminPositions(models.Model):
 
     class Meta:
         abstract = True
-        ordering = ["order"]
+
 
 
 class SiteSettings(SingletonModel):
@@ -127,6 +127,7 @@ class BoardPositions(AdminPositions):
 
     class Meta:
         verbose_name_plural = "Board Positions"
+        ordering = ["order"]
 
 
 class CommitteeChairPositions(AdminPositions):
@@ -134,6 +135,7 @@ class CommitteeChairPositions(AdminPositions):
 
     class Meta:
         verbose_name_plural = "Committee Chair Positions"
+        ordering = ["order"]
 
 
 
@@ -197,6 +199,7 @@ class SiteMemberProfile(models.Model):
     
     def __str__(self):
         return self.user.username
+
 
 
 class Page(models.Model):
