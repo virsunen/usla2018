@@ -10,6 +10,10 @@
     background-color: rgba(224, 0, 52, 0.62);
 }
 
+.membership_page {
+    background-color: rgba(242, 242, 242, 0.88);
+}
+
 .page_title, .page_body {
     background-color: rgba(224, 0, 52, 0.88);
 }
@@ -29,16 +33,22 @@
 }
 
 
-.event h4 {
+.event h4, .membership_page_link a, .membership_body a {
     color: rgba(251, 134, 50, 1);
 }
 
-.history_link {
+.history_link  {
     background-color: rgba(251, 134, 50, 0.82);
 }
 
 .event h3, .event p {
     color: rgba(241, 241, 241, 0.92);
+}
+
+li {
+    list-style: square;
+    
+
 }
 
 .nav_bar, footer {
@@ -57,10 +67,10 @@ footer {
     margin-bottom: 8px;
 }
 
-.fp_links h1, .page_title, .page_body h2, .program_dates b, .cal_prog_btn{
+.membership_page h1, .fp_links h1, .page_title, .page_body h2, .program_dates b, .cal_prog_btn{
         color: rgba(224, 0, 52, 0.88);
     }
-.event_list_item h5, .cal_prog_schedule h5, .event h1 {
+.event_list_item h5, .cal_prog_schedule h5, .event h1, .membership_page h2 {
     color: rgba(224, 70, 142, 0.98);
 }
 
@@ -228,8 +238,60 @@ footer img {
     border: 1px solid rgba(228, 229, 228, 0.14);
 }
 
+.membership_page p {
+    width: 90%;
+    padding: 0;
+    margin-left: 5%;
+    font-size: 18px;
+}
+
+.membership_page_link {
+    width: 99%;
+   
+    overflow: auto;
+}
+    .membership_page_link a {
+        font-style: italic;
+        font-weight: 800;
+        font-size: 28px;
+        float: right;
+        border: 1px solid rgba(8, 9, 8, 0.14);
+        background: rgba(234, 234, 234, 0.97);
+        padding: 8px;
+        border-radius: 6px;
+       
+        margin-right: 20px;
+    }
+.membership_page {
+    padding: 2%;
+    width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: none;
+}
 
 
+.membership_page ul {
+   
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    .membership_page li {
+        padding: 14px;
+        font-size: 20px;
+    }
+.membership_body p {
+    margin-top: 14px;
+}
+.membership_body a {
+    float: none;
+    font-size: 22px;
+    width: 20%;
+    margin: 8px;
+    padding: 14px;
+}
 .nav_a_sel a {
     font-weight: 400;
 }
@@ -299,14 +361,16 @@ input[type="checkbox"].input-validation-error {
 }
 
 ul {
-    background: rgba(42, 52, 59, 0.2);
+    background: rgba(42, 52, 59, 0.08);
     overflow: auto;
     list-style-type: none;
+    border-radius: 6px;
+    border-width: 1px;
     width: 100%;
 }
 
 li {
-   
+   color: rgba(0, 0, 0, 0.86);
 }
 
 li a {
@@ -445,6 +509,8 @@ footer img {
 
 
 }
+
+
 
 .user_login a {
     color: rgba(220, 220, 220, 0.97);
@@ -992,7 +1058,11 @@ footer img {
 .events_nav {
     display: none;
 }
+.membership_page h2 {
 
+    margin-left: 4%;
+    width: 96%;
+}
 @media screen and (max-width: 1080px) {
     .member {
         width: calc(33% + 0.5px);
@@ -1121,10 +1191,59 @@ footer img {
         width: 80%;
         margin-left: 10%;
     }
+    .membership_page h2 {
+        font-size: 22px;
+    }
+
 }
 
 
 @media screen and (max-width: 880px) {
+    .membership_page h1 {
+        font-size: 22px;
+    }
+
+    .membership_page p {
+
+        font-size: 14px;
+    }
+    .membership_page h2 {
+        font-size: 18px;
+
+    }
+
+        .membership_page_link a {
+            font-style: italic;
+            font-weight: 700;
+            font-size: 22px;
+            padding: 6px;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+    .membership_page {
+        padding: 2%;
+        width: 96%;
+        margin-left: auto;
+        margin-right: auto;
+        text-shadow: none;
+    }
+
+    .membership_page li {
+        font-size: 16px;
+    }
+
+    .membership_body p {
+        margin-top: 8px;
+    }
+
+    .membership_body a {
+
+        font-size: 18px;
+
+        margin: 6px;
+        padding: 8px;
+    }
     .member {
         width: calc(50% - 2px);
     }
@@ -1413,7 +1532,40 @@ footer img {
 }
 
 @media screen and (max-width: 600px) {
+    .membership_page h1 {
+        font-size: 18px;
+    }
 
+    .membership_page h2 {
+        font-size: 16px;
+        margin-left: 14px;
+        width: calc(100% - 14px);
+    }
+
+    .membership_page p {
+        font-size: 12px;
+    }
+
+
+    .membership_page_link a {
+        font-style: italic;
+        font-weight: 700;
+        font-size: 18px;
+        padding: 6px;
+        border-radius: 4px;
+        margin-right: 10px;
+    }
+
+        .membership_page li {
+            font-size: 14px;
+        }
+
+
+
+    .membership_body a {
+        font-size: 16px;
+
+    }
     .closeBtn {
         margin-top: -14px;
         margin-right: -14px;

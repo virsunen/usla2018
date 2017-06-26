@@ -100,7 +100,8 @@ class AdminPositions(models.Model):
     class Meta:
         abstract = True
 
-
+class MembershipSettings(SingletonModel):
+    pdf_file = models.FileField(upload_to='files/', blank=True)
 
 class SiteSettings(SingletonModel):
 

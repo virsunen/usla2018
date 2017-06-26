@@ -1,0 +1,16 @@
+{% load template_tags %}
+
+
+<div class="membership_page">
+    {% if extra %}
+    <div class="membership_page_link">
+
+        <a href="{{ extra.pdf_file.url }}">MEMBERSHIP REGISTRATION FORM</a>
+    </div>
+    {% endif %}
+    <div class="membership_body">
+        {{ page.description|safe}}
+    </div>
+
+</div>
+

@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import Page, Program, Event, ProgramSchedule, BoardPositions, \
 CommitteeChairPositions, ProgramEvent, UslaLocations, \
-SiteSettings, SiteMemberProfile, NewsItem, EventGallery, EventGalleryImages, FrontPageLinks
+SiteSettings, SiteMemberProfile, NewsItem, EventGallery, EventGalleryImages, FrontPageLinks, MembershipSettings
 
 MEMBER_FIELDS =  (('title', 'order'), 'name', 'email', ('tel_num', 'cel_num'), 'image')
 
@@ -60,6 +60,12 @@ class EventGalleryImagesInline(admin.TabularInline):
             return 0
 
         return 3
+
+
+@admin.register(MembershipSettings)
+class MembershipSettingsAdmin(admin.ModelAdmin):
+    pass
+
 
 
 @admin.register(EventGallery)
