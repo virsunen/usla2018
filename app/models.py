@@ -131,6 +131,7 @@ class BoardPositions(AdminPositions):
 
 class CommitteeChairPositions(AdminPositions):
 
+
     class Meta:
         verbose_name_plural = "Committee Chair Positions"
 

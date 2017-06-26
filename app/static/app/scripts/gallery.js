@@ -21,6 +21,7 @@ $(window).load(function () {
 });
 
 
+
 $(window).resize(function () {
 
     if (window.location.href.indexOf("gallery") !== -1) {

@@ -23,6 +23,7 @@ $(window).resize(function () {
 
 
 
+
 $(document).ready(function () {
 
     $(".cal_item").click(function (e) {
