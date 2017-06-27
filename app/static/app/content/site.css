@@ -11,7 +11,7 @@
 }
 
 .membership_page {
-    background-color: rgba(242, 242, 242, 0.88);
+    background-color: rgba(252, 252, 252, 0.97);
 }
 
 .page_title, .page_body {
@@ -31,7 +31,9 @@
     .nav_a  {
     background-color: rgba(0, 0, 0, 0.43);
 }
-
+.usla_login p, .usla_login input {
+    color: rgba(224, 0, 52, 0.92);
+}
 
 .event h4, .membership_page_link a, .membership_body a {
     color: rgba(251, 134, 50, 1);
@@ -116,6 +118,10 @@ p {
 html {
 
 }
+
+
+
+
 
 a {
     text-decoration: none;
@@ -239,10 +245,12 @@ footer img {
 }
 
 .membership_page p {
-    width: 90%;
-    padding: 0;
-    margin-left: 5%;
+    width: 72%;
+
+    margin-left:auto;
+    margin-right:auto;
     font-size: 18px;
+
 }
 
 .membership_page_link {
@@ -265,9 +273,15 @@ footer img {
 .membership_page {
     padding: 2%;
     width: 96%;
+    max-width: 1080px;
     margin-left: auto;
     margin-right: auto;
     text-shadow: none;
+    border-radius: 6px;
+    padding: 14px;
+    margin-top: 28px;
+    margin-bottom: 28px;
+    border: 1px solid rgba(0, 0, 0, 0.14);
 }
 
 
@@ -281,6 +295,9 @@ footer img {
     .membership_page li {
         padding: 14px;
         font-size: 20px;
+    }
+    .membership_page h1 {
+        padding: 14px;
     }
 .membership_body p {
     margin-top: 14px;
@@ -361,16 +378,18 @@ input[type="checkbox"].input-validation-error {
 }
 
 ul {
-    background: rgba(42, 52, 59, 0.08);
+    background: rgba(5, 5, 5, 0.04);
     overflow: auto;
     list-style-type: none;
     border-radius: 6px;
     border-width: 1px;
+    margin-top: 14px;
     width: 100%;
 }
 
 li {
-   color: rgba(0, 0, 0, 0.86);
+
+    color: rgba(0, 0, 0, 0.86);
 }
 
 li a {
@@ -618,7 +637,7 @@ footer img {
     margin: 0;
     margin-left: auto;
     margin-right: auto;
-    min-height: calc(100vh - 180px);
+    min-height: calc(100vh - 276px);
     padding: 0;
     overflow: auto;
 }
@@ -698,6 +717,7 @@ footer img {
 
     font-size: 22px;
     text-align: center;
+    border-bottom: 1px solid rgba(222, 222, 222, 0.14);
     padding: 8px;
     margin: 0;
 }
@@ -1059,10 +1079,56 @@ footer img {
     display: none;
 }
 .membership_page h2 {
-
+    margin-top: 60px;
+    margin-bottom: 24px;
     margin-left: 4%;
     width: 96%;
 }
+
+.usla_login {
+    color: rgba(251, 134, 50, 0.82);
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    background-color: rgba(0, 0, 0, 0.04);
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    text-shadow: none;
+    padding: 60px;
+}
+.usla_login input, .usla_login p {
+  padding: 14px;
+font-size: 18px;
+    }
+
+.usla_login h3 {
+        color: rgba(44, 44, 44, 0.97);
+        font-weight: 100;
+        font-size: 34px;
+    }
+
+
+.usla_login p {
+        margin: 14px;
+    }
+
+.usla_login button {
+        background-color: black;
+        padding: 20px;
+        color: white;
+        float: right;
+        border: none;
+}
+
+    .usla_login a {
+        color: rgba(251, 134, 50, 0.92);
+        font-size: 22px;
+        margin: 6px;
+    }
+
+
 @media screen and (max-width: 1080px) {
     .member {
         width: calc(33% + 0.5px);
@@ -1193,9 +1259,14 @@ footer img {
     }
     .membership_page h2 {
         font-size: 22px;
+        margin-top: 48px;
+        margin-bottom: 16px;
     }
-
-}
+    .membership_page {
+        margin-left:auto;
+        margin-right: auto;
+        width: 90%;
+    }
 
 
 @media screen and (max-width: 880px) {
@@ -1209,7 +1280,8 @@ footer img {
     }
     .membership_page h2 {
         font-size: 18px;
-
+        margin-top: 24px;
+        margin-bottom: 12px;
     }
 
         .membership_page_link a {
@@ -1222,11 +1294,10 @@ footer img {
         }
 
     .membership_page {
-        padding: 2%;
-        width: 96%;
-        margin-left: auto;
-        margin-right: auto;
-        text-shadow: none;
+        margin-top: 28px;
+        margin-bottom: 28px;
+        padding: 6px;
+        width: 90%;
     }
 
     .membership_page li {
@@ -1532,6 +1603,12 @@ footer img {
 }
 
 @media screen and (max-width: 600px) {
+
+    .membership_page {
+        margin: 2%;
+        width: 96%;
+        padding: 0%;
+    }
     .membership_page h1 {
         font-size: 18px;
     }

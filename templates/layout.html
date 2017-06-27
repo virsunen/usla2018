@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'app/fonts/font-awesome/css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/gallery.css' %}" />
+    <link rel="shortcut icon" type="image/png" href="{% static '/favicon.ico' %}" />
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container" style="background: url({{ page.image.url }}) no-repeat center center fixed; background-size: cover;">
+        <div class="header">
+            {% if user.is_authenticated %}
+            <div class="user_login">
+                <a href="/admin/"><i class="fa fa-user"></i>{{ user.username }}</a>
+            </div>
+
+
+            {% endif %}
+
+            
+                {% if the_prev_url %}
+                <div class="back_btn">
+                <a href="{{ the_prev_url }}" id="prev_btn"><i class="fa fa-arrow-left"></i></a>
+                </div>
+                {% else %}
+                <div class="header_btn">
+                <a href="#" onclick="openMenu();" id="navMenu"><i class="fa fa-navicon"></i></a>
+                </div>
+                {% endif %}
+          
+            <div class="header_text">
+                <img src="{{ site_settings.logo_header_image.url }}" />
+   
+                <h1>{{ site_settings.site_name }}</h1>
+                <p>{{ site_settings.site_desc }}</p>
+            </div>
+
+        </div>
+        <div class="nav_bar">
+            <div class="closeBtn"><a href="#" onclick="closeMenu();"><i class="fa fa-times"></i></a></div>
+            {% for p_t in pages %}
+            {% if p_t.slug == page.slug %}
+
+            <div class="nav_a_sel">
+                {% else %}
+                <div class="nav_a">
+                    {% endif %}
+                    <a href="{% url 'app:page' p_t.slug %}"><i class="fa {{ p_t.fa_icon }}"></i>{{ p_t.title_text }}</a>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% block content %}{% endblock %}
+            </div>
+            <footer>
+                {% if site_settings.logo_btm_image %}
+                <img src="{{ site_settings.logo_btm_image.url }}" />
+                {% endif %}
+
+                <p><a href="{{ site_settings.facebook_link }}"><i class="fa fa-facebook"></i>USLA Facebook</a></p>
+                <p>&copy; {{ year }} - usla.ca</p>
+
+            </footer>
+
+
+    <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+    <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
+    <script src="{% static 'app/scripts/respond.js' %}"></script>
+    <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
+    <script src="{% static 'app/scripts/usla.js' %}"></script>
+    <script src="{% static 'app/scripts/gallery.js' %}"></script>
+    {% block scripts %}{% endblock %}
+
+</body>
+</html>
