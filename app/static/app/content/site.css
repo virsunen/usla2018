@@ -1098,6 +1098,8 @@ footer img {
     text-shadow: none;
     padding: 60px;
 }
+
+
 .usla_login input, .usla_login p {
   padding: 14px;
 font-size: 18px;
@@ -1118,15 +1120,16 @@ font-size: 18px;
         background-color: black;
         padding: 20px;
         color: white;
+        margin: 14px;
         float: right;
         border: none;
 }
 
-    .usla_login a {
-        color: rgba(251, 134, 50, 0.92);
-        font-size: 22px;
-        margin: 6px;
-    }
+.usla_login a {
+    color: rgba(251, 134, 50, 0.92);
+    font-size: 22px;
+    margin: 6px;
+}
 
 
 @media screen and (max-width: 1080px) {
@@ -1134,6 +1137,33 @@ font-size: 18px;
         width: calc(33% + 0.5px);
     }
 
+    .usla_login {
+        width: 560px;
+        padding: 46px;
+    }
+
+        .usla_login input,
+        .usla_login p {
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        .usla_login h3 {
+            font-size: 28px;
+        }
+
+
+        .usla_login p {
+            margin: 8px;
+        }
+
+        .usla_login button {
+        }
+
+        .usla_login a {
+            font-size: 18px;
+            margin: 6px;
+        }
 
 
     .news_events {
@@ -1144,22 +1174,24 @@ font-size: 18px;
     .fp_links h1 {
         font-size: 16px;
     }
-    .contact h1 {
 
+    .contact h1 {
         font-size: 20px;
     }
+
     .event {
         width: 80%;
     }
-   .event h1 {
-        font-size: 18px;
-        padding: 8px;
 
-   }
+        .event h1 {
+            font-size: 18px;
+            padding: 8px;
+        }
 
     .program p {
         width: 86%;
     }
+
     .program_dates p, .program_dates h4 {
         margin: 0;
         padding: 2px;
@@ -1170,7 +1202,6 @@ font-size: 18px;
         height: 30px;
         padding: 0;
         margin: 0;
- 
     }
 
     .cal_item_top {
@@ -1198,9 +1229,8 @@ font-size: 18px;
 
     .cal_item, .cal_item_blank {
         height: 60px;
-
     }
- 
+
     .events {
         width: 56%;
         margin-left: 1%;
@@ -1220,17 +1250,17 @@ font-size: 18px;
     .html_content {
         width: 96%;
     }
+
     .page_body {
         margin-left: 10%;
         width: 76%;
         padding: 2%;
-
     }
 
-    .page_body h2 {
-        margin: 14px;   
-        font-size: 16px;
-    }
+        .page_body h2 {
+            margin: 14px;
+            font-size: 16px;
+        }
 
 
     .program h1 {
@@ -1239,12 +1269,12 @@ font-size: 18px;
 
 
     .back_btn {
-
         font-size: 16px;
         padding-top: 0;
         margin-top: 0;
         margin-right: -26px;
     }
+
     .fp_links {
         text-align: center;
         font-size: 0.9em;
@@ -1257,17 +1287,19 @@ font-size: 18px;
         width: 80%;
         margin-left: 10%;
     }
+
     .membership_page h2 {
         font-size: 22px;
         margin-top: 48px;
         margin-bottom: 16px;
     }
+
     .membership_page {
-        margin-left:auto;
+        margin-left: auto;
         margin-right: auto;
         width: 90%;
     }
-
+}
 
 @media screen and (max-width: 880px) {
     .membership_page h1 {
@@ -1600,10 +1632,75 @@ font-size: 18px;
     .event, .program, .cal_prog_schedules {
         background-color: rgba(5, 2, 7, 0.92);
     }
+
+
+    .usla_login {
+        margin-top: 80px;
+        width: 400px;
+        padding: 28px;
+    }
+
+        .usla_login input,
+        .usla_login p {
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        .usla_login h3 {
+            font-size: 22px;
+        }
+
+
+        .usla_login a {
+            font-size: 18px;
+            margin: 6px;
+        }
+
+        .usla_login button {
+            padding: 12px;
+        }
 }
 
 @media screen and (max-width: 600px) {
 
+    .usla_login {
+        width: 320px;
+        padding: 14px;
+    }
+    
+
+    .usla_login input,
+    .usla_login p {
+            padding: 4px;
+            font-size: 14px;
+
+        }
+
+        .usla_login h3 {
+            font-size: 20px;
+        }
+
+
+        .usla_login a {
+            font-size: 16px;
+            margin: 6px;
+        }
+    .usla_login input,
+    .usla_login p {
+            padding: 4px;
+            font-size: 14px;
+        }
+
+        .usla_login h3 {
+            font-size: 20px;
+        }
+
+
+        .usla_login a {
+
+            font-size: 16px;
+            margin: 6px;
+        }
     .membership_page {
         margin: 2%;
         width: 96%;
@@ -1845,3 +1942,11 @@ font-size: 18px;
 }
 
 
+
+@media screen and (max-width: 380px) {
+
+    .usla_login {
+        width: 240px;
+        padding: 10px;
+    }
+}
