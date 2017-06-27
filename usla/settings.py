@@ -41,17 +41,19 @@ EMAIL_PORT = 2525
 DEFAULT_FROM_EMAIL = 'noreply@usla.ca'
 EMAIL_USE_TLS = True
 
+LOGIN_REDIRECT_URL = '../'
 
 # Application definition
 
 INSTALLED_APPS = (
+    'app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app',
+
 )
 
 SITE_ID = 1
@@ -74,7 +76,7 @@ ROOT_URLCONF = 'usla.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "ulsa/templates"),],
+        'DIRS': ['C:/Users/Matthew/usla_online2/django_online/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
