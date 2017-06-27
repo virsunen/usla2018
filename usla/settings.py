@@ -76,7 +76,7 @@ ROOT_URLCONF = 'usla.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/Users/Matthew/usla_online2/django_online/templates'],
+        'DIRS': ['/opt/bitnami/apps/django/django_projects/usla/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
