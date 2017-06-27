@@ -11,7 +11,7 @@ from datetime import date, time, datetime
 from django.views import generic
 from django.contrib.auth.models import User
 from .models import Page, Event, Program, ProgramSchedule, ProgramEvent, \
-SiteSettings, EventGallery, EventGalleryImages, FrontPageLinks, NewsItem, SiteMemberProfile, BoardPositions
+SiteSettings, EventGallery, EventGalleryImages, FrontPageLinks, NewsItem, SiteMemberProfile, BoardPositions, MembershipSettings
 
 
 
@@ -39,13 +39,19 @@ class CalendarObj():
 
 usla_calendar = CalendarObj(None, None, None)
 
+def adminLogin(request):
+
+    site_settings = SiteSettings.objects.all()[0]
+
+    return render(request, 'app/usla_login.html', {'site_settings': site_settings,})
+
 def gallery(request, slug):
      
     site_settings = SiteSettings.objects.all()[0]
     the_gallery = get_object_or_404(EventGallery, slug=slug)
     the_images = EventGalleryImages.objects.filter(gallery=the_gallery.pk)
     the_prev_url = "../../events/"
-    print(len(list(the_images)))
+
     return render(request, 'app/gallery.html', {'gallery': the_gallery, 'g_images': the_images, 'site_settings': site_settings, 'the_prev_url': the_prev_url})
 
 
@@ -55,17 +61,10 @@ def indexView(request):
 
     return page(request, 'home')
 
-def page(request, slug):
-    print(slug)
-    page = get_object_or_404(Page, slug=slug)
-    pages = Page.objects.order_by('page_order')
-    site_settings = SiteSettings.objects.all()[0]
-    extra = None
-    extra2 = None
+def handle_calendar(request, slug):
     left = request.POST.get("left", "")
     right = request.POST.get("right", "")
     usla_calendar = CalendarObj(None, None, None)
-    print(left + " " + right)
     if (left != ""):
         the_date_l = left.split("-")
     if (right != ""):
@@ -89,13 +88,27 @@ def page(request, slug):
             usla_calendar.year = usla_calendar.year + 1
         else:
             usla_calendar.month = usla_calendar.month + 1
-       
-    usla_calendar.set_objects(Program.objects.all(), ProgramEvent.objects.all(), Event.objects.all())
+    return usla_calendar
 
+
+def page(request, slug):
+    print(slug)
+    page = get_object_or_404(Page, slug=slug)
+    pages = Page.objects.order_by('page_order')
+    site_settings = SiteSettings.objects.all()[0]
+    extra = None
+    extra2 = None
+    usla_calendar = handle_calendar(request, slug)
+    usla_calendar.set_objects(Program.objects.all(), ProgramEvent.objects.all(), Event.objects.all())
     if page.slug == 'events':
         extra = Event.objects.all()
         extra2 =  usla_calendar
+    elif page.slug == 'membership':
+        extra = MembershipSettings.objects.all()[0]
     elif page.slug == 'programs':
+
+
+
         extra = Program.objects.all()
     elif page.slug == 'contact':
         board_members = SiteMemberProfile.objects.exclude(board_member=None).order_by('board_member')
