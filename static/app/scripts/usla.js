@@ -23,6 +23,7 @@ $(window).resize(function () {
 
 
 
+
 $(document).ready(function () {
 
     $(".cal_item").click(function (e) {
@@ -66,15 +67,16 @@ function toggleSlide(theDiv, theClass) {
     if ($(theDiv).css("display") == "none") {
        
         $(theDiv).slideDown(270, function () {
-            $("#" + theClass.id + "_up").fadeOut(0);
-            $("#" + theClass.id + "_down").fadeIn(0);
+            $("#" + theClass.id + "_up").fadeIn(0);
+            $("#" + theClass.id + "_down").fadeOut(0);
       
         });
     } else {
 
         $(theDiv).slideUp(270, function () {
-            $("#" + theClass.id + "_up").fadeIn(0);
-            $("#" + theClass.id + "_down").fadeOut(0);
+            $("#" + theClass.id + "_up").fadeOut(0);
+            $("#" + theClass.id + "_down").fadeIn(0);
+
    
         });
     }
