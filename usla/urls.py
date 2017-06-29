@@ -25,7 +25,7 @@ from app.admin import admin_site
 import app.forms
 import app.views
 from app.models import Page, Event, Program, ProgramSchedule, ProgramEvent, \
-SiteSettings, EventGallery, EventGalleryImages, FrontPageLinks, NewsItem, SiteMemberProfile, BoardPositions, MembershipSettings
+SiteSettings, EventGallery, EventGalleryImages, FrontPageLinks, SiteMemberProfile, BoardPositions, MembershipSettings
 
 
 
