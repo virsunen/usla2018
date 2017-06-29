@@ -164,7 +164,7 @@ class FrontPageLinks(models.Model):
     def __str__(self):
         return self.url
 
-class NewsItem2(models.Model):
+class NewsItem(models.Model):
 
     id = models.AutoField(primary_key=True)
     board_news = models.ForeignKey(BoardPositions, blank=True, null=True)
@@ -188,7 +188,6 @@ class NewsItem2(models.Model):
     
     def __str__(self):
         return self.title
-
 
 
 
