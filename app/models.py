@@ -167,8 +167,7 @@ class FrontPageLinks(models.Model):
 class MemberNewsItem(models.Model):
 
     id = models.AutoField(primary_key=True)
-    board_news = models.OneToOneField(BoardPositions, blank=True, null=True)
-    committee_news = models.OneToOneField(CommitteeChairPositions, blank=True, null=True)
+
     title = models.CharField(max_length=120)
     description = models.TextField(blank=True)
  

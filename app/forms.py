@@ -25,9 +25,9 @@ class UploadFileForms(forms.Form):
     file = forms.FileField()
 
 
-class MemberNewsItemForm(forms.Form):
+class NewsItemForm(forms.Form):
     
-    news_items = MemberNewsItem.objects.all()
+    news_items = NewsItem.objects.all()
     news_list = []
     i = 0;
     for news_obj in news_items:

@@ -7,12 +7,12 @@ from django.urls import reverse
 from django.http import Http404
 from django.template import loader
 import calendar
-from .forms import MemberNewsItemForm
+from .forms import NewsItemForm
 from datetime import date, time, datetime
 from django.views import generic
 from django.contrib.auth.models import User
 from .models import Page, Event, Program, ProgramSchedule, ProgramEvent, \
-SiteSettings, EventGallery, EventGalleryImages, FrontPageLinks, MemberNewsItem, SiteMemberProfile, BoardPositions, MembershipSettings, CalendarHolidays
+SiteSettings, EventGallery, EventGalleryImages, FrontPageLinks, NewsItem, SiteMemberProfile, BoardPositions, MembershipSettings, CalendarHolidays
 
 
 
@@ -123,13 +123,13 @@ def page(request, slug):
     elif page.slug == "news":
         if request.method == 'POST':
             val = request.POST.get("list_form")
-            extra2 = MemberNewsItemForm(initial={'list_form': val})
+            extra2 = NewsItemForm(initial={'list_form': val})
             if (val == '-1'):
-                extra = MemberNewsItem.objects.all()
+                extra = NewsItem.objects.all()
             else: 
                 print(val)
-                opt1 = MemberNewsItem.objects.filter(board_news=val)
-                opt2 = MemberNewsItem.objects.filter(committee_news=val)
+                opt1 = NewsItem.objects.filter(board_news=val)
+                opt2 = NewsItem.objects.filter(committee_news=val)
                 if (len(list(opt1)) > 0):
                     extra = opt1
                 elif (len(list(opt2)) > 0):
@@ -137,8 +137,8 @@ def page(request, slug):
                 else:
                     extra = None
         else:
-            extra2 = MemberNewsItemForm()
-            extra = MemberNewsItem.objects.all()
+            extra2 = NewsItemForm()
+            extra = NewsItem.objects.all()
     elif page.slug == 'home':
         extra = FrontPageLinks.objects.all()
 
