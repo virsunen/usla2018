@@ -167,10 +167,10 @@ class FrontPageLinks(models.Model):
 class NewsItem(models.Model):
 
     id = models.AutoField(primary_key=True)
-    board_news = models.ForeignKey(BoardPositions, blank=True, null=True)
-    committee_news = models.ForeignKey(CommitteeChairPositions, blank=True, null=True)
+
     title = models.CharField(max_length=120)
     description = models.TextField(blank=True)
+ 
     publish_date = models.DateField(default=now)
     author = models.ForeignKey(User, null=True, blank=True)
 
