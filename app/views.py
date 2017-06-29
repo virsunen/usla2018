@@ -12,7 +12,7 @@ from datetime import date, time, datetime
 from django.views import generic
 from django.contrib.auth.models import User
 from .models import Page, Event, Program, ProgramSchedule, ProgramEvent, \
-SiteSettings, EventGallery, EventGalleryImages, FrontPageLinks, NewsItem2, SiteMemberProfile, BoardPositions, MembershipSettings, CalendarHolidays
+SiteSettings, EventGallery, EventGalleryImages, FrontPageLinks, NewsItem, SiteMemberProfile, BoardPositions, MembershipSettings, CalendarHolidays
 
 
 
@@ -125,11 +125,11 @@ def page(request, slug):
             val = request.POST.get("list_form")
             extra2 = NewsItemForm(initial={'list_form': val})
             if (val == '-1'):
-                extra = NewsItem2.objects.all()
+                extra = NewsItem.objects.all()
             else: 
                 print(val)
-                opt1 = NewsItem2.objects.filter(board_news=val)
-                opt2 = NewsItem2.objects.filter(committee_news=val)
+                opt1 = NewsItem.objects.filter(board_news=val)
+                opt2 = NewsItem.objects.filter(committee_news=val)
                 if (len(list(opt1)) > 0):
                     extra = opt1
                 elif (len(list(opt2)) > 0):
@@ -138,7 +138,7 @@ def page(request, slug):
                     extra = None
         else:
             extra2 = NewsItemForm()
-            extra = NewsItem2.objects.all()
+            extra = NewsItem.objects.all()
     elif page.slug == 'home':
         extra = FrontPageLinks.objects.all()
 
