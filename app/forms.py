@@ -2,7 +2,7 @@
 Definition of forms.
 """
 from django.utils.text import slugify
-from .models import NewsItem, BoardPositions, SiteMemberProfile
+from .models import NewsItem2, BoardPositions, SiteMemberProfile
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import AuthenticationForm
@@ -27,7 +27,7 @@ class UploadFileForms(forms.Form):
 
 class NewsItemForm(forms.Form):
     
-    news_items = NewsItem.objects.all()
+    news_items = NewsItem2.objects.all()
     news_list = []
     i = 0;
     for news_obj in news_items:
