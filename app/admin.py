@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import Page, Program, Event, ProgramSchedule, BoardPositions, \
 CommitteeChairPositions, ProgramEvent, UslaLocations, \
-SiteSettings, SiteMemberProfile, NewsItem, EventGallery, EventGalleryImages, FrontPageLinks, MembershipSettings, CalendarHolidays
+SiteSettings, SiteMemberProfile, MemberNewsItem, EventGallery, EventGalleryImages, FrontPageLinks, MembershipSettings, CalendarHolidays
 
 MEMBER_FIELDS =  (('title', 'order'), 'name', 'email', ('tel_num', 'cel_num'), 'image')
 
@@ -124,8 +124,8 @@ class CalendarHolidaysAdmin(admin.ModelAdmin):
 
 
 
-@admin.register(NewsItem)
-class NewsItem(SiteMemberAdmin):
+@admin.register(MemberNewsItem)
+class NewsItemAdmin(SiteMemberAdmin):
 
     fields = ('title', 'board_news', 'committee_news', 'description', 'publish_date', 'pdf_file', 'image')
     
@@ -143,7 +143,7 @@ class NewsItem(SiteMemberAdmin):
             context['adminform'].form.fields['board_news'].queryset = BoardPositions.objects.filter(title=site_member[0].board_member)
             context['adminform'].form.fields['committee_news'].queryset = CommitteeChairPositions.objects.filter(title=site_member[0].committee_member)
         
-        return super(NewsItem, self).render_change_form(request, context, args, kwargs) 
+        return super(NewsItemAdmin, self).render_change_form(request, context, args, kwargs) 
 
 
 @admin.register(Event)
