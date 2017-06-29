@@ -2,7 +2,7 @@
 Definition of forms.
 """
 from django.utils.text import slugify
-from .models import MemberNewsItem, BoardPositions, SiteMemberProfile
+from .models import NewsItem, BoardPositions, SiteMemberProfile
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import AuthenticationForm
