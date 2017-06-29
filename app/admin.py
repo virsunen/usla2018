@@ -124,7 +124,7 @@ class CalendarHolidaysAdmin(admin.ModelAdmin):
 
 
 
-@admin.register(MemberNewsItem)
+@admin.register(NewsItem)
 class NewsItemAdmin(SiteMemberAdmin):
 
     fields = ('title', 'board_news', 'committee_news', 'description', 'publish_date', 'pdf_file', 'image')
