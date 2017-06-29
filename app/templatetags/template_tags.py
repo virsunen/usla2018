@@ -1,6 +1,6 @@
 from django import template
 from django.utils import timezone
-from app.models import Page, Event, Program, ProgramSchedule, ProgramEvent, EventGallery, SiteMemberProfile
+from app.models import Page, Event, Program, ProgramSchedule, ProgramEvent, EventGallery, SiteMemberProfile, CalendarHolidays
 from app.views import CalendarObj
 import app.models
 import calendar
@@ -143,6 +143,15 @@ def get_board_position(user):
     else:
         return ""
 
+def handle_events(events, day):
+    event_str = ''
+    the_str = ''
+    for e in events:
+        if (e.has_event_at_date(day)):
+            event_str = '<i class="fa fa-calendar-check-o"></i>'
+            the_str += '<div class="event_list_item">' + e.get_html_str() + '</div>'
+    return [event_str, the_str]
+
 @register.filter(name='get_calendar', is_safe=True)        
 def get_calendar(cal):
     
@@ -153,42 +162,51 @@ def get_calendar(cal):
     for weekday in DAYS_OF_WEEK_SHORT:
         ret_str += '<div class="cal_item_top">' + weekday + '</div>'
     ret_str += '</div>'
+    events = Event.objects.all()
+    programs = Program.objects.all()
+    program_events = ProgramEvent.objects.all()
+    holidays = CalendarHolidays.objects.all()
+    
     for row in d:
         ret_str += '<div class="cal_row">'
         for day in row:
-
             if day.month == cal.month:
-                events = Event.objects.all()
-                programs = Program.objects.all()
-                program_events = ProgramEvent.objects.filter(start_date=day)
-                
+                is_holiday = False;
+                holiday_str = ''
+                holiday_icon = ''
+                for holiday in holidays:
+                    if holiday.has_holiday_at_date(day):
+                        is_holiday = True
+                        holiday_icon = '<i class="fa fa-calendar-times-o"></i>'
+                        holiday_str = '<h1><i class="fa fa-calendar-times-o"></i>' + holiday.name + '</h1>'
+
+
+               
+
                 the_str = '<div class="cal_prog_schedules" id="ps' + str(day.day) + '"><a href="#" class="closeCalDay"><i class="fa fa-close"></i> \
                 </a><div class="programs"><h2>' + day.strftime("%A %d,  %B %Y") + '</h2></div>'
-                top_str = '<div class="cal_prog_small" id="' + str(day.day) + '">'
+                top_str = '<div class="cal_prog_small" id="' + str(day.day) + '">' + holiday_icon
 
-                event_sym = '';
-                for p in programs:
-                    if p.has_schedule_at_date(day):
-                        btn_str = '<i class="fa fa-chevron-down"></i></button>'
-                        if p.fa_icon:
-                            top_str += '<i class="fa ' + p.fa_icon + '"></i>'
-                        else:
-                            top_str += '<b>' + p.name + '</b> '
-                        the_str += p.get_schedule_at_date(day)
-           
-                event_str = ''
-                for e in events:
-                    if (e.has_event_at_date(day)):
-                        event_str = '<i class="fa fa-calendar-check-o"></i>'
-                        the_str += '<div class="event_list_item">' + e.get_html_str() + '</div>'
-                top_str += event_str
-    
-                pro_event_str = ''
-                for e in program_events:
-                    if (e.has_event_at_date(day)):
-                        pro_event_str = '<i class="fa fa-calendar-check-o"></i>'
-                        the_str += '<div class="event_list_item">' + e.get_html_str() + '</div>'
-                top_str += pro_event_str
+                if is_holiday:
+                    the_str += holiday_str
+                else:
+
+                    event_sym = '';
+                    for p in programs:
+                        if p.has_schedule_at_date(day):
+                            btn_str = '<i class="fa fa-chevron-down"></i></button>'
+                            if p.fa_icon:
+                                top_str += '<i class="fa ' + p.fa_icon + '"></i>'
+                            else:
+                                top_str += '<b>' + p.name + '</b> '
+                            the_str += p.get_schedule_at_date(day)
+            
+                    e_l = handle_events(events, day)
+                    top_str += e_l[0]
+                    the_str += e_l[1]
+                    e_l =  handle_events(program_events, day)
+                    top_str += e_l[0]
+                    the_str += e_l[1]
                 top_str += '</div>'
                 the_str += '</div>'
                 ret_str += '<div class="cal_item" id="' + str(day.day) + '"><div class="cal_day"><h5>' \

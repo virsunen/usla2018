@@ -1,5 +1,10 @@
 {% load template_tags %}
 <div class="news_events">
+    <form action="/news/" method="post">
+        {% csrf_token %}
+        {{ extra2 }}
+        <input type="submit" value="Submit" />
+    </form>
     {% for e in extra %}
     {% include "app/news_item.html" %}
     {% endfor %}

@@ -86,7 +86,7 @@ footer {
 .event_list_item h4, .cal_prog_schedule h3 {
     color: rgba(235, 233, 233, 0.97);
 }
-.event, .program, .cal_prog_schedules {
+.event, .program, .cal_prog_schedules, .news_events select {
     color: rgba(255, 255, 255, 0.93);
     background-color: rgba(5, 2, 7, 0.86);
 }
@@ -1111,12 +1111,36 @@ font-size: 18px;
         font-size: 34px;
     }
 
+.news_events form {
 
+}
 .usla_login p {
         margin: 14px;
     }
 
-.usla_login button {
+.news_events select {
+
+    color: rgba(251, 252, 252, 0.82);
+    font-size: 16px;
+    font-weight: 300;
+    border: 1px solid rgba(244, 244, 244, 0.2);
+    padding: 14px;
+}
+
+
+.news_events input {
+    background-color: rgba(251, 134, 50, 0.82);
+    color: white;
+    border: none;
+    padding: 14px;
+    margin: 6px;
+    border: 1px solid rgba(244, 244, 244, 0.2);
+    border-radius: 6px;
+}
+.news_events label {
+    display:none;
+}
+.usla_login button  {
         background-color: black;
         padding: 20px;
         color: white;

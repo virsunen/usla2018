@@ -8,10 +8,10 @@
     {% if e.author %}
     <h4>
        
-        {% if e.author|get_board_position %}
-            {{ e.author|get_board_position }}
-        {% else %}
-            {{ e.author }}
+        {% if e.board_news %}
+            {{ e.board_news }}
+        {% elif e.committee_news %}
+            {{ e.committee_news }}
         {% endif %}
     </h4>
       
