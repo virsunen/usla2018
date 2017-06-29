@@ -140,7 +140,23 @@ class CommitteeChairPositions(AdminPositions):
 
 
 
+class CalendarHolidays(models.Model):
+    name = models.CharField(max_length=120, primary_key=True)
+    date = models.DateField(default=now)
+ 
     
+    def has_holiday_at_date(self, the_date):
+   
+        if self.date <= the_date and the_date <= self.date:
+            return True
+        return False
+   
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name_plural = "Calendar Holidays"
+
 class FrontPageLinks(models.Model):
     url = models.URLField(primary_key=True);
     link_text = models.CharField(max_length=60)
@@ -151,16 +167,24 @@ class FrontPageLinks(models.Model):
 class NewsItem(models.Model):
 
     id = models.AutoField(primary_key=True)
+    board_news = models.ForeignKey(BoardPositions, blank=True, null=True)
+    committee_news = models.ForeignKey(CommitteeChairPositions, blank=True, null=True)
     title = models.CharField(max_length=120)
     description = models.TextField(blank=True)
-   
+  
     publish_date = models.DateField(default=now)
     author = models.ForeignKey(User, null=True, blank=True)
 
     pdf_file = models.FileField(upload_to=get_upload_news_item_to_files, blank=True)
     image = models.ImageField(upload_to=get_upload_news_item_to_images, blank=True)
 
-
+    def clean(self):
+        if not self.board_news and not self.committee_news:
+            raise ValidationError("Select a Board News or Commmittee News Value")
+        if self.board_news and self.committee_news:
+            raise ValidationError("Both Board News and Committee News Are Selected!")
+        if (self.pdf_file): 
+            check_is_pdf(self.pdf_file.name)
     
     def __str__(self):
         return self.title

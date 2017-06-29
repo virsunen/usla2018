@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import Page, Program, Event, ProgramSchedule, BoardPositions, \
 CommitteeChairPositions, ProgramEvent, UslaLocations, \
-SiteSettings, SiteMemberProfile, NewsItem, EventGallery, EventGalleryImages, FrontPageLinks, MembershipSettings
+SiteSettings, SiteMemberProfile, NewsItem, EventGallery, EventGalleryImages, FrontPageLinks, MembershipSettings, CalendarHolidays
 
 MEMBER_FIELDS =  (('title', 'order'), 'name', 'email', ('tel_num', 'cel_num'), 'image')
 
@@ -116,12 +116,34 @@ class PageAdmin(admin.ModelAdmin):
     pass
 
 
+@admin.register(CalendarHolidays)
+class CalendarHolidaysAdmin(admin.ModelAdmin):
+    pass
+
+
 
 
 
 @admin.register(NewsItem)
 class NewsItem(SiteMemberAdmin):
-    fields = ('title', 'description', 'publish_date', 'pdf_file', 'image')
+
+    fields = ('title', 'board_news', 'committee_news', 'description', 'publish_date', 'pdf_file', 'image')
+    
+    def render_change_form(self, request, context, *args, **kwargs):
+        
+        groups = request.user.groups.all()
+        group_name = ''
+        if (len(groups)> 0):
+            group_name = str(list(groups)[0].name)
+        
+        site_member = SiteMemberProfile.objects.filter(user=request.user)
+
+
+        if (len(list(site_member)) > 0) and not (request.user.is_superuser or group_name == "SiteAdministrators"):
+            context['adminform'].form.fields['board_news'].queryset = BoardPositions.objects.filter(title=site_member[0].board_member)
+            context['adminform'].form.fields['committee_news'].queryset = CommitteeChairPositions.objects.filter(title=site_member[0].committee_member)
+        
+        return super(NewsItem, self).render_change_form(request, context, args, kwargs) 
 
 
 @admin.register(Event)

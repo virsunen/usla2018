@@ -7,11 +7,12 @@ from django.urls import reverse
 from django.http import Http404
 from django.template import loader
 import calendar
+from .forms import NewsItemForm
 from datetime import date, time, datetime
 from django.views import generic
 from django.contrib.auth.models import User
 from .models import Page, Event, Program, ProgramSchedule, ProgramEvent, \
-SiteSettings, EventGallery, EventGalleryImages, FrontPageLinks, NewsItem, SiteMemberProfile, BoardPositions, MembershipSettings
+SiteSettings, EventGallery, EventGalleryImages, FrontPageLinks, NewsItem, SiteMemberProfile, BoardPositions, MembershipSettings, CalendarHolidays
 
 
 
@@ -22,22 +23,25 @@ class CalendarObj():
     events = None
     year = datetime.now().year
     month =  datetime.now().month
+    holidays = None
     
-    def __init__(self, ps, pe, e):
+    def __init__(self, ps, pe, e, h):
         self.program = ps
         self.program_events = pe
         self.events = e
+        self.holidays = h
 
-    def set_objects(self, a, b, c):
+    def set_objects(self, a, b, c, d):
         self.program = a
         self.program_events = b
         self.events = c
+        self.holidays = d
 
     def get_m_y(self):
         return str(str(self.month) + "-" + str(self.year))
 
 
-usla_calendar = CalendarObj(None, None, None)
+usla_calendar = CalendarObj(None, None, None, None)
 
 def adminLogin(request):
 
@@ -46,6 +50,8 @@ def adminLogin(request):
     return render(request, 'app/usla_login.html', {'site_settings': site_settings,})
 
 def gallery(request, slug):
+
+
      
     site_settings = SiteSettings.objects.all()[0]
     the_gallery = get_object_or_404(EventGallery, slug=slug)
@@ -61,10 +67,11 @@ def indexView(request):
 
     return page(request, 'home')
 
+
 def handle_calendar(request, slug):
     left = request.POST.get("left", "")
     right = request.POST.get("right", "")
-    usla_calendar = CalendarObj(None, None, None)
+    usla_calendar = CalendarObj(None, None, None, None)
     if (left != ""):
         the_date_l = left.split("-")
     if (right != ""):
@@ -92,33 +99,46 @@ def handle_calendar(request, slug):
 
 
 def page(request, slug):
-    print(slug)
+
     page = get_object_or_404(Page, slug=slug)
     pages = Page.objects.order_by('page_order')
     site_settings = SiteSettings.objects.all()[0]
     extra = None
     extra2 = None
     usla_calendar = handle_calendar(request, slug)
-    usla_calendar.set_objects(Program.objects.all(), ProgramEvent.objects.all(), Event.objects.all())
     if page.slug == 'events':
         extra = Event.objects.all()
         extra2 =  usla_calendar
     elif page.slug == 'membership':
         extra = MembershipSettings.objects.all()[0]
     elif page.slug == 'programs':
-
-
-
         extra = Program.objects.all()
     elif page.slug == 'contact':
         board_members = SiteMemberProfile.objects.exclude(board_member=None).order_by('board_member')
-        print(str(board_members))
+  
         committee_members = SiteMemberProfile.objects.exclude(committee_member=None).order_by('committee_member')
-        print(str(committee_members))
+
 
         extra = ContactObj(board_members, committee_members)
     elif page.slug == "news":
-        extra = NewsItem.objects.all()
+        if request.method == 'POST':
+            val = request.POST.get("list_form")
+            extra2 = NewsItemForm(initial={'list_form': val})
+            if (val == '-1'):
+                extra = NewsItem.objects.all()
+            else: 
+                print(val)
+                opt1 = NewsItem.objects.filter(board_news=val)
+                opt2 = NewsItem.objects.filter(committee_news=val)
+                if (len(list(opt1)) > 0):
+                    extra = opt1
+                elif (len(list(opt2)) > 0):
+                    extra = opt2
+                else:
+                    extra = None
+        else:
+            extra2 = NewsItemForm()
+            extra = NewsItem.objects.all()
     elif page.slug == 'home':
         extra = FrontPageLinks.objects.all()
 
@@ -131,6 +151,11 @@ def event(request, id):
     the_event = get_object_or_404(Event, id=id)
     the_events = Event.objects.all()
     return render(request, 'app/event.html', {'event': the_event, 'events' : the_events})
+
+def news(request, value):
+
+    print("HELLO!")
+
 
 
 
