@@ -180,9 +180,6 @@ def get_calendar(cal):
                         holiday_icon = '<i class="fa fa-calendar-times-o"></i>'
                         holiday_str = '<h1><i class="fa fa-calendar-times-o"></i>' + holiday.name + '</h1>'
 
-
-               
-
                 the_str = '<div class="cal_prog_schedules" id="ps' + str(day.day) + '"><a href="#" class="closeCalDay"><i class="fa fa-close"></i> \
                 </a><div class="programs"><h2>' + day.strftime("%A %d,  %B %Y") + '</h2></div>'
                 top_str = '<div class="cal_prog_small" id="' + str(day.day) + '">' + holiday_icon
@@ -207,6 +204,7 @@ def get_calendar(cal):
                     e_l =  handle_events(program_events, day)
                     top_str += e_l[0]
                     the_str += e_l[1]
+
                 top_str += '</div>'
                 the_str += '</div>'
                 ret_str += '<div class="cal_item" id="' + str(day.day) + '"><div class="cal_day"><h5>' \
