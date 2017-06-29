@@ -634,7 +634,7 @@ def delete_empty_folder(sender, **kwargs):
 @receiver(post_delete, sender=EventGalleryImages)
 @receiver(post_delete, sender=Event)
 @receiver(post_delete, sender=Page)
-@receiver(post_delete, sender=NewsItem2)
+@receiver(post_delete, sender=NewsItem)
 @receiver(post_delete, sender=SiteMemberProfile)
 def event_post_delete_handler(sender, **kwargs):
     obj = kwargs['instance']
@@ -670,7 +670,7 @@ def event_post_delete_handler(sender, **kwargs):
 @receiver(pre_save, sender=USLAGalleryImages)
 @receiver(pre_save, sender=ProgramGalleryImages)
 @receiver(pre_save, sender=EventGalleryImages)
-@receiver(pre_save, sender=NewsItem2)
+@receiver(pre_save, sender=NewsItem)
 @receiver(pre_save, sender=SiteMemberProfile)
 @receiver(pre_save, sender=Page)
 @receiver(pre_save, sender=Event)
