@@ -67,7 +67,6 @@
             </div>
 
             {% block content %}{% endblock %}
-            </div>
             <footer>
                 {% if site_settings.logo_btm_image %}
                 <img src="{{ site_settings.logo_btm_image.url }}" />
@@ -77,6 +76,8 @@
                 <p>&copy; {{ year }} - usla.ca</p>
 
             </footer>
+            </div>
+
 
 
     <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
