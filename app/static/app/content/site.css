@@ -1880,7 +1880,11 @@ font-size: 18px;
         margin-right: -14px;
     }
     .member {
-        width: calc(100% - 4px);
+        width: calc(90% - 4px);
+        margin-left: 5%;
+        margin-top: 2.5%;
+        margin-bottom: 2.5%;
+
     }
     .fp_links {
         width: 90%;
