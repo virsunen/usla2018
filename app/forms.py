@@ -24,9 +24,7 @@ class UploadFileForms(forms.Form):
     title = forms.CharField(max_length=50)
     file = forms.FileField()
 
-
-class NewsItemForm(forms.Form):
-    
+def create_news_item_list():
     news_items = NewsItem.objects.all()
     news_list = []
     i = 0;
@@ -40,5 +38,17 @@ class NewsItemForm(forms.Form):
                 news_list.append((news_obj.committee_news, news_obj.committee_news))
                 i += 1
     news_list.insert(0, (-1, "ALL"))
+    return news_list
+
+class NewsItemForm(forms.Form):
+    
+    news_list = []
   
-    list_form = forms.ChoiceField(choices=news_list)
+    list_form = forms.ChoiceField(choices=create_news_item_list)
+
+
+    def __init__(self, *args, **kwargs):
+        initial = kwargs.get('initial', {})
+        initial['list_form'] = forms.ChoiceField(choices=create_news_item_list)
+        kwargs['initial'] = initial
+        super(NewsItemForm, self).__init__(*args, **kwargs)
