@@ -1396,7 +1396,7 @@ font-size: 18px;
         font-size: 22px;
     }
     .html_content {
-        margin-top: 48px;
+    
         min-height: calc(100vh - 106px);
 
     }
@@ -1693,15 +1693,7 @@ font-size: 18px;
         margin-right: auto;
     }
 
-    .page_title {
-        width: 100%;
-        padding: 0;
-        opacity: 0;
-        display: block;
-        margin: 0;
-        margin-top: 48px;
-  
-    }
+
 
     .events, .calendar {
         display: inline;
@@ -1774,6 +1766,14 @@ font-size: 18px;
         font-size: 16px;
         width: 96%;
     }
+    .page_title {
+        width: 100%;
+        padding: 0;
+
+        display: block;
+        margin: 0;
+        margin-top: 48px;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -1782,10 +1782,7 @@ font-size: 18px;
         width: 320px;
         padding: 14px;
     }
-
-    .registration_form h3 {
-        font-size: 14px;
-    }
+ 
     .nav_bar {
 
         min-height: 100vh;

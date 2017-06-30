@@ -100,15 +100,11 @@ function handle_events_top() {
     if ($(window).width() <= 880) {
         if (window.location.href.indexOf("events") !== -1) {
             $(".page_title").css("display", "none");
-            $(".page_title").css("opacity", "0.0");
             $(".html_content").css("margin-top", "48px");
 
         } else {
             $(".page_title").css("display", "block");
-            $(".page_title").css("opacity", "1.0");
-
             $(".html_content").css("margin-top", "0px");
-            $(".page_title").fadeIn(500);
         }
     } else {
         $(".page_title").css("display", "none");
