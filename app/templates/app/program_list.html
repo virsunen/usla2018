@@ -3,7 +3,10 @@
 
 <div class="program">
 	<h1><i class="fa {{ p.fa_icon }}"></i>{{ p.name }}</h1>
+    {% if p.description %}
+
 	<p>{{ p.description }}</p>
+    {% endif %}
     <div class="registration_form">
 
         {% if p.pdf_file %}
@@ -16,7 +19,7 @@
 		{% with ps=p|get_program_schedule %}
            
             <table>
-                {{ p|get_dow_table_row|safe}}
+                <div class="ps_top_row">{{ p|get_dow_table_row|safe}}</div>
                 {% for i in ps %}
                     {{ i|get_ps_table_row|safe}}
                 {% endfor %}
@@ -28,18 +31,26 @@
         
  
 	</div>
-    <p>{{ p.sub_description }}</p>
+    <div class="program_sub_desc">
+        {% if p.sub_description %}
+        <p>{{ p.sub_description }}</p>
+        {% endif %}
+    </div>
 	<div class="program_links">
 
-        <p>
+      
 		{% if p.contact_email %}
-		<a href="mailto:{{ p.contact_email }}"><i class="fa fa-envelope-o"></i>{{ p.contact_email }}</a>
-		{% endif %}
-		{% if p.image %}
-		<a href="{{ p.event_img.url }}"><i class="fa fa-file-image-o"></i>See image</a>
-		{% endif %}
+        <p>
+            <a href="mailto:{{ p.contact_email }}"><i class="fa fa-envelope-o"></i>{{ p.contact_email }}</a>
         </p>
-	</div>
+            {% endif %}
+            {% if p.image %}
+        {% if p.image %}
+        {{ p.image.url|get_clickable_img|safe }}
+        {% endif %}
+            {% endif %}
+
+</div>
 
 </div>
 {% endfor %}

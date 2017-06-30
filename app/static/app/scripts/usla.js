@@ -1,6 +1,6 @@
 
 $(window).resize(function () {
-
+    handle_events_top();
     if ($(window).width() >= 600) {
         var nav_sel = $(".event_nav_btn_sel");
         if ($(".cal_prog_schedules").is(':visible')) {
@@ -21,7 +21,11 @@ $(window).resize(function () {
 
 });
 
+$(window).load(function () {
+    handle_events_top();
 
+
+});
 
 
 $(document).ready(function () {
@@ -60,7 +64,16 @@ $(document).ready(function () {
         toggleCalEvents(this);
     });
 
+    $(".image_link").click(function (e) {
+        $(".overlay_img_container").hide();
+        $(".overlay_img").attr('src', this.id);
+        $(".overlay_img_container").fadeIn(1000);
+    });
 
+    $(".overlay_img_btn").click(function (e) {
+
+        $(".overlay_img_container").fadeOut(1000);
+    });
 });
 
 function toggleSlide(theDiv, theClass) {
@@ -81,6 +94,26 @@ function toggleSlide(theDiv, theClass) {
         });
     }
   
+}
+
+function handle_events_top() {
+    if ($(window).width() <= 880) {
+        if (window.location.href.indexOf("events") !== -1) {
+            $(".page_title").css("display", "none");
+            $(".page_title").css("opacity", "0.0");
+            $(".html_content").css("margin-top", "48px");
+
+        } else {
+            $(".page_title").css("display", "block");
+            $(".page_title").css("opacity", "1.0");
+
+            $(".html_content").css("margin-top", "0px");
+            $(".page_title").fadeIn(500);
+        }
+    } else {
+        $(".page_title").css("display", "none");
+        $(".html_content").css("margin-top", "0px");
+    }
 }
 
 function toggleCalEvents(theItem) {

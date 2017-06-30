@@ -31,7 +31,7 @@
     {% endif %}
     <div class="event_links">
             {% if e.image %}
-            <p><a href="{{ e.image.url }}"><i class="fa fa-file-image-o"></i>See Image</a></p>
+            {{ e.image.url|get_clickable_img|safe }}
             {% endif %}
             {% if e.pdf_file %}
             <p><a href="{{ e.pdf_file.url }}"><i class="fa fa-file-pdf-o"></i>Download .pdf</a></p>

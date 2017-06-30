@@ -14,7 +14,12 @@
 </head>
 
 <body>
+    <div class="overlay_img_container" style="display:none;">
+        <h1><a href="#" class="overlay_img_btn"><i class="fa fa-close"></i></a></h1>
+        <img class="overlay_img" src="" />
+    </div>
     <div class="container" style="background: url({{ page.image.url }}) no-repeat center center fixed; background-size: cover;">
+
         <div class="header">
             {% if user.is_authenticated %}
             <div class="user_login">
@@ -24,7 +29,7 @@
 
             {% endif %}
 
-            
+
                 {% if the_prev_url %}
                 <div class="back_btn">
                 <a href="{{ the_prev_url }}" id="prev_btn"><i class="fa fa-arrow-left"></i></a>
@@ -34,10 +39,10 @@
                 <a href="#" onclick="openMenu();" id="navMenu"><i class="fa fa-navicon"></i></a>
                 </div>
                 {% endif %}
-          
+
             <div class="header_text">
                 <img src="{{ site_settings.logo_header_image.url }}" />
-   
+
                 <h1>{{ site_settings.site_name }}</h1>
                 <p>{{ site_settings.site_desc }}</p>
             </div>

@@ -130,6 +130,12 @@ def get_ps_table_row(program_schedule):
 def get_cal_m_y(cal):
     return cal.get_m_y()
 
+
+@register.filter(name='get_clickable_img', is_safe=True)  
+def get_clickable_img(img_url):
+
+    return '<p><a class="image_link" href="#" id="' + img_url + '"><i class="fa fa-file-image-o"></i>See Image</a></p>'
+
 @register.filter(name='get_cal_month_name', is_safe=True)  
 def get_cal_month_name(cal):
     current_month = calendar.month_name[cal.month]
