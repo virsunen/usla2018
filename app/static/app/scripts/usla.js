@@ -24,6 +24,9 @@ $(window).resize(function () {
 $(window).load(function () {
     handle_events_top();
 
+    $(".background_img img").fadeTo(2000, 1.0, function () {
+        // Animation complete.
+    });
 
 });
 

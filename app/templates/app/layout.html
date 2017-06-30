@@ -14,12 +14,16 @@
 </head>
 
 <body>
+
     <div class="overlay_img_container" style="display:none;">
         <h1><a href="#" class="overlay_img_btn"><i class="fa fa-close"></i></a></h1>
         <img class="overlay_img" src="" />
     </div>
-    <div class="container" style="background: url({{ page.image.url }}) no-repeat center center fixed; background-size: cover;">
-
+    <div class="background_img">
+        <img src="{{ page.image.url }}" />
+    </div>
+    <div class="container">
+      
         <div class="header">
             {% if user.is_authenticated %}
             <div class="user_login">
