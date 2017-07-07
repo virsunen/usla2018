@@ -95,6 +95,9 @@ def handle_calendar(request, slug):
             usla_calendar.year = usla_calendar.year + 1
         else:
             usla_calendar.month = usla_calendar.month + 1
+    else:
+        usla_calendar.year = datetime.now().year
+        usla_calendar.month =  datetime.now().month
     return usla_calendar
 
 
@@ -115,11 +118,9 @@ def page(request, slug):
         extra = Program.objects.all()
     elif page.slug == 'contact':
         board_members = SiteMemberProfile.objects.exclude(board_member=None).order_by('board_member')
-  
         committee_members = SiteMemberProfile.objects.exclude(committee_member=None).order_by('committee_member')
-
-
         extra = ContactObj(board_members, committee_members)
+
     elif page.slug == "news":
         if request.method == 'POST':
             val = request.POST.get("list_form")
