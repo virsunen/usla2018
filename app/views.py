@@ -108,9 +108,11 @@ def page(request, slug):
     site_settings = SiteSettings.objects.all()[0]
     extra = None
     extra2 = None
+    extra3 = None
     usla_calendar = handle_calendar(request, slug)
     if page.slug == 'events':
-        extra = Event.objects.all()
+        extra = Event.objects.filter(end_date__gte=datetime.now())
+        extra3 = Event.objects.filter(end_date__lte=datetime.now())
         extra2 =  usla_calendar
     elif page.slug == 'membership':
         extra = MembershipSettings.objects.all()[0]
@@ -125,19 +127,25 @@ def page(request, slug):
         if request.method == 'POST':
             val = request.POST.get("list_form")
             extra2 = NewsItemForm(initial={'list_form': val})
+            print(val)
             if (val == '-1'):
                 extra = NewsItem.objects.all()
             else: 
-                print(val)
+                extra2.fields['list_form'].initial = [val]
                 opt1 = NewsItem.objects.filter(board_news=val)
                 opt2 = NewsItem.objects.filter(committee_news=val)
+                opt3 = NewsItem.objects.filter(general_news=val)
                 if (len(list(opt1)) > 0):
                     extra = opt1
                 elif (len(list(opt2)) > 0):
                     extra = opt2
+                elif (len(list(opt3)) > 0):
+                    extra = opt3
                 else:
                     extra = None
+
         else:
+
             extra2 = NewsItemForm()
             extra = NewsItem.objects.all()
     elif page.slug == 'home':
@@ -145,7 +153,8 @@ def page(request, slug):
 
 
 
-    return render(request, 'app/page.html', {'page': page, 'pages': pages, 'site_settings': site_settings, 'extra': extra, 'extra2': extra2})
+    return render(request, 'app/page.html', \
+        {'page': page, 'pages': pages, 'site_settings': site_settings, 'extra': extra, 'extra2': extra2, 'extra3': extra3})
     
 
 def event(request, id):

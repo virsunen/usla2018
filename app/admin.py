@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import Page, Program, Event, ProgramSchedule, BoardPositions, \
 CommitteeChairPositions, ProgramEvent, UslaLocations, \
-SiteSettings, SiteMemberProfile, NewsItem, EventGallery, EventGalleryImages, FrontPageLinks, MembershipSettings, CalendarHolidays
+SiteSettings, SiteMemberProfile, NewsItem, EventGallery, EventGalleryImages, FrontPageLinks, MembershipSettings, CalendarHolidays, NewsTopics
 
 MEMBER_FIELDS =  (('title', 'order'), 'name', 'email', ('tel_num', 'cel_num'), 'image')
 
@@ -23,6 +23,7 @@ class SiteMemberAdmin(admin.ModelAdmin):
         if request.user.is_superuser or group_name == "SiteAdministrators":
             return qs
         return qs.filter(author=request.user)
+
 
 
 class SiteMemberProfileInline(admin.StackedInline):
@@ -66,6 +67,9 @@ class EventGalleryImagesInline(admin.TabularInline):
 class MembershipSettingsAdmin(admin.ModelAdmin):
     pass
 
+@admin.register(NewsTopics)
+class NewsTopicsAdmin(admin.ModelAdmin):
+    pass
 
 
 @admin.register(EventGallery)
@@ -127,7 +131,7 @@ class CalendarHolidaysAdmin(admin.ModelAdmin):
 @admin.register(NewsItem)
 class NewsItemAdmin(SiteMemberAdmin):
 
-    fields = ('title', 'board_news', 'committee_news', 'description', 'publish_date', 'pdf_file', 'image')
+    fields = ('title', ('general_news', 'board_news', 'committee_news'), 'description', 'publish_date', ('contact_name', 'contact_tel', 'contact_email'), ('pdf_file', 'image'))
     
     def render_change_form(self, request, context, *args, **kwargs):
         
@@ -176,7 +180,7 @@ class ProgramAdmin(SiteMemberAdmin):
              ('contact_name', 'contact_tel', 'contact_email'),
              'sub_description',
              'image', 
-             'pdf_file')
+             ('pdf_file', 'pdf_link_name'))
 
 
    

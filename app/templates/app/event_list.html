@@ -1,7 +1,19 @@
 {% load template_tags %}
 <div class="events">
+    <div class="event_title">
+        <h2>Upcomming Events</h2>
+    </div>
+
     {% for e in extra %}
         {% include "app/event.html" %}
     {% endfor %}
+    <div class="event_title">
+        <h2>Previous Events</h2>
+    </div>
+    {% if extra3 %}
+    {% for e in extra3 %}
+    {% include "app/event.html" %}
+    {% endfor %}
+    {% endif %}
 </div>
   

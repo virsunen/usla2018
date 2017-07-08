@@ -146,19 +146,25 @@ function toggleCalEvents(theItem) {
 
 function toggleCal(theId) {
     if ($(theId).css("display") == "none") {
-
-        $(theId).fadeOut(1000, function () {
+        $("footer").css("display", "none");
+        $(theId).fadeOut(600, function () {
             $(".cal_prog_schedules").css("display", "none");
         });
+
+
         if ($(theId).height() > $(".html_content").height() - $("footer").height()) {
 
             $(".html_content").height($(theId).height() + $("footer").height() + 60);
         }
 
-        $(theId).fadeIn(1200, function () {
-         
+        $(theId).fadeIn(800, function () {
+            if ($(theId).height() > $(".html_content").height() - $("footer").height()) {
+
+                $(".html_content").height($(theId).height() + $("footer").height() + 60);
+            }
+            $("footer").css("display", "block");
         });
-        $(".events").fadeOut(1000);
+        $(".events").fadeOut(600);
         $(".cal_item").css("background-color", "rgba(255, 255, 255, 0.92)");
      
         return true;

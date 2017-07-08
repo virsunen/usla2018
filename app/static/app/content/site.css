@@ -26,11 +26,11 @@
     color: rgba(221, 221, 221, 0.97);
 }
 
-.contact h1 {
-    background-color: rgba(0, 0, 0, 0.43);
+.event_title h2 {
+    background-color: rgba(0, 0, 0, 0.78);
 }
 
-.nav_a  {
+.nav_a, .contact h1 {
     background-color: rgba(0, 0, 0, 0.43);
 }
 
@@ -38,11 +38,11 @@
     color: rgba(224, 0, 52, 0.92);
 }
 
-.event h4, .membership_page_link a, .membership_body a, .program_sub_desc p {
+.event h4, .membership_page_link a, .membership_body a, .program_sub_desc p, .event_title h2 {
     color: rgba(251, 134, 50, 1);
 }
 
-.history_link  {
+.history_link {
     background-color: rgba(251, 134, 50, 0.82);
 }
 
@@ -60,6 +60,10 @@ li {
 
 .membership_page h1, .fp_links h1, .page_title, .page_body h2, .program_dates b, .cal_prog_btn {
     color: rgba(224, 0, 52, 0.88);
+}
+
+.event_contact p {
+    color: rgba(234, 20, 72, 0.92);
 }
 
 .event_list_item h5, .cal_prog_schedule h5, .event h1, .membership_page h2, .program h1 {
@@ -419,7 +423,7 @@ footer {
     color: white;
     padding: 14px;
     border-top: 1px solid rgba(244, 244, 244, 0.17);
-    
+    bottom: 0;
 
 
 }
@@ -650,10 +654,10 @@ footer img {
         clear: both;
     }
 .events {
-    width: calc(100% - 600px);
+    width: calc(100% - 640px);
     margin-left: 5%;
     float: left;
-    max-width: 600px;
+    max-width: 640px;
 }
 
 .events_nav {
@@ -688,7 +692,7 @@ footer img {
 
 .event {
     width: 100%;
-        border: 1px solid rgba(245, 245, 245, 0.3);
+    border: 1px solid rgba(245, 245, 245, 0.3);
 }
 
 .event_center {
@@ -711,9 +715,16 @@ footer img {
     float: left;
 }
 
+.events {
+}
 
-
-
+.event_title h2 {
+    text-align: center;
+    padding: 2%;
+    width: 50%;
+    border-radius: 14px;
+    border: 1px solid rgba(222, 222, 222, 0.14);
+}
 
 .event h1 {
 
@@ -740,6 +751,7 @@ footer img {
     margin-right: auto;
 }
 
+
 .event_links_cal p {
     width: 100%;
     text-align: right;
@@ -754,6 +766,11 @@ footer img {
 
 }
 
+.event_contact p {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+}
 
 
 .event h3 {
@@ -1091,8 +1108,9 @@ footer img {
 
 .usla_login {
     color: rgba(251, 134, 50, 0.82);
-    border: 1px solid rgba(0, 0, 0, 0.13);
-    background-color: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(251, 134, 50, 0.47);
+    box-shadow: 2px 2px 1px rgba(251, 134, 50, 0.47);
+    background-color: rgba(254, 254, 254, 0.89);
     width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -1106,8 +1124,10 @@ footer img {
 
 .usla_login input, .usla_login p {
   padding: 14px;
-font-size: 18px;
-    }
+  width: 100%;
+  min-width: 200px;
+  font-size: 18px;
+}
 
 .usla_login h3 {
         color: rgba(44, 44, 44, 0.97);
@@ -1213,8 +1233,8 @@ font-size: 18px;
         padding: 46px;
     }
 
-        .usla_login input,
-        .usla_login p {
+    .usla_login input,
+    .usla_login p {
             padding: 8px;
             font-size: 16px;
         }

@@ -4,13 +4,18 @@
 <div class="program">
 	<h1><i class="fa {{ p.fa_icon }}"></i>{{ p.name }}</h1>
     {% if p.description %}
-
-	<p>{{ p.description }}</p>
+	    <p>{{ p.description }}</p>
     {% endif %}
     <div class="registration_form">
 
         {% if p.pdf_file %}
-            <h3><a href="{{ p.pdf_file.url }}"><i class="fa fa-file-pdf-o"></i>REGISTRATION FORM</a></h3>
+            <h3><a href="{{ p.pdf_file.url }}"><i class="fa fa-file-pdf-o"></i>
+                {% if p.pdf_link_name %}
+                    {{ p.pdf_link_name }}
+                {% else %}
+                    PDF FILE
+                {% endif %}
+            </a></h3>
         {% endif %}
     </div>
 	<div class="program_dates">
@@ -24,9 +29,7 @@
                     {{ i|get_ps_table_row|safe}}
                 {% endfor %}
             </table>
-   
 
-        
         {% endwith %}
         
  

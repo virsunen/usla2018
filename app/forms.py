@@ -27,16 +27,19 @@ class UploadFileForms(forms.Form):
 def create_news_item_list():
     news_items = NewsItem.objects.all()
     news_list = []
-    i = 0;
+
     for news_obj in news_items:
+        if news_obj.general_news:
+            if (news_obj.general_news, news_obj.general_news) not in news_list:
+                news_list.append((news_obj.general_news, news_obj.general_news))
         if news_obj.board_news:
             if (news_obj.board_news, news_obj.board_news) not in news_list:
                 news_list.append((news_obj.board_news, news_obj.board_news))
-                i += 1
+
         if news_obj.committee_news:
             if (news_obj.committee_news, news_obj.committee_news) not in news_list:
                 news_list.append((news_obj.committee_news, news_obj.committee_news))
-                i += 1
+  
     news_list.insert(0, (-1, "ALL"))
     return news_list
 
@@ -48,7 +51,6 @@ class NewsItemForm(forms.Form):
 
 
     def __init__(self, *args, **kwargs):
-        initial = kwargs.get('initial', {})
-        initial['list_form'] = forms.ChoiceField(choices=create_news_item_list)
-        kwargs['initial'] = initial
         super(NewsItemForm, self).__init__(*args, **kwargs)
+        initial = kwargs.get('initial', {})
+        self.initial['list_form'] = initial.get('list_form')
