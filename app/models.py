@@ -31,7 +31,7 @@ import os
 TIME_ERROR_STR = "Start Time can't be after End Time!"
 DATE_ERROR_STR = "Start Date can't be after the End Date!"
 THUMB_SIZE = (200, 200)
-
+PHONE_REGEX = RegexValidator(regex=r'^\+?1?[\d-]{9,18}$', message="Phone number invalid.")
 
 
 def get_upload_to_pages(instance, filename):
@@ -103,6 +103,9 @@ class AdminPositions(models.Model):
 class MembershipSettings(SingletonModel):
     pdf_file = models.FileField(upload_to='files/', blank=True)
 
+    class Meta:
+        verbose_name_plural = "Membership Settings"
+
 class SiteSettings(SingletonModel):
 
 
@@ -138,6 +141,14 @@ class CommitteeChairPositions(AdminPositions):
         verbose_name_plural = "Committee Chair Positions"
         ordering = ["order"]
 
+class NewsTopics(models.Model):
+    name = models.CharField(max_length=40, primary_key=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "News Topics"
 
 
 class CalendarHolidays(models.Model):
@@ -161,28 +172,41 @@ class FrontPageLinks(models.Model):
     url = models.URLField(primary_key=True);
     link_text = models.CharField(max_length=60)
    
+
+
     def __str__(self):
         return self.url
+
+    class Meta:
+        verbose_name_plural = "Front Page Links"
 
 class NewsItem(models.Model):
 
     id = models.AutoField(primary_key=True)
+    general_news = models.ForeignKey(NewsTopics, blank=True, null=True)
     board_news = models.ForeignKey(BoardPositions, blank=True, null=True)
     committee_news = models.ForeignKey(CommitteeChairPositions, blank=True, null=True)
+
     title = models.CharField(max_length=120)
     description = models.TextField(blank=True)
  
     publish_date = models.DateField(default=now)
     author = models.ForeignKey(User, null=True, blank=True)
 
+    contact_name = models.CharField(max_length=80, null=True, blank=True)
+    contact_email = models.EmailField(blank=True, null=True)
+    contact_tel = models.CharField(validators=[PHONE_REGEX], null=True, blank=True, max_length=16)
+
     pdf_file = models.FileField(upload_to=get_upload_news_item_to_files, blank=True)
     image = models.ImageField(upload_to=get_upload_news_item_to_images, blank=True)
 
     def clean(self):
-        if not self.board_news and not self.committee_news:
-            raise ValidationError("Select a Board News or Commmittee News Value")
-        if self.board_news and self.committee_news:
-            raise ValidationError("Both Board News and Committee News Are Selected!")
+        if not self.board_news and not self.committee_news and not self.general_news:
+            raise ValidationError("Select Either a General / Board / Committee News Topic")
+        if (self.board_news and self.committee_news) \
+        or (self.board_news and self.general_news) \
+        or (self.committee_news and self.general_news):
+            raise ValidationError("Select Only 1 News Topic")
         if (self.pdf_file): 
             check_is_pdf(self.pdf_file.name)
     
@@ -196,9 +220,9 @@ class SiteMemberProfile(models.Model):
     board_member = models.ForeignKey(BoardPositions, null=True, blank=True)
     committee_member = models.ForeignKey(CommitteeChairPositions, null=True, blank=True)
     email_forward = models.EmailField(blank=True)
-    phone_regex = RegexValidator(regex=r'^\+?1?[\d-]{9,18}$', message="Phone number invalid.")
-    tel_num = models.CharField(validators=[phone_regex], blank=True, max_length=16)
-    cel_num = models.CharField(validators=[phone_regex], blank=True, max_length=16)
+
+    tel_num = models.CharField(validators=[PHONE_REGEX], blank=True, max_length=16)
+    cel_num = models.CharField(validators=[PHONE_REGEX], blank=True, max_length=16)
     image = models.ImageField(upload_to=get_upload_members_to_images, blank=True)
 
 
@@ -309,6 +333,7 @@ class Program(models.Model):
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to=get_upload_program_to_images, blank=True)
     pdf_file = models.FileField(upload_to=get_upload_program_to_files, blank=True)
+    pdf_link_name = models.CharField(max_length=40, blank=True, null=True)
     fa_icon = models.CharField(blank=True, max_length=30)
     
  
