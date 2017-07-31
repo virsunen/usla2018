@@ -423,8 +423,7 @@ class ProgramSchedule(models.Model):
         ordering = ["start_time"]
 
 def clean_type1(self):
-    if (self.image):
-        check_is_img(self.image.filename)
+
         
     if (self.pdf_file): 
         check_is_pdf(self.pdf_file.name)
