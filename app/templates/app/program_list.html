@@ -4,7 +4,7 @@
 <div class="program">
 	<h1><i class="fa {{ p.fa_icon }}"></i>{{ p.name }}</h1>
     {% if p.description %}
-	    <p>{{ p.description }}</p>
+	    <p>{{ p.description|safe }}</p>
     {% endif %}
     <div class="registration_form">
 
@@ -36,7 +36,7 @@
 	</div>
     <div class="program_sub_desc">
         {% if p.sub_description %}
-        <p>{{ p.sub_description }}</p>
+        <p>{{ p.sub_description|safe }}</p>
         {% endif %}
     </div>
 	<div class="program_links">

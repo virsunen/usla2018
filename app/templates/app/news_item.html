@@ -9,9 +9,9 @@
     <h4>
        
         {% if e.board_news %}
-            {{ e.board_news }}
+            {{ e.board_news|safe }}
         {% elif e.committee_news %}
-            {{ e.committee_news }}
+            {{ e.committee_news|safe }}
         {% endif %}
     </h4>
       
@@ -25,7 +25,7 @@
         </div>
         {% if e.description %}
         <div class="event_left">
-            <p>{{ e.description }}</p>
+            <p>{{ e.description|safe }}</p>
         </div>
         {% endif %}
         <div class="event_contact">
