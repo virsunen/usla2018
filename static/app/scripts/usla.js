@@ -1,6 +1,6 @@
 
 $(window).resize(function () {
-
+    handle_events_top();
     if ($(window).width() >= 600) {
         var nav_sel = $(".event_nav_btn_sel");
         if ($(".cal_prog_schedules").is(':visible')) {
@@ -21,7 +21,14 @@ $(window).resize(function () {
 
 });
 
+$(window).load(function () {
+    handle_events_top();
 
+    $(".background_img img").fadeTo(2000, 1.0, function () {
+        // Animation complete.
+    });
+
+});
 
 
 $(document).ready(function () {
@@ -60,7 +67,16 @@ $(document).ready(function () {
         toggleCalEvents(this);
     });
 
+    $(".image_link").click(function (e) {
+        $(".overlay_img_container").hide();
+        $(".overlay_img").attr('src', this.id);
+        $(".overlay_img_container").fadeIn(1000);
+    });
 
+    $(".overlay_img_btn").click(function (e) {
+
+        $(".overlay_img_container").fadeOut(1000);
+    });
 });
 
 function toggleSlide(theDiv, theClass) {
@@ -81,6 +97,22 @@ function toggleSlide(theDiv, theClass) {
         });
     }
   
+}
+
+function handle_events_top() {
+    if ($(window).width() <= 880) {
+        if (window.location.href.indexOf("events") !== -1) {
+            $(".page_title").css("display", "none");
+            $(".html_content").css("margin-top", "48px");
+
+        } else {
+            $(".page_title").css("display", "block");
+            $(".html_content").css("margin-top", "0px");
+        }
+    } else {
+        $(".page_title").css("display", "none");
+        $(".html_content").css("margin-top", "0px");
+    }
 }
 
 function toggleCalEvents(theItem) {
@@ -114,19 +146,25 @@ function toggleCalEvents(theItem) {
 
 function toggleCal(theId) {
     if ($(theId).css("display") == "none") {
-
-        $(theId).fadeOut(1000, function () {
+        $("footer").css("display", "none");
+        $(theId).fadeOut(600, function () {
             $(".cal_prog_schedules").css("display", "none");
         });
+
+
         if ($(theId).height() > $(".html_content").height() - $("footer").height()) {
 
             $(".html_content").height($(theId).height() + $("footer").height() + 60);
         }
 
-        $(theId).fadeIn(1200, function () {
-         
+        $(theId).fadeIn(800, function () {
+            if ($(theId).height() > $(".html_content").height() - $("footer").height()) {
+
+                $(".html_content").height($(theId).height() + $("footer").height() + 60);
+            }
+            $("footer").css("display", "block");
         });
-        $(".events").fadeOut(1000);
+        $(".events").fadeOut(600);
         $(".cal_item").css("background-color", "rgba(255, 255, 255, 0.92)");
      
         return true;
