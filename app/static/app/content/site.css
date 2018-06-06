@@ -4,7 +4,7 @@
     background-color: rgba(224, 0, 52, 0.92);
 }
 .nav_a_sel {
-    background-color: rgba(224, 0, 52, 0.42);
+    background-color: rgba(247, 247, 247, 0.94);
 } 
 .nav_a:hover {
     background-color: rgba(224, 0, 52, 0.62);
@@ -19,8 +19,10 @@
 }
 
 .page_title h1, .nav_a_sel a {
-        color: rgba(242, 242, 242, 0.97);
+     color: rgba(224, 0, 52, 0.92);
 }
+
+
 
 .event h5, .nav_a a, .program p {
     color: rgba(221, 221, 221, 0.97);
@@ -43,7 +45,7 @@
 }
 
 .history_link {
-    background-color: rgba(251, 134, 50, 0.82);
+    background-color: rgba(251, 134, 50, 0.92);
 }
 
 .event h3, .event p {
@@ -55,11 +57,11 @@ li {
 }
 
 .nav_bar, footer, .overlay_img_container {
-    background-color: rgba(5,5, 5, 0.955);
+    background-color: rgba(5,5, 5, 0.85);
 }
 
 .membership_page h1, .fp_links h1, .page_title, .page_body h2, .program_dates b, .cal_prog_btn {
-    color: rgba(224, 0, 52, 0.88);
+    color: rgba(224, 0, 52, 0.94);
 }
 
 .event_contact p {
@@ -67,7 +69,7 @@ li {
 }
 
 .event_list_item h5, .cal_prog_schedule h5, .event h1, .membership_page h2, .program h1 {
-    color: rgba(224, 70, 142, 0.98);
+    color: rgba(134, 12, 22, 0.98);
 }
 
 .fp_links h1 {
@@ -106,7 +108,7 @@ body {
     min-height: 100%;
     height: 100%;
     background-color: rgba(5, 5, 5, 0.97);
-    font-family: 'Lato', sans-serif;
+    font-family: 'Nunito', sans-serif;
 }
 
 div {
@@ -115,8 +117,9 @@ div {
     margin: 0;
 }
 
-i {
-    padding: 8px;
+svg {
+    margin-right: 4px;
+
 }
 
 p {
@@ -192,7 +195,7 @@ footer img {
     margin-top: 28px;
     font-size: 20px;
     border: 1px solid rgba(224, 225, 222, 0.38);
-    background-color: rgba(0, 0, 0, 0.67);
+    background-color: rgba(0, 0, 0, 0.87);
     text-shadow: 2px 1px 1px black;
 }
 
@@ -233,6 +236,26 @@ footer img {
 }
 
 
+
+.user_logout a {
+
+    color: white;
+    text-align: right;
+    font-weight: bold;
+    font-size: 10pt;
+
+}
+
+.user_buttons {
+
+    float: right;
+    width: 80px;
+
+}
+
+.user_buttons a {
+    margin-right: 8px;
+}
 .nav_bar {
     padding:0;
 
@@ -246,11 +269,12 @@ footer img {
 }
 
 .membership_page p {
-    width: 72%;
-
+    width: 90%;
+    color: rgba(55, 55, 55, 0.97);
     margin-left:auto;
     margin-right:auto;
-    font-size: 18px;
+    font-size: 15px;
+    font-weight: 600;
 
 }
 
@@ -295,13 +319,28 @@ footer img {
 
     .membership_page li {
         padding: 14px;
-        font-size: 20px;
+        font-size: 16px;
+        background-color: white;
     }
     .membership_page h1 {
-        padding: 14px;
+        padding: 8px;
     }
 .membership_body p {
     margin-top: 14px;
+}
+
+
+.usla_login h4 {
+    text-align: center;
+    color: rgba(224, 0, 52, 0.92);
+}
+.paypall_btn {
+    width: 147px;
+    height: 47px;
+    padding: 100px;
+    padding-top: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 .membership_body a {
     float: none;
@@ -311,11 +350,11 @@ footer img {
     padding: 14px;
 }
 .nav_a_sel a {
-    font-weight: 400;
+    font-weight: 600;
 }
-    .nav_a i, .nav_a_sel i {
-        margin-right: 8px;
-    }
+.nav_a i, .nav_a_sel i {
+    margin-right: 8px;
+}
 
 .nav_a i:hover {
     color: rgba(255, 255, 255, 0.97);
@@ -342,7 +381,7 @@ footer img {
 input,
 select,
 textarea {
-    max-width: 50%;
+    max-width: 60%;
 }
 
 /* styles for validation helpers */
@@ -449,9 +488,7 @@ footer img {
 }
 .page_title, .page_body {
 
-    color: rgba(240, 340, 240, 0.86);
-
-
+    color: rgba(252, 252, 252, 0.94);
     padding-top: 14px;
     padding-bottom: 14px;
     margin: 0;
@@ -527,11 +564,10 @@ footer img {
 
 .user_login {
 
-
-    font-size: 18px;
+    padding: 8px;
+    font-size: 12pt;
     float: right;
-    margin-right: 14px;
-
+    margin-right: 8px;
 
 }
 
@@ -653,6 +689,9 @@ footer img {
         height: 0;
         clear: both;
     }
+
+
+
 .events {
     width: calc(100% - 640px);
     margin-left: 5%;
@@ -813,8 +852,9 @@ footer img {
     text-shadow: none;
     width: 90%;
     max-width: 1080px;
-   overflow:auto;
+    overflow:auto;
     padding: 34px;
+    background: rgba(10, 10, 10, 0.94);
 
 }
 
@@ -877,8 +917,11 @@ footer img {
     text-align: center;
     width: 100%;
     padding: 0;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    margin: 8px;
+    margin-bottom: 0px;
+    font-weight: 200;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 
 
@@ -1100,17 +1143,32 @@ footer img {
     display: none;
 }
 .membership_page h2 {
-    margin-top: 60px;
-    margin-bottom: 24px;
-    margin-left: 4%;
-    width: 96%;
+    margin-top: 40px;
+    margin-bottom: 12px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    text-align:center;
+    font-size: 18pt;
+
+}
+
+.member_login {
+}
+.member_login a {
+    color: rgba(224, 0, 52, 0.92);
+}
+
+.member_login_icon {
+    margin-left: 14px;
+    font-size: 4em;
 }
 
 .usla_login {
     color: rgba(251, 134, 50, 0.82);
     border: 1px solid rgba(251, 134, 50, 0.47);
     box-shadow: 2px 2px 1px rgba(251, 134, 50, 0.47);
-    background-color: rgba(254, 254, 254, 0.89);
+    background-color: rgba(234, 234, 234, 0.93);
     width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -1126,13 +1184,13 @@ footer img {
   padding: 14px;
   width: 100%;
   min-width: 200px;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .usla_login h3 {
         color: rgba(44, 44, 44, 0.97);
         font-weight: 100;
-        font-size: 34px;
+        font-size: 18pt;
     }
 
 .news_events form {
@@ -1229,7 +1287,7 @@ footer img {
     }
 
     .usla_login {
-        width: 560px;
+        width: 860px;
         padding: 46px;
     }
 
@@ -1240,7 +1298,7 @@ footer img {
         }
 
         .usla_login h3 {
-            font-size: 28px;
+            font-size: 12pt;
         }
 
 
@@ -1388,7 +1446,7 @@ footer img {
     }
 
     .membership_page h2 {
-        font-size: 22px;
+        font-size: 18px;
         margin-top: 48px;
         margin-bottom: 16px;
     }
@@ -1698,7 +1756,7 @@ footer img {
    }
 
    .user_login i {
-       padding-right: 2px;
+       padding-right: 8px;
    }
 
    .header i {
@@ -1761,7 +1819,7 @@ footer img {
 
     .usla_login {
         margin-top: 80px;
-        width: 400px;
+        width: 560px;
         padding: 28px;
     }
 
@@ -1772,7 +1830,7 @@ footer img {
         }
 
         .usla_login h3 {
-            font-size: 22px;
+            font-size: 14pt;
         }
 
 
@@ -1818,36 +1876,22 @@ footer img {
     }
     .usla_login input,
     .usla_login p {
-            padding: 4px;
+            padding: 1px;
             font-size: 14px;
 
         }
 
         .usla_login h3 {
-            font-size: 20px;
+            font-size: 20pt;
         }
 
 
         .usla_login a {
-            font-size: 16px;
-            margin: 6px;
-        }
-    .usla_login input,
-    .usla_login p {
-            padding: 4px;
-            font-size: 14px;
-        }
-
-        .usla_login h3 {
-            font-size: 20px;
+            font-size: 10pt;
+            margin: 2px;
         }
 
 
-        .usla_login a {
-
-            font-size: 16px;
-            margin: 6px;
-        }
     .membership_page {
         margin: 2%;
         width: 96%;

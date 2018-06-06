@@ -38,13 +38,30 @@ $(document).ready(function () {
         e.preventDefault();
         if (toggleCal("#ps" + this.id)) {
             $(this).css("background-color", "rgba(255, 241, 0, 0.97)");
-        } 
+        }
 
+    });
+
+    $(".show_delete").click(function (e) {
+        e.preventDefault();
+        toggleSlide(".delete_roster_member", this);
+        toggleSlide(".show_delete", this);
+    });
+
+    $(".cancel_delete").click(function (e) {
+        e.preventDefault();
+        toggleSlide(".delete_roster_member", this);
+        toggleSlide(".show_delete", this);
     });
 
     $(".history_btn").click(function (e) {
         e.preventDefault();
         toggleSlide(".fp_history", this);
+    });
+
+    $(".family_btn").click(function (e) {
+        e.preventDefault();
+        toggleSlide(".add_family", this);
     });
 
     $(".closeCalDay").click(function (e) {

@@ -1,0 +1,94 @@
+﻿{% load template_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>usla.ca - {{ page.slug }}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'app/fonts/font-awesome/css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/usla_admin.css' %}" />
+    <link rel="shortcut icon" type="image/png" href="{% static '/favicon.ico' %}" />
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
+<body>
+    <div class="overlay_img_container" style="display:none;">
+        <h1><a href="#" class="overlay_img_btn"><i class="fa fa-close"></i></a></h1>
+        <img class="overlay_img" src="" />
+    </div>
+    <div class="background_img">
+        <img src="{{ page.image.url }}" />
+    </div>
+    <div class="container">
+
+        <div class="header">
+            <div class="header">
+                {{ user | add_user_layout | safe }}
+
+
+
+
+            {% if the_prev_url %}
+            <div class="back_btn">
+                <a href="{{ the_prev_url }}" id="prev_btn"><i class="fa fa-arrow-left"></i></a>
+            </div>
+            {% else %}
+            <div class="header_btn">
+                <a href="#" onclick="openMenu();" id="navMenu"><i class="fa fa-navicon"></i></a>
+            </div>
+            {% endif %}
+
+            <div class="header_text">
+                <a href="/"><img src="{{ site_settings.logo_header_image.url }}" /></a>
+                <a href="/"><h1>{{ site_settings.site_name }}</h1></a>
+                    <p>{{ site_settings.site_desc }}</p>
+</div>
+        </div>
+        <div class="nav_bar">
+            <div class="closeBtn"><a href="#" onclick="closeMenu();"><i class="fa fa-times"></i></a></div>
+            {% for p_t in pages %}
+            {% if p_t.slug == page.slug %}
+
+            <div class="nav_a_sel">
+                {% else %}
+                <div class="nav_a">
+                    {% endif %}
+                    <a href="{% url 'app:page' p_t.slug %}"><i class="fa {{ p_t.fa_icon }}"></i>{{ p_t.title_text }}</a>
+                </div>
+                {% endfor %}
+            </div>
+            {% block content %}{% endblock %}
+            <footer>
+                {% if site_settings.logo_btm_image %}
+                <img src="{{ site_settings.logo_btm_image.url }}" />
+                {% endif %}
+
+                <p><a href="{{ site_settings.facebook_link }}"><i class="fab fa-facebook-square"></i>USLA Facebook</a></p>
+                <p>&copy; {{ year }} - usla.ca</p>
+            </footer>
+        </div>
+    </div>
+    <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+    <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
+    <script src="{% static 'app/scripts/respond.js' %}"></script>
+    <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
+    <script src="{% static 'app/scripts/usla.js' %}"></script>
+    <script src="{% static 'app/scripts/gallery.js' %}"></script>
+    <script src="{% static 'app/scripts/fontawesome-all.js' %}"></script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-102365485-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+    {% block scripts %}{% endblock %}
+
+</body>
+</html>

@@ -9,7 +9,7 @@
     <div class="registration_form">
 
         {% if p.pdf_file %}
-            <h3><a href="{{ p.pdf_file.url }}"><i class="fa fa-file-pdf-o"></i>
+            <h3><a href="{{ p.pdf_file.url }}"><i class="far fa-file-pdf"></i>
                 {% if p.pdf_link_name %}
                     {{ p.pdf_link_name }}
                 {% else %}
@@ -44,7 +44,7 @@
       
 		{% if p.contact_email %}
         <p>
-            <a href="mailto:{{ p.contact_email }}"><i class="fa fa-envelope-o"></i>{{ p.contact_email }}</a>
+            <a href="mailto:{{ p.contact_email }}"><i class="far fa-envelope"></i>{{ p.contact_email }}</a>
         </p>
             {% endif %}
             {% if p.image %}

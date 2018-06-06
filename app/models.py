@@ -32,7 +32,24 @@ TIME_ERROR_STR = "Start Time can't be after End Time!"
 DATE_ERROR_STR = "Start Date can't be after the End Date!"
 THUMB_SIZE = (200, 200)
 PHONE_REGEX = RegexValidator(regex=r'^\+?1?[\d-]{9,18}$', message="Phone number invalid.")
+def get_townships():
 
+    TOWNSHIP_CHOICES = (
+        ('LA', 'North Kawartha'),
+        ('LB', 'Douro-Dummer'),
+        ('LC', 'Other'),
+        ('LE', None),)
+    return TOWNSHIP_CHOICES
+
+def get_locations():
+
+    LOCATION_CHOICES = (
+        ('LA', 'USLA Pavilion'),
+        ('LB', 'Irwin Inn Beach'),
+        ('LC', 'Crowe\'s Landing Docks'),
+        ('LD', 'Multiple'),
+        ('LE', None),)
+    return LOCATION_CHOICES
 
 def get_upload_to_pages(instance, filename):
     return 'images/pages/%s/%s' % (instance.slug, filename)
@@ -46,6 +63,13 @@ def get_upload_program_to_files(instance, filename):
 
 def get_upload_members_to_images(instance, filename):
     return 'images/members/%s' % (filename)
+
+def get_upload_usla_family_membership_images(instance, filename):
+
+    return 'images/usla_membership/%s/family_icons/%s' % (instance.user.id, filename)
+
+def get_upload_usla_membership_images(instance, filename):
+    return 'images/usla_membership/%s/%s' % (instance.user.id, filename)
 
 def get_upload_gallery_image_to_images(instance, filename):
     return 'images/gallery/%s/%s/%s' % (slugify(instance.gallery), instance.id, filename)
@@ -213,17 +237,68 @@ class NewsItem(models.Model):
     def __str__(self):
         return self.title
 
+class UslaPerson(models.Model):
+    usla_id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=60)
+    last_name = models.CharField(max_length=60)
+    email = models.EmailField(blank=True)
+    first_save = True
+    tel_num = models.CharField(validators=[PHONE_REGEX], blank=True, max_length=16)
+    cel_num = models.CharField(validators=[PHONE_REGEX], blank=True, max_length=16)
+    image = models.ImageField(upload_to=get_upload_usla_family_membership_images, blank=True)
+    image_thumb = models.ImageField(upload_to=get_upload_usla_family_membership_images, blank=True)
+    def save(self, *args, **kwargs):
+        if self.usla_id is None:
+            saved_image = self.image
+            self.image = None
+            super(UslaPerson, self).save(*args, **kwargs)
+            self.image = saved_image
+
+        super(UslaPerson, self).save(*args, **kwargs)
+        
+        if self.first_save:
+            self.first_save = False;
+            self.make_thumbnail()   
+ 
+
+    def make_thumbnail(self):
+        """
+        Create and save the thumbnail for the photo (simple resize with PIL).
+        """
+
+
+        img_path = os.path.realpath(settings.MEDIA_ROOT) + "\\images\\usla_membership\\" + str(self.user.id) + "\\family_icons\\" +os.path.basename(self.image.name)
+        thumb_path = str('thumb_') + os.path.basename(self.image.name)
+        thumbnail_resize(self, thumb_path,  img_path)
+
+    def __str__(self):  
+        return self.user.username + " " + self.first_name 
 
 
 class SiteMemberProfile(models.Model):
+
     user = models.OneToOneField(User, blank=True)
     board_member = models.ForeignKey(BoardPositions, null=True, blank=True)
     committee_member = models.ForeignKey(CommitteeChairPositions, null=True, blank=True)
-    email_forward = models.EmailField(blank=True)
+    email = models.EmailField()
 
     tel_num = models.CharField(validators=[PHONE_REGEX], blank=True, max_length=16)
+    tel_num_bus = models.CharField(validators=[PHONE_REGEX], blank=True, max_length=16)
     cel_num = models.CharField(validators=[PHONE_REGEX], blank=True, max_length=16)
-    image = models.ImageField(upload_to=get_upload_members_to_images, blank=True)
+    
+    address = models.CharField(blank=True, max_length=60)
+    city = models.CharField(blank=True, max_length=60)
+    country = models.CharField(blank=True, max_length=60)
+    postal_code = models.CharField(blank=True, max_length=20)
+    first_name = models.CharField(blank=True, max_length=60)
+    last_name = models.CharField(blank=True, max_length=60)
+    cottage_name = models.CharField(blank=True, max_length=60)
+    cottage_address = models.CharField(blank=True, max_length=60)
+    cottage_tel = models.CharField(validators=[PHONE_REGEX], blank=True, max_length=16)
+    township = models.CharField(max_length=2, choices=get_townships(), blank=True)
+    image = models.ImageField(upload_to=get_upload_usla_membership_images, blank=True)
+
 
 
     def board_position(self):
@@ -275,15 +350,6 @@ class Page(models.Model):
         return self.title_text
 
 
-def get_locations():
-
-    LOCATION_CHOICES = (
-        ('LA', 'USLA Pavilion'),
-        ('LB', 'Irwin Inn Beach'),
-        ('LC', 'Crowe\'s Landing Docks'),
-        ('LD', 'Multiple'),
-        ('LE', None),)
-    return LOCATION_CHOICES
 
 class UslaLocations(models.Model):
     
@@ -434,7 +500,25 @@ def clean_type1(self):
     if self.start_time > self.end_time and self.start_date == self.end_date:
         raise ValidationError(TIME_ERROR_STR)
 
+def thumbnail_resize(self, thumb_path, img_path):
+    if os.path.isfile(thumb_path):
+        return
+    try:
+        big_image = Image.open(img_path)
+    except:
+        raise Exception('make_thumbnail: Couldn\'t Open Image at ' + img_path)
+       
+    try:
+        thumb_img = ImageOps.fit(big_image, (200, 200), Image.ANTIALIAS)
+        f = BytesIO()
+        thumb_img.save(f, format='png')
+        self.image_thumb.save(thumb_path, ContentFile(f.getvalue()), save=True)
 
+    except:
+        raise Exception("Thumb Image Exception!")
+            
+        big_image.close()
+        thumb_img.close()
 
 class EventAbs(models.Model):
 
@@ -566,6 +650,7 @@ class GalleryImages(models.Model):
     image_thumb = models.ImageField(upload_to=get_upload_gallery_image_to_images, blank=True)
     first_save = True
     author = models.ForeignKey(User, null=True, blank=True)
+    
     def save(self, *args, **kwargs):
 
         if self.pk is None:
@@ -590,28 +675,8 @@ class GalleryImages(models.Model):
 
         img_path = (settings.MEDIA_ROOT + str('/') + self.image.name)
         thumb_path = str('thumb_') + os.path.basename(self.image.name)
-        
-        if os.path.isfile(thumb_path):
-            return
-      
-        
-        try:
-            big_image = Image.open(img_path)
-        except:
-            raise Exception('make_thumbnail: Couldn\'t Open Image!')
-       
-        try:
+        thumbnail_resize(self, thumb_path, img_path)
 
-            thumb_img = ImageOps.fit(big_image, (200, 200), Image.ANTIALIAS)
-            f = BytesIO()
-            thumb_img.save(f, format='png')
-            self.image_thumb.save(thumb_path, ContentFile(f.getvalue()), save=True)
-
-        except:
-            raise Exception("Thumb Image Exception!")
-            
-        big_image.close()
-        thumb_img.close()
    
     
 
@@ -633,8 +698,6 @@ def get_first_available(objs):
 class EventGalleryImages(GalleryImages):
   
     gallery = models.ForeignKey(EventGallery, on_delete=models.CASCADE)
-        
-
 
 class ProgramGalleryImages(GalleryImages):
     
@@ -660,16 +723,17 @@ def delete_empty_folder(sender, **kwargs):
 @receiver(post_delete, sender=Page)
 @receiver(post_delete, sender=NewsItem)
 @receiver(post_delete, sender=SiteMemberProfile)
+@receiver(post_delete, sender=UslaPerson)
 def event_post_delete_handler(sender, **kwargs):
     obj = kwargs['instance']
-    if (type(obj) is EventGalleryImages):
+    try:
         if obj.image_thumb:
             storage, path = obj.image_thumb.storage, obj.image_thumb.path
             if path and storage:
-                storage.delete(path)
+               storage.delete(path)
    
-    if obj.image:
-        storage, path = obj.image.storage, obj.image.path
+        if obj.image:
+            storage, path = obj.image.storage, obj.image.path
         if path and storage:
             storage.delete(path)
             try:
@@ -677,7 +741,7 @@ def event_post_delete_handler(sender, **kwargs):
             except:
                 pass
 
-    try:
+    
         if obj.pdf_file:
             pdf_storage, pdf_path = obj.pdf_file.storage, obj.pdf_file.path
     
@@ -687,8 +751,8 @@ def event_post_delete_handler(sender, **kwargs):
                     os.rmdir(os.path.dirname(os.path.abspath(pdf_path)))
                 except:
                     pass
-    except Exception:
-        pass
+    except Exception as e:
+        print(e)
 
 
 @receiver(pre_save, sender=USLAGalleryImages)
@@ -696,8 +760,10 @@ def event_post_delete_handler(sender, **kwargs):
 @receiver(pre_save, sender=EventGalleryImages)
 @receiver(pre_save, sender=NewsItem)
 @receiver(pre_save, sender=SiteMemberProfile)
+@receiver(pre_save, sender=UslaPerson)
 @receiver(pre_save, sender=Page)
 @receiver(pre_save, sender=Event)
+
 def delete_old_image(sender, instance, *args, **kwargs):
     
     try:

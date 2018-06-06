@@ -12,7 +12,7 @@
             <h2>{{ bm.board_position }}</h2>
             <h3>{{ bm.user.first_name }} {{ bm.user.last_name }}</h3>
             {% if bm.user.email %}
-            <a href="mailto:{{ bm.user.email }}"><i class="fa fa-envelope-o"></i>{{ bm.user.email }}</a>
+            <a href="mailto:{{ bm.user.email }}"><i class="far fa-envelope"></i>{{ bm.user.email }}</a>
             {% endif %}
             {% if bm.tel_num %}
             <p>tel - {{ bm.tel_num }}</p>
@@ -37,7 +37,7 @@
             <h2>{{ bm.committee_position }}</h2>
             <h3>{{ bm.user.first_name }} {{ bm.user.last_name }}</h3>
             {% if bm.user.email %}
-            <a href="mailto:{{ bm.user.email }}"><i class="fa fa-envelope-o"></i>{{ bm.user.email }}</a>
+            <a href="mailto:{{ bm.user.email }}"><i class="far fa-envelope"></i>{{ bm.user.email }}</a>
             {% endif %}
             {% if bm.tel_num %}
             <p>tel - {{ bm.tel_num }}</p>

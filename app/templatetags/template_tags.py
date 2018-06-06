@@ -13,6 +13,30 @@ DAYS_OF_WEEK_SHORT = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
 the_cal = calendar.Calendar(calendar.SUNDAY)
 
 
+
+@register.filter(name='add_user_layout')
+def add_user_layout(user):
+    # Add User Login To Layout Templates
+    ret_str = ''
+    if user.is_authenticated:
+
+        ret_str = '<div class="user_login"><h3><i class="fa fa-user"></i>'
+        ret_str += user.username + '</h3><div class="user_buttons">'
+
+        if user.is_staff:
+
+            ret_str += '<a href="/admin/"><i class="fa fa-cog"></i></a>'
+
+       
+
+        ret_str += '<a href="/member_settings/"><i class="fas fa-edit"></i></a>'
+        
+        ret_str += '<div class="user_logout"><a href="/logout/">Logout</a></div></div></div>'
+    else:
+        ret_str = '<div class="user_login"><p><i class="fa fa-user"></i>'
+        ret_str += '<a href="/login/">Login</a></p></div>'
+    return ret_str
+
 @register.filter(name='multiply_hst')
 def multiply_hst(price):
     # you would need to do any localization of the result here
@@ -133,8 +157,7 @@ def get_cal_m_y(cal):
 
 @register.filter(name='get_clickable_img', is_safe=True)  
 def get_clickable_img(img_url):
-
-    return '<p><a class="image_link" href="#" id="' + img_url + '"><i class="fa fa-file-image-o"></i>See Image</a></p>'
+    return '<p><a class="image_link" href="#" id="' + img_url + '"><i class="far fa-file-image"></i>See Image</a></p>'
 
 @register.filter(name='get_cal_month_name', is_safe=True)  
 def get_cal_month_name(cal):

@@ -43,16 +43,16 @@
         <div class="event_links">
 
             {% if e.contact_email %}
-            <p><a href="mailto:{{ e.contact_email }}"><i class="fa fa-envelope-o"></i>{{ e.contact_email }}</a></p>
+            <p><a href="mailto:{{ e.contact_email }}"><i class="fa fa-envelope"></i>{{ e.contact_email }}</a></p>
             {% endif %}
             {% if e.image %}
             {{ e.image.url|get_clickable_img|safe }}
             {% endif %}
             {% if e.pdf_file %}
-            <p><a href="{{ e.pdf_file.url }}"><i class="fa fa-file-pdf-o"></i>Download .pdf</a></p>
+            <p><a href="{{ e.pdf_file.url }}"><i class="far fa-file-pdf"></i>Download .pdf</a></p>
             {% endif %}
             {% if e|has_event_gallery %}
-            <p><a href="{{ e|get_event_gallery }}"><i class="fa fa-file-picture-o"></i>See Gallery</a></p>
+            <p><a href="{{ e|get_event_gallery }}"><i class="far fa-images"></i>See Gallery</a></p>
             {% endif %}
         </div>
 

@@ -1,0 +1,169 @@
+{% extends "admin/layout.html" %}
+
+    {% block content %}
+
+<div class="html_content">
+
+
+    <h2>Membership Profile</h2>
+    <div class="usla_login">
+        {%if field_errors %}
+        <div class="field_errors">
+            <h1>Errors Detected!</h1>
+            <b>{{ field_errors }}</b>
+        </div>
+        {% endif %}
+        <form method="post" enctype='multipart/form-data'>
+
+            {% csrf_token %}
+            <h1> {{ user.username }} </h1>
+
+            <div class="ms_div">
+                <div class="ms_item">
+                    <div class="ms_left">First Name</div>
+                    <div class="ms_right">{{ form.first_name }}</div>
+                </div>
+                <div class="ms_item">
+                    <div class="ms_left">Last Name</div>
+                    <div class="ms_right">{{ form.last_name  }}</div>
+                </div>
+                <div class="ms_item">
+                    <div class="ms_left">Email</div>
+                    <div class="ms_right">{{ form.email  }}</div>
+                </div>
+
+                <div class="ms_item">
+                    <div class="ms_left">Tel #</div>
+                    <div class="ms_right">{{ form.tel_num  }}</div>
+                </div>
+                <div class="ms_item">
+                    <div class="ms_left">Bus #</div>
+                    <div class="ms_right">{{ form.tel_num_bus  }}</div>
+                </div>
+                <div class="ms_item">
+                    <div class="ms_left">Cel #</div>
+                    <div class="ms_right">{{ form.cel_num }}</div>
+                </div>
+                <div class="ms_item">
+                    <div class="ms_left">Address</div>
+                    <div class="ms_right">{{ form.address }}</div>
+                </div>
+                <div class="ms_item">
+                    <div class="ms_left">City</div>
+                    <div class="ms_right">{{ form.city }}</div>
+                </div>
+                <div class="ms_item">
+                    <div class="ms_left">Country</div>
+                    <div class="ms_right">{{ form.country }}</div>
+                </div>
+                <div class="ms_item">
+                    <div class="ms_left">Postal Code</div>
+                    <div class="ms_right">{{ form.postal_code }}</div>
+                </div>
+            </div>
+
+            <div class="member_center">
+
+                {% if member_profile.image %}
+                <div class="member_image"><img src="{{ member_profile.image.url }}" width="100" height="100" /></div>
+                {% endif %}
+
+                <div class="image_field">
+                    {{ form.image }}
+                </div>
+            </div>
+
+
+            <div class="ms_div">
+                <h3>Cottage</h3>
+                <div class="township">{{ form.township }}</div>
+                <div class="ms_item">
+                    <div class="ms_left">Name</div>
+                    <div class="ms_right">{{ form.cottage_name }}</div>
+                </div>
+                <div class="ms_item">
+                    <div class="ms_left">Address</div>
+                    <div class="ms_right">{{ form.cottage_address }}</div>
+                </div>
+                <div class="ms_item">
+                    <div class="ms_left">Tel #</div>
+                    <div class="ms_right">{{ form.cottage_tel }}</div>
+                </div>
+
+
+            </div>
+
+            <button type="submit" name="updateProfile">Update Profile</button>
+
+
+        </form>
+
+
+
+    </div>
+    <div class="underline"></div>
+    <div class="usla_login">
+        <form method="post" enctype='multipart/form-data'>
+            {% csrf_token %}
+            <h3>Roster Members<a href="#" class="family_btn"><i class="fas fa-plus-circle"></i></a></h3>
+            <div class="add_family">
+                <table>
+                    {{ form2.as_table }}
+                </table>
+                <button type="submit" name="addFamily">Add Family</button>
+            </div>
+        </form>
+        <form method="post">
+            {% csrf_token %}
+            <table class="family_member">
+
+                {% if family_members.count > 0 %}
+                <tr class="top_row"><td>Icon</td><td>First Name</td><td>Last Name</td><td>Email</td><td>Tel #</td><td>Cel #</td><td></td><td></td></tr>
+                {% endif %}
+                {% for member in family_members %}
+                <tr>
+                    <td>
+                        {% if member.image_thumb %}
+                        <div class="member_image"><img src="{{ member.image_thumb.url }}" width="100" height="100" /></div>
+                        {% endif %}
+                    </td>
+                    <td>{{ member.first_name }}</td>
+                    <td>{{ member.last_name }}</td>
+                    <td>{{ member.email }}</td>
+                    <td>{{ member.tel_num }}</td>
+                    <td>{{ member.cel_num }}</td>
+            
+<td><a href="#" class="show_delete"><i class="far fa-trash"></i>
+ </a>
+                    <div class="delete_roster_member"><form method="post">
+    {% csrf_token %}<a href="#" class="cancel_delete"><i class="fas fa-times-circle"></i></a><button type="submit" name="delFamily" value="{{member.usla_id}}">DELETE {{ member.first_name}} {{ member.last_name}}</button>
+</form></div>
+    
+    
+    </td><td><i class="far fa-edit"></i></td>
+ 
+</tr>
+              
+                {% endfor %}
+            </table>
+            <div class="underline"></div>
+        </form>
+    </div>
+    <div class="usla_login">
+        <h1>Membership Payment</h1>
+        <h4>Annual subscription of 75$ for usla.ca membership</h4>
+        <div class="paypall_btn">
+
+
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="9VQYUZFWVR46J">
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+            </form>
+        </div>
+
+    </div>
+</div>       '
+
+{% endblock %}
