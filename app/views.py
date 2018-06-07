@@ -3,15 +3,20 @@ Definition of views.
 """
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import Http404
 from django.template import loader
 import calendar
-from .forms import NewsItemForm
+from .forms import NewsItemForm, SignUpForm, MemberProfileForm, UslaPersonForm
 from datetime import date, time, datetime
 from django.views import generic
 from django.contrib.auth.models import User
-from .models import Page, Event, Program, ProgramSchedule, ProgramEvent, \
+from django.contrib.auth import login, authenticate
+from django.shortcuts import render, redirect
+from .models import Page, Event, Program, ProgramSchedule, ProgramEvent, UslaPerson, \
 SiteSettings, EventGallery, EventGalleryImages, FrontPageLinks, NewsItem, SiteMemberProfile, BoardPositions, MembershipSettings, CalendarHolidays
 
 
@@ -38,21 +43,32 @@ class CalendarObj():
         self.holidays = d
 
     def get_m_y(self):
+
         return str(str(self.month) + "-" + str(self.year))
 
 
 usla_calendar = CalendarObj(None, None, None, None)
 
+
 def adminLogin(request):
+
+
+    site_settings = SiteSettings.objects.all()[0]
+    if request.user.is_superuser or group_name == "SiteAdministrators":
+        return render(request, 'app/usla_login.html', {'site_settings': site_settings,})
+    else:
+        return render(request, 'app/member_settings.html', {'site_settings': site_settings,})
+    return render(request, 'app/usla_login.html', {'site_settings': site_settings,})
+
+
+def adminLogout(request):
 
     site_settings = SiteSettings.objects.all()[0]
 
-    return render(request, 'app/usla_login.html', {'site_settings': site_settings,})
+    return render(request, 'app/logout.html', {'site_settings': site_settings,})
 
 def gallery(request, slug):
 
-
-     
     site_settings = SiteSettings.objects.all()[0]
     the_gallery = get_object_or_404(EventGallery, slug=slug)
     the_images = EventGalleryImages.objects.filter(gallery=the_gallery.pk)
@@ -166,9 +182,120 @@ def news(request, value):
 
     print("HELLO!")
 
+def usla_login(request):
+    pass
+
+def signup(request):
+    site_settings = SiteSettings.objects.all()[0]
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            print(form)
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+        
+            login(request, user)
+            profile = SiteMemberProfile.objects.create(user=user)
+            profile.email = user.email
+            profile.last_name = user.last_name
+            profile.first_name = user.first_name
+            profile.save()
+            user.SiteMemberProfile = profile
+            member_profile = get_object_or_404(SiteMemberProfile, user=request.user)
+            return redirect('/')
+    else:
+        form = SignUpForm()
+   
+    return render(request, 'app/signup.html', {'form': form, 'site_settings': site_settings})
 
 
+def member_settings_hlpr(form, obj):
 
+    obj.email = form.cleaned_data['email']
+    obj.tel_num = form.cleaned_data['tel_num']
+    obj.cel_num = form.cleaned_data['cel_num']
+
+    obj.first_name = form.cleaned_data['first_name']
+    obj.last_name = form.cleaned_data['last_name']
+    
+
+   
+    if form.cleaned_data['image']:
+        obj.image = form.cleaned_data['image']
+
+    if obj.__class__.__name__ != 'UslaPerson':
+        obj.tel_num_bus = form.cleaned_data['tel_num_bus']
+        obj.cottage_name = form.cleaned_data['cottage_name']
+        obj.cottage_address = form.cleaned_data['cottage_address']
+        obj.cottage_tel = form.cleaned_data['cottage_tel']
+        obj.address = form.cleaned_data['address']
+        obj.city = form.cleaned_data['city']
+        obj.country = form.cleaned_data['country']
+        obj.postal_code = form.cleaned_data['postal_code']
+        obj.address = form.cleaned_data['address']
+        obj.township = form.cleaned_data['township']
+
+
+    obj.save()
+
+def get_field_errors(x):
+
+    return x
+
+def member_settings(request):
+    site_settings = SiteSettings.objects.all()[0]
+    
+    if request.user.is_anonymous:
+        return HttpResponseRedirect('/')
+    member_profile = get_object_or_404(SiteMemberProfile, user=request.user)
+    
+    
+    field_errors = ''
+    if request.method == 'POST' and 'updateProfile' in request.POST:
+        form = MemberProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+
+            request.user.first_name = form.cleaned_data['first_name']
+            request.user.last_name = form.cleaned_data['last_name']
+            request.user.save()
+
+            member_settings_hlpr(form, member_profile)
+            if 'image-clear' in request.POST:
+                print("ON")
+            else:
+                print("OFF")
+            
+            return HttpResponseRedirect('/member_settings/')
+        else:
+            field_errors = form.errors
+
+    elif request.method == 'POST' and 'addFamily' in request.POST:
+
+        form = UslaPersonForm(request.POST, request.FILES)
+        if form.is_valid(): 
+            person = UslaPerson()
+            person.user = request.user
+            member_settings_hlpr(form, person)
+            return HttpResponseRedirect('/member_settings/')
+        else:
+            field_errors = form.errors
+
+    elif request.method == 'POST' and 'delFamily' in request.POST:
+        del_id = request.POST['delFamily']
+        usla_person = UslaPerson.objects.filter(user=request.user, usla_id=del_id)
+        if usla_person:
+            usla_person.delete()
+            return HttpResponseRedirect('/member_settings/')
+        else:
+            field_errors = form.errors
+  
+    form = MemberProfileForm(instance=member_profile)
+    family_members = UslaPerson.objects.filter(user=request.user)
+
+    person_form = UslaPersonForm()
+    return render(request, 'app/member_settings.html', {'form': form, 'form2': person_form, 'family_members': family_members, 'site_settings': site_settings, 'member_profile': member_profile, 'field_errors': field_errors})
 
 class ContactObj():
     bm = None

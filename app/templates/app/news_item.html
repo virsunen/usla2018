@@ -36,7 +36,7 @@
             <p>{{ e.contact_tel }}</p>
             {% endif %}
             {% if e.contact_email %}
-            <p><a href="mailto:{{ e.contact_email }}"><i class="fa fa-envelope-o"></i>{{ e.contact_email }}</a></p>
+            <p><a href="mailto:{{ e.contact_email }}"><i class="far fa-envelope"></i>{{ e.contact_email }}</a></p>
             {% endif %}
  
         </div>
@@ -45,7 +45,7 @@
             {{ e.image.url|get_clickable_img|safe }}
             {% endif %}
             {% if e.pdf_file %}
-            <p><a href="{{ e.pdf_file.url }}"><i class="fa fa-file-pdf-o"></i>Download .pdf</a></p>
+            <p><a href="{{ e.pdf_file.url }}"><i class="far fa-file-pdf"></i>Download .pdf</a></p>
             {% endif %}
         </div>
     </div>

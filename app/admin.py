@@ -3,7 +3,7 @@ from django.contrib.admin import AdminSite
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import Page, Program, Event, ProgramSchedule, BoardPositions, \
-CommitteeChairPositions, ProgramEvent, UslaLocations, \
+CommitteeChairPositions, ProgramEvent, UslaLocations, UslaPerson, \
 SiteSettings, SiteMemberProfile, NewsItem, EventGallery, EventGalleryImages, FrontPageLinks, MembershipSettings, CalendarHolidays, NewsTopics
 
 MEMBER_FIELDS =  (('title', 'order'), 'name', 'email', ('tel_num', 'cel_num'), 'image')
@@ -29,7 +29,8 @@ class SiteMemberAdmin(admin.ModelAdmin):
 class SiteMemberProfileInline(admin.StackedInline):
     model = SiteMemberProfile 
     can_delete = False
-    verbose_name_plural = 'site_member'
+    verbose_name_plural = 'Site Member'
+
 
 
 # Define a new User admin
@@ -61,6 +62,10 @@ class EventGalleryImagesInline(admin.TabularInline):
             return 0
 
         return 3
+
+@admin.register(UslaPerson)
+class UslaPersonAdmin(admin.ModelAdmin):
+    pass
 
 
 @admin.register(MembershipSettings)
