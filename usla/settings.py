@@ -30,7 +30,7 @@ DEBUG = False
 # have ALLOWED_HOSTS = ['*'] when the app is deployed. If you deploy a Django
 # app not on App Engine, make sure to set an appropriate host here.
 # See https://docs.djangoproject.com/en/1.10/ref/settings/
-ALLOWED_HOSTS = ['104.196.141.191', u'104.196.141.191', '104.196.186.32', u'104.196.186.32', '104.196.211.70', u'104.196.211.70', '35.185.56.185', u'35.185.56.185', 'usla.ca', 'www.usla.ca', 'localhost']
+ALLOWED_HOSTS = ['35.227.122.111', u'35.227.122.111', '104.196.165.167', u'104.196.165.167', '104.196.141.191', u'104.196.141.191', '104.196.186.32', u'104.196.186.32', '104.196.211.70', u'104.196.211.70', '35.185.56.185', u'35.185.56.185', 'usla.ca', 'www.usla.ca', 'localhost']
 
 
 # Email Config
