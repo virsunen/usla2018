@@ -249,13 +249,11 @@ footer img {
 .user_buttons {
 
     float: right;
-    width: 80px;
+    width: 54px;
 
 }
 
-.user_buttons a {
-    margin-right: 8px;
-}
+
 .nav_bar {
     padding:0;
 
@@ -564,7 +562,7 @@ footer img {
 
 .user_login {
 
-    padding: 8px;
+
     font-size: 12pt;
     float: right;
     margin-right: 8px;
