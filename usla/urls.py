@@ -33,8 +33,9 @@ siteSettings ={'extra_context':{\
     'title': 'Password Sent',\
     'site_settings': SiteSettings.objects.all()[0],}}
 
-urlpatterns = [url(r'^admin/login/$',
+urlpatterns = [url(r'^login/$',
         django.contrib.auth.views.login,
+        
         {
             'template_name': 'app/usla_login.html',
             'authentication_form': app.forms.BootstrapAuthenticationForm,
@@ -48,7 +49,7 @@ urlpatterns = [url(r'^admin/login/$',
             }
         },
         name='login'),
-        url(r'^admin/logout$',
+        url(r'^logout/$',
             django.contrib.auth.views.logout,
         {
             'template_name': 'app/logout.html',
@@ -57,7 +58,7 @@ urlpatterns = [url(r'^admin/login/$',
         name='logout'),
 
 
-        url(r'^admin/', admin.site.urls),
+
         url(r'^password_reset/$', auth_views.password_reset, {
             'extra_context':
             {
@@ -90,7 +91,7 @@ urlpatterns = [url(r'^admin/login/$',
                 'site_settings': SiteSettings.objects.all()[0],
             }
         }, name='password_reset_complete'),
-
+        url(r'^admin/', admin.site.urls),
         url(r'^', include('app.urls')), ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
