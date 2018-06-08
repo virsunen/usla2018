@@ -1765,7 +1765,7 @@ footer img {
         padding: 0;
 
         height: 40px;
-        margin-left: calc(50% - 36px);
+        margin-left: calc(50% - 52px);
     }
 
     .header {
@@ -2116,7 +2116,7 @@ footer img {
         font-size: 12px;
     }
     .header_text {
-        margin-left: calc(50% - 36px);
+        margin-left: calc(50% - 52px);
     }
 
     .events_nav_btn a, .events_nav_btn i, .events_nav_btn_sel a, .events_nav_btn_sel i {

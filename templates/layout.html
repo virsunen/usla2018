@@ -6,11 +6,11 @@
     <title>{{ title }}</title>
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'app/fonts/font-awesome/css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/usla_admin.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/gallery.css' %}" />
     <link rel="shortcut icon" type="image/png" href="{% static '/favicon.ico' %}" />
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-
 </head>
 
 <body>
@@ -31,7 +31,7 @@
                 </div>
                 {% else %}
                 <div class="header_btn">
-                <a href="#" onclick="openMenu();" id="navMenu"><i class="fa fa-navicon"></i></a>
+                <a href="#" onclick="openMenu();" id="navMenu"><i class="fa fa-bars"></i></a>
                 </div>
                 {% endif %}
           

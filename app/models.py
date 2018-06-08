@@ -268,7 +268,7 @@ class UslaPerson(models.Model):
         """
 
 
-        img_path = os.path.realpath(settings.MEDIA_ROOT) + "\\images\\usla_membership\\" + str(self.user.id) + "\\family_icons\\" +os.path.basename(self.image.name)
+        img_path = os.path.realpath(settings.MEDIA_ROOT) + "/images/usla_membership/" + str(self.user.id) + "/family_icons/" +os.path.basename(self.image.name)
         thumb_path = str('thumb_') + os.path.basename(self.image.name)
         thumbnail_resize(self, thumb_path,  img_path)
 
