@@ -22,8 +22,22 @@
      color: rgba(224, 0, 52, 0.92);
 }
 
+.new_user {
+    margin-top: 12px;
+    text-align: right;
+    font-weight: bold;
 
+}
 
+.new_user a {
+    color: rgba(15, 15, 15, 0.92);
+    font-style: italic;
+}
+
+.login_back {
+    background-color: rgba(252, 252, 252, 0.47);
+    padding: 20px;
+}
 .event h5, .nav_a a, .program p {
     color: rgba(221, 221, 221, 0.97);
 }
@@ -565,7 +579,7 @@ footer img {
     font-size: 12pt;
     float: right;
     margin-right: 8px;
-
+    margin-top: 6px;
 }
 
 
@@ -1168,9 +1182,9 @@ footer img {
 
 .usla_login {
     color: rgba(251, 134, 50, 0.82);
-    border: 1px solid rgba(251, 134, 50, 0.47);
-    box-shadow: 2px 2px 1px rgba(251, 134, 50, 0.47);
-    background-color: rgba(234, 234, 234, 0.93);
+    border: 1px solid rgba(251, 251, 251, 0.47);
+    box-shadow: 2px 2px 1px rgba(251, 251, 251, 0.47);
+    background-color: rgba(244, 244, 244, 0.93);
     width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -1234,9 +1248,9 @@ footer img {
 }
 
 .usla_login a {
-    color: rgba(251, 134, 50, 0.92);
-    font-size: 22px;
-    margin: 6px;
+    color: rgba(124, 20, 32, 0.92);
+    font-size: 14pt;
+    margin-top: 16px;
 }
 
 
