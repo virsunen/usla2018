@@ -20,8 +20,8 @@ def add_user_layout(user):
     ret_str = ''
     if user.is_authenticated:
 
-        ret_str = '<div class="user_login"><h3><i class="fa fa-user"></i>'
-        ret_str += user.username + '</h3><div class="user_buttons">'
+        ret_str = '<div class="user_login"><div class="user_name"><h3><i class="fa fa-user"></i>'
+        ret_str += user.username + '</h3></div><div class="user_buttons">'
 
         if user.is_staff:
 

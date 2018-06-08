@@ -120,15 +120,17 @@ function handle_events_top() {
     if ($(window).width() <= 880) {
         if (window.location.href.indexOf("events") !== -1) {
             $(".page_title").css("display", "none");
-            $(".html_content").css("margin-top", "48px");
+            $(".html_content").css("margin-top", "60px");
 
         } else {
             $(".page_title").css("display", "block");
             $(".html_content").css("margin-top", "0px");
+            $(".member_profile").css("margin-top", "60px");
         }
     } else {
         $(".page_title").css("display", "none");
         $(".html_content").css("margin-top", "0px");
+        $(".member_profile").css("margin-top", "0px");
     }
 }
 

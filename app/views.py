@@ -295,7 +295,7 @@ def member_settings(request):
     family_members = UslaPerson.objects.filter(user=request.user)
 
     person_form = UslaPersonForm()
-    return render(request, 'app/member_settings.html', {'form': form, 'form2': person_form, 'family_members': family_members, 'site_settings': site_settings, 'member_profile': member_profile, 'field_errors': field_errors})
+    return render(request, 'app/member_settings.html', {'form': form, 'form2': person_form, 'family_members': family_members, 'site_settings': site_settings, 'member_profile': member_profile, 'field_errors': field_errors, 'the_prev_url': '/'})
 
 class ContactObj():
     bm = None

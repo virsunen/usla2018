@@ -240,6 +240,7 @@ footer img {
 .user_logout a {
 
     color: white;
+    margin-top: 6px;
     text-align: right;
     font-weight: bold;
     font-size: 10pt;
@@ -247,10 +248,8 @@ footer img {
 }
 
 .user_buttons {
-
+    font-size: 14pt;
     float: right;
-    width: 54px;
-
 }
 
 
@@ -778,7 +777,7 @@ footer img {
 
 .event h2 {
     
-    font-size: 18px;
+    font-size: 14pt;
 }
 .event_list_item p {
     width: 90%;
@@ -1102,11 +1101,16 @@ footer img {
 
     width: 20px;
     height: 20px;
-    padding: 14px;
     float: left;
     display: none;
 
 }
+
+.header_btns {
+    margin: 12px;
+
+}
+
 
 .closeBtn {
     display: none;
@@ -1147,7 +1151,7 @@ footer img {
     margin-right: auto;
     width: 50%;
     text-align:center;
-    font-size: 18pt;
+    font-size: 16pt;
 
 }
 
@@ -1188,7 +1192,7 @@ footer img {
 .usla_login h3 {
         color: rgba(44, 44, 44, 0.97);
         font-weight: 100;
-        font-size: 18pt;
+        font-size: 14pt;
     }
 
 .news_events form {
@@ -1277,6 +1281,11 @@ footer img {
     font-size: 18px;
     font-style: italic;
     width: 100%;
+}
+
+ .user_buttons a {
+    margin-right: 12px;
+     
 }
 
 @media screen and (max-width: 1080px) {
@@ -1445,7 +1454,7 @@ footer img {
 
     .membership_page h2 {
         font-size: 18px;
-        margin-top: 48px;
+        margin-top: 60px;
         margin-bottom: 16px;
     }
 
@@ -1472,6 +1481,10 @@ footer img {
         width: 90%;
         margin-left: 5%;
     }
+    .usla_login h3 {
+        font-size: 12pt;
+    }
+
 }
 
 @media screen and (max-width: 880px) {
@@ -1501,15 +1514,34 @@ footer img {
             margin-right: 10px;
         }
 
+    .member_profile h2 {
+        font-size: 12pt;
+        padding: 6px;
+    }
+
     .membership_page {
         margin-top: 28px;
         margin-bottom: 28px;
         padding: 6px;
         width: 90%;
     }
-
+    .user_buttons {
+        font-size: 12pt;
+        float: left;
+        padding: 0;
+        margin: 0;
+    }
+    .user_name {
+        float: left;
+        display: none;
+    }
+    .user_logout {
+        float: left;
+        padding: 0;
+        margin-top: 6px;
+    }
     .membership_page li {
-        font-size: 16px;
+        font-size: 14pt;
     }
 
     .membership_body p {
@@ -1731,6 +1763,7 @@ footer img {
     .header_text {
         width: 53px;
         padding: 0;
+
         height: 40px;
         margin-left: calc(50% - 36px);
     }
@@ -1739,19 +1772,30 @@ footer img {
         position: fixed;
         padding: 0;
 
-        height: 48px;
+        height: 60px;
         z-index: 99;
 
     }
    .user_login {
    
-       font-size: 14px;
+       float: right;
+       width: 66px;
+ 
        padding: 0;
-       position: relative;
-       margin-right: 6px;
-       text-align: right;
+       margin: 8px;
+       text-align: left;
 
    }
+   .user_login h3 {
+       padding: 0;
+       margin: 0;
+   }
+    .user_buttons {
+      
+
+        margin: 0;
+        padding: 0;
+    }
 
    .user_login i {
        padding-right: 8px;
@@ -1771,7 +1815,7 @@ footer img {
         width: 53px;
         height: 40px;
         padding: 0;
-        margin-top: 6px;
+
         margin-right: auto;
     }
 
@@ -1827,9 +1871,9 @@ footer img {
             font-size: 16px;
         }
 
-        .usla_login h3 {
-            font-size: 14pt;
-        }
+    .usla_login h3 {
+        font-size: 12pt;
+    }
 
 
         .usla_login a {
@@ -1854,7 +1898,7 @@ footer img {
 
         display: block;
         margin: 0;
-        margin-top: 48px;
+        margin-top: 60px;
     }
 }
 
@@ -1864,7 +1908,10 @@ footer img {
         width: 320px;
         padding: 14px;
     }
- 
+    .member_profile h2 {
+        font-size: 12pt;
+        padding: 6px;
+    }
     .nav_bar {
 
         min-height: 100vh;
@@ -1880,7 +1927,7 @@ footer img {
         }
 
         .usla_login h3 {
-            font-size: 20pt;
+            font-size: 12pt;
         }
 
 
@@ -1900,7 +1947,7 @@ footer img {
     }
 
     .membership_page h2 {
-        font-size: 16px;
+        font-size: 14pt;
         margin-left: 14px;
         width: calc(100% - 14px);
     }
@@ -2020,7 +2067,7 @@ footer img {
     }
 
     .event h2 {
-        font-size: 14px;
+        font-size: 14pt;
         padding: 4px;
         margin: 0;
     }
