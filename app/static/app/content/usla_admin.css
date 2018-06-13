@@ -97,22 +97,7 @@ h4 {
  
     background-color: rgba(255, 255, 255, 0.85);
 }
-.ms_item {
-    width: 33.33%;
-    float: left;
-    margin-bottom: 16px;
-}
 
-.ms_left {
-
-    float:left;
-    padding-bottom: 8px;
-    padding-top: 8px;
-    width: 100%;
-}
-.ms_right {
-    width: 100%;
-}
 .usla_login:after {
     content: " ";
     display: block;
@@ -152,10 +137,6 @@ label {
 
     }
 
-.usla_login h3 {
-    font-size: 22px;
-    font-weight: 400;
-}
 
 .usla_login a {
     color: rgba(232, 30, 42, 0.96);
@@ -238,7 +219,7 @@ input {
     height: 1px;
     margin-top: 20px;
     width: 100%;
-    background-color: rgba(17, 14, 12, 0.37);
+    background-color: rgba(214, 20, 72, 0.16);
 }
 
 .member_image {
@@ -271,17 +252,6 @@ table td {
 
 
 
-.add_family {
-    display: none;
-    margin-bottom: 60px;
-}
-
-.add_family table {
-    width: 100%;
-}
-
-.add_family table th {
-}
 
 form {
     width: 100%;
@@ -295,6 +265,14 @@ form {
     color: white;
 }
 
-.delete_roster_member {
+.delete_roster_member, .edit_roster_member {
     display: none;
+}
+
+
+.edit_roster_member p {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 6px;
+
 }

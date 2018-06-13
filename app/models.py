@@ -248,7 +248,9 @@ class UslaPerson(models.Model):
     cel_num = models.CharField(validators=[PHONE_REGEX], blank=True, max_length=16)
     image = models.ImageField(upload_to=get_upload_usla_family_membership_images, blank=True)
     image_thumb = models.ImageField(upload_to=get_upload_usla_family_membership_images, blank=True)
+    
     def save(self, *args, **kwargs):
+        print("CHECKING UPDATE SAVE")
         if self.usla_id is None:
             saved_image = self.image
             self.image = None

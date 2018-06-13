@@ -114,37 +114,66 @@
         </form>
         <form method="post">
             {% csrf_token %}
-            <table class="family_member">
+
 
                 {% if family_members.count > 0 %}
-                <tr class="top_row"><td>Icon</td><td>First Name</td><td>Last Name</td><td>Email</td><td>Tel #</td><td>Cel #</td><td></td><td></td></tr>
+
                 {% endif %}
                 {% for member in family_members %}
-                <tr>
-                    <td>
+                    <div class="roster_member">
                         {% if member.image_thumb %}
                         <div class="member_image"><img src="{{ member.image_thumb.url }}" width="100" height="100" /></div>
                         {% endif %}
-                    </td>
-                    <td>{{ member.first_name }}</td>
-                    <td>{{ member.last_name }}</td>
-                    <td>{{ member.email }}</td>
-                    <td>{{ member.tel_num }}</td>
-                    <td>{{ member.cel_num }}</td>
-            
-<td><a href="#" class="show_delete"><i class="far fa-trash"></i>
- </a>
-                    <div class="delete_roster_member"><form method="post">
-    {% csrf_token %}<a href="#" class="cancel_delete"><i class="fas fa-times-circle"></i></a><button type="submit" name="delFamily" value="{{member.usla_id}}">DELETE {{ member.first_name}} {{ member.last_name}}</button>
-</form></div>
-    
-    
-    </td><td><i class="far fa-edit"></i></td>
- 
-</tr>
+                        <div class="roster_name">
+                            {{ member.first_name }} {{ member.last_name }}
+                        </div>
+                        <div class="roster_email">
+                            {{ member.email }}
+                        </div>
+                        <div class="roster_tel_num">
+                            {{ member.tel_num }}
+                        </div>
+                        <div class="roster_cel_num">
+                            {{ member.cel_num }}
+                        </div>
+                        <div class="roster_btns">
+                            <a href="#" class="show_delete"><i class="far fa-trash"></i></a><a href="#" class="show_edit" id="{{member.usla_id}}"><i class="far fa-edit"></i></a>
+                            <div class="delete_roster_member">
+                                <form method="post">
+                                    {% csrf_token %}<a href="#" class="cancel_delete"><i class="fas fa-times-circle"></i></a><button type="submit" name="delFamily" value="{{member.usla_id}}">DELETE {{ member.first_name}} {{ member.last_name}}</button>
+                                </form>
+                            </div>
+                            <div id="roster_member_{{member.usla_id}}" class="edit_roster_member">
+             
+
+                                <form method="post" enctype='multipart/form-data'>
+
+
+                                    {% csrf_token %}
+                                    <input type="hidden" name="usla_id" value="{{member.usla_id}}">
+                                    <p>First name:</p>
+                                    <input type="text" name="first_name" value="{{ member.first_name }}"><br>
+                                    <p>Last name:</p>
+                                    <input type="text" name="last_name" value="{{ member.last_name }}">
+                                    <p>Email:</p>
+                                    <input type="text" name="email" value="{{ member.email }}"><br>
+                                    <p>Tel #:</p>
+                                    <input type="text" name="tel_num" value="{{ member.tel_num }}">
+                                    <p>Cel #:</p>
+                                    <input type="text" name="cel_num" value="{{ member.cel_num }}"><br>
+                                    <p>Image:</p>
+                                    <div class="image_field">
+                                        {{ form2.image }}
+                                    </div>
+                                    <button type="submit" name="editFamily">Update</button>
+                                </form>
+                
+                            </div>
+
+                        </div>
+                    </div>
               
                 {% endfor %}
-            </table>
             <div class="underline"></div>
         </form>
     </div>

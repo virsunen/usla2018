@@ -48,6 +48,12 @@ $(document).ready(function () {
         toggleSlide(".show_delete", this);
     });
 
+    $(".show_edit").click(function (e) {
+        e.preventDefault();
+        toggleSlide("#roster_member_" + this.id, this);
+   
+    });
+
     $(".cancel_delete").click(function (e) {
         e.preventDefault();
         toggleSlide(".delete_roster_member", this);

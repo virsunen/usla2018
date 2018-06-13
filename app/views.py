@@ -1,6 +1,7 @@
 """
 Definition of views.
 """
+import os
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import login, authenticate
@@ -76,11 +77,42 @@ def gallery(request, slug):
 
     return render(request, 'app/gallery.html', {'gallery': the_gallery, 'g_images': the_images, 'site_settings': site_settings, 'the_prev_url': the_prev_url})
 
+def username_exists(username):
+    if User.objects.filter(username=username).exists():
+        return True
+    
+    return False
+
+def usla_script_fill():
+    f = open(os.getcwd() + "/usla_membership.txt")
+    for line in f:
+        s_l = line.split("\t")
+        if "@" in s_l[3] and (s_l[0] != ""):
+
+            signup_form = SignUpForm()
+    
+
+            print(s_l[3])
+
+            if not username_exists(s_l[3]):
+                user = User.objects.create_user(username=s_l[3], password=s_l[0], first_name=s_l[1][:29], last_name=s_l[0][:29], email=s_l[3])
+                profile = SiteMemberProfile.objects.create(user=user)
+                profile.email = user.email
+                profile.last_name = user.last_name
+                profile.first_name = user.first_name
+                profile.cottage_name = s_l[5]
+                profile.cottage_address = s_l[2]
+                profile.cottage_tel = s_l[4]
+                profile.save()
+                user.SiteMemberProfile = profile
+            
+         
 
 
 
 def indexView(request):
-
+    print('hello!S')
+    usla_script_fill()
     return page(request, 'home')
 
 
@@ -270,6 +302,22 @@ def member_settings(request):
             return HttpResponseRedirect('/member_settings/')
         else:
             field_errors = form.errors
+    elif request.method == 'POST' and 'editFamily' in request.POST:
+
+        form = UslaPersonForm(request.POST, request.FILES)
+
+        if form.is_valid(): 
+            usla_person = UslaPerson.objects.filter(user=request.user, usla_id=request.POST.get("usla_id"))
+            if usla_person:
+                usla_person.delete()
+
+            person = UslaPerson()
+            person.user = request.user
+            member_settings_hlpr(form, person)
+            return HttpResponseRedirect('/member_settings/')
+        else:
+            field_errors = form.errors
+
 
     elif request.method == 'POST' and 'addFamily' in request.POST:
 

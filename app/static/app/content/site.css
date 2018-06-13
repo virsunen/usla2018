@@ -22,6 +22,7 @@
      color: rgba(224, 0, 52, 0.92);
 }
 
+
 .new_user {
     margin-top: 12px;
     text-align: right;
@@ -1275,7 +1276,22 @@ footer img {
     min-width: 100%;
     min-height: 100%;
 }
-  
+.ms_item {
+    width: 33.33%;
+    float: left;
+    margin-bottom: 16px;
+}
+
+.ms_left {
+    float: left;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    width: 100%;
+}
+
+.ms_right {
+    width: 100%;
+}  
 
 
     .overlay_img_container h1 {
@@ -1301,7 +1317,48 @@ footer img {
     margin-right: 12px;
      
 }
+ 
+ .roster_member div {
+     margin: 6px;
+ }
 
+ .roster_member {
+     width: calc(33.33% - 8px);
+     float: left;
+     font-size: 0.92em;
+     border: 1px solid rgba(0, 0, 0, 0.12);
+     background-color: rgba(255, 255, 255, 0.92);
+     margin-top: 8px;
+     margin-right: 4px;
+
+ }
+
+ .roster_name {
+     font-weight: 600;
+     color: rgba(224, 0, 52, 0.92);
+     font-size: 12pt;
+ }
+
+.roster_email {
+    font-weight: 400;
+    color: rgba(14,14,12, 0.96);
+    font-size: 10pt;
+}
+.add_family {
+    display: none;
+    margin-bottom: 60px;
+}
+
+    .add_family table {
+        width: 100%;
+    }
+
+
+        .add_family table th {
+        }
+.usla_login h1 {
+    font-size: 20pt;
+}
 @media screen and (max-width: 1080px) {
     .member {
         width: calc(33% + 0.5px);
@@ -1357,7 +1414,9 @@ footer img {
             font-size: 18px;
             padding: 8px;
         }
-
+    .usla_login h1 {
+        font-size: 18pt;
+    }
     .program p {
         width: 86%;
         margin-top: 6px;
@@ -1509,6 +1568,10 @@ footer img {
     
         min-height: 82vh;
     }
+
+    .usla_login h1 {
+        font-size: 14pt;
+    }
     .membership_page p {
 
         font-size: 14px;
@@ -1518,7 +1581,22 @@ footer img {
         margin-top: 24px;
         margin-bottom: 12px;
     }
+    .ms_item {
+        width: 50%;
+        float: left;
+        margin-bottom: 16px;
+    }
 
+    .ms_left {
+        float: left;
+        padding-bottom: 8px;
+        padding-top: 8px;
+        width: 100%;
+    }
+
+    .ms_right {
+        width: 100%;
+    }
         .membership_page_link a {
             font-style: italic;
             font-weight: 700;
@@ -1914,9 +1992,17 @@ footer img {
         margin: 0;
         margin-top: 60px;
     }
+    .roster_member {
+        width: calc(50% - 8px);
+    }
 }
 
 @media screen and (max-width: 600px) {
+    .usla_login h3 {
+        font-size: 10pt;
+        font-weight: bold;
+    }
+
 
     .usla_login {
         width: 320px;
@@ -1925,6 +2011,10 @@ footer img {
     .member_profile h2 {
         font-size: 12pt;
         padding: 6px;
+    }
+
+    .roster_member {
+        width: 100%;
     }
     .nav_bar {
 
@@ -2000,6 +2090,12 @@ footer img {
         margin-top: 2.5%;
         margin-bottom: 2.5%;
 
+    }
+
+    .ms_item {
+        width: 100%;
+        float: left;
+        margin-bottom: 16px;
     }
     .fp_links {
         width: 90%;
