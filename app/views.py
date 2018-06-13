@@ -83,6 +83,10 @@ def username_exists(username):
     
     return False
 
+def validNumber(phone_nuber):
+    pattern = re.compile("^[\dA-Z]{3}-[\dA-Z]{3}-[\dA-Z]{4}$", re.IGNORECASE)
+    return pattern.match(phone_nuber) is not None
+
 def usla_script_fill():
     f = open(os.path.abspath(os.path.dirname(__file__)) + "/usla_membership.txt")
     for line in f:
@@ -102,7 +106,8 @@ def usla_script_fill():
                 profile.first_name = user.first_name
                 profile.cottage_name = s_l[5]
                 profile.cottage_address = s_l[2]
-                profile.cottage_tel = s_l[4]
+                if (validNumber(s_l[4])):
+                    profile.cottage_tel = s_l[4]
                 profile.save()
                 user.SiteMemberProfile = profile
             
