@@ -84,7 +84,7 @@ def username_exists(username):
     return False
 
 def usla_script_fill():
-    f = open(os.getcwd() + "/usla_membership.txt")
+    f = open(os.path.abspath(os.path.dirname(__file__)) + "/usla_membership.txt")
     for line in f:
         s_l = line.split("\t")
         if "@" in s_l[3] and (s_l[0] != ""):
