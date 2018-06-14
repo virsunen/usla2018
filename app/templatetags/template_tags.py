@@ -177,7 +177,7 @@ def handle_events(events, day):
     the_str = ''
     for e in events:
         if (e.has_event_at_date(day)):
-            event_str = '<i class="fa fa-calendar-check-o"></i>'
+            event_str = '<i class="fa fa-calendar-check"></i>'
             the_str += '<div class="event_list_item">' + e.get_html_str() + '</div>'
     return [event_str, the_str]
 
@@ -209,7 +209,7 @@ def get_calendar(cal):
                         holiday_icon = '<i class="fa fa-calendar-times-o"></i>'
                         holiday_str = '<h1><i class="fa fa-calendar-times-o"></i>' + holiday.name + '</h1>'
 
-                the_str = '<div class="cal_prog_schedules" id="ps' + str(day.day) + '"><a href="#" class="closeCalDay"><i class="fa fa-close"></i> \
+                the_str = '<div class="cal_prog_schedules" id="ps' + str(day.day) + '"><a href="#" class="closeCalDay"><i class="fa fa-times"></i> \
                 </a><div class="programs"><h2>' + day.strftime("%A %d,  %B %Y") + '</h2></div>'
                 top_str = '<div class="cal_prog_small" id="' + str(day.day) + '">' + holiday_icon
 

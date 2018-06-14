@@ -546,7 +546,7 @@ class EventAbs(models.Model):
 
     def get_html_str(self):
 
-        ret_str = '<h3><i class="fa fa-calendar-check-o"></i>' + self.name + '</h3>'
+        ret_str = '<h3><i class="fa fa-calendar-check"></i>' + self.name + '</h3>'
         ret_str += '<h5>' + self.start_time.strftime("%I:%M %p")
         if self.end_time:
             ret_str += ' to ' + self.end_time.strftime("%I:%M %p")
