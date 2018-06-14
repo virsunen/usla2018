@@ -116,8 +116,8 @@ def usla_script_fill():
 
 
 def indexView(request):
-    print('hello!S')
-    usla_script_fill()
+
+    #usla_script_fill()
     return page(request, 'home')
 
 

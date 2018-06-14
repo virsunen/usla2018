@@ -31,7 +31,8 @@
 }
 
 .new_user a {
-    color: rgba(15, 15, 15, 0.92);
+    color: rgba(234, 50, 72, 0.92);
+    font-size: 1.1em;
     font-style: italic;
 }
 
@@ -331,7 +332,7 @@ footer img {
 
     .membership_page li {
         padding: 14px;
-        font-size: 16px;
+        font-size: 14pt;
         background-color: white;
     }
     .membership_page h1 {
@@ -1160,11 +1161,11 @@ footer img {
     display: none;
 }
 .membership_page h2 {
-    margin-top: 40px;
-    margin-bottom: 12px;
+    margin-top: 20px;
+
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    width: 80%;
     text-align:center;
     font-size: 16pt;
 
@@ -1359,6 +1360,10 @@ footer img {
 .usla_login h1 {
     font-size: 20pt;
 }
+
+.membership_body h1 {
+    font-size: 18pt;
+}
 @media screen and (max-width: 1080px) {
     .member {
         width: calc(33% + 0.5px);
@@ -1525,11 +1530,6 @@ footer img {
         margin-left: 10%;
     }
 
-    .membership_page h2 {
-        font-size: 18px;
-        margin-top: 60px;
-        margin-bottom: 16px;
-    }
 
     .membership_page {
         margin-left: auto;
@@ -1558,6 +1558,10 @@ footer img {
         font-size: 12pt;
     }
 
+    .membership_page h2 {
+        font-size: 14pt;
+    }
+
 }
 
 @media screen and (max-width: 880px) {
@@ -1576,17 +1580,15 @@ footer img {
 
         font-size: 14px;
     }
-    .membership_page h2 {
-        font-size: 18px;
-        margin-top: 24px;
-        margin-bottom: 12px;
-    }
+
     .ms_item {
         width: 50%;
         float: left;
         margin-bottom: 16px;
     }
-
+    .membership_page h2 {
+        font-size: 12pt;
+    }
     .ms_left {
         float: left;
         padding-bottom: 8px;
@@ -1633,7 +1635,7 @@ footer img {
         margin-top: 6px;
     }
     .membership_page li {
-        font-size: 14pt;
+        font-size: 13pt;
     }
 
     .membership_body p {
@@ -2003,15 +2005,14 @@ footer img {
         font-weight: bold;
     }
 
-
+    .membership_page h2 {
+        font-size: 12pt;
+    }
     .usla_login {
         width: 320px;
         padding: 14px;
     }
-    .member_profile h2 {
-        font-size: 12pt;
-        padding: 6px;
-    }
+
 
     .roster_member {
         width: 100%;
@@ -2050,11 +2051,6 @@ footer img {
         font-size: 18px;
     }
 
-    .membership_page h2 {
-        font-size: 14pt;
-        margin-left: 14px;
-        width: calc(100% - 14px);
-    }
 
     .membership_page p {
         font-size: 12px;
@@ -2071,7 +2067,7 @@ footer img {
     }
 
         .membership_page li {
-            font-size: 14px;
+            font-size: 12pt;
         }
 
 
