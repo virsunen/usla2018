@@ -2,16 +2,18 @@
 
     {% block content %}
 <div class="html_content">
-    <h2>Membership Sign up</h2>
+    <div class="member_profile">
+        <h2>Membership Sign up</h2>
 
-    <div class="usla_login">
+        <div class="usla_login">
 
-        <form method="post">
-            {% csrf_token %}
+            <form method="post">
+                {% csrf_token %}
 
-            {{ form.as_p }}
-            <button type="submit">Sign up</button>
-        </form>
+                {{ form.as_p }}
+                <button type="submit">Sign up</button>
+            </form>
 
+        </div>
     </div>
 </div>        {% endblock %}

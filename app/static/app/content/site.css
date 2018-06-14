@@ -209,10 +209,10 @@ footer img {
     border-radius: 6px;
     padding: 14px;
     margin-top: 28px;
-    font-size: 20px;
+    font-size: 12pt;
     border: 1px solid rgba(224, 225, 222, 0.38);
-    background-color: rgba(0, 0, 0, 0.87);
-    text-shadow: 2px 1px 1px black;
+    background-color: rgba(20, 20, 20, 0.93);
+
 }
 
 
@@ -227,11 +227,12 @@ footer img {
 
 .fp_links a {
     width: 100%;
-
+    margin-top: 12px;
+    color: rgba(254, 90, 122, 0.92);
 }
 
 .fp_links p {
-    margin-top: 8px;
+    margin-top: 12px;
 }
 
 
@@ -520,7 +521,7 @@ footer img {
     text-shadow: none;
     font-weight: 500;
     padding: 14px;
-    background-color: rgba(255, 255, 255, 0.87);
+    background-color: rgba(255, 255, 255, 0.93);
     width: 50%;
     margin-top: 28px;
     margin: 0;
@@ -1124,7 +1125,6 @@ footer img {
 
 .header_btns {
     margin: 12px;
-
 }
 
 
@@ -1572,7 +1572,10 @@ footer img {
     
         min-height: 82vh;
     }
-
+    .header_btns {
+        width: calc(50% - 48px);
+        float: left;
+    }
     .usla_login h1 {
         font-size: 14pt;
     }
@@ -1630,9 +1633,9 @@ footer img {
         display: none;
     }
     .user_logout {
-        float: left;
+        float: right;
         padding: 0;
-        margin-top: 6px;
+        margin-top: 12px;
     }
     .membership_page li {
         font-size: 13pt;
@@ -1855,12 +1858,12 @@ footer img {
     }
 
     .header_text {
-        width: 53px;
-        padding: 0;
-
-        height: 40px;
-        margin-left: calc(50% - 52px);
+        float: none;
+        height: 60px;
+        width: calc(100% - 160px);
+        margin-left: 60px;
     }
+
 
     .header {
         position: fixed;
@@ -1876,8 +1879,8 @@ footer img {
        width: 66px;
  
        padding: 0;
-       margin: 8px;
-       text-align: left;
+       margin-top: 6px;
+       text-align: right;
 
    }
    .user_login h3 {
@@ -1904,13 +1907,18 @@ footer img {
         margin-right: 4px;
     }
 
+
     .header_text img {
-        text-align: center;
         width: 53px;
         height: 40px;
-        padding: 0;
 
-        margin-right: auto;
+        padding: 0;
+        margin-top: 10px;
+        display: block;
+
+      
+      
+
     }
 
 
@@ -2221,9 +2229,7 @@ footer img {
     .user_login a {
         font-size: 12px;
     }
-    .header_text {
-        margin-left: calc(50% - 52px);
-    }
+
 
     .events_nav_btn a, .events_nav_btn i, .events_nav_btn_sel a, .events_nav_btn_sel i {
         text-shadow: none;

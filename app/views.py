@@ -245,7 +245,7 @@ def signup(request):
     else:
         form = SignUpForm()
    
-    return render(request, 'app/signup.html', {'form': form, 'site_settings': site_settings})
+    return render(request, 'app/signup.html', {'form': form, 'site_settings': site_settings, 'the_prev_url': '/'})
 
 
 def member_settings_hlpr(form, obj):
