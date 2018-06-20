@@ -133,7 +133,9 @@ function handle_events_top() {
             $(".html_content").css("margin-top", "0px");
             $(".member_profile").css("margin-top", "60px");
         }
+    
     } else {
+        $(".nav_bar").css("display", "inline");
         $(".page_title").css("display", "none");
         $(".html_content").css("margin-top", "0px");
         $(".member_profile").css("margin-top", "0px");

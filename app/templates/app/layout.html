@@ -50,14 +50,15 @@
         {% for p_t in pages %}
         {% if p_t.slug == page.slug %}
 
-        <div class="nav_a_sel">
-            {% else %}
+            <div class="nav_a_sel">
+        {% else %}
             <div class="nav_a">
-                {% endif %}
+     {% endif %}
                 <a href="{% url 'app:page' p_t.slug %}"><i class="fa {{ p_t.fa_icon }}"></i>{{ p_t.title_text }}</a>
             </div>
             {% endfor %}
         </div>
+
         {% block content %}{% endblock %}
         <footer>
             {% if site_settings.logo_btm_image %}
