@@ -38,13 +38,36 @@ $(document).ready(function () {
         e.preventDefault();
         if (toggleCal("#ps" + this.id)) {
             $(this).css("background-color", "rgba(255, 241, 0, 0.97)");
-        } 
+        }
 
+    });
+
+    $(".show_delete").click(function (e) {
+        e.preventDefault();
+        toggleSlide(".delete_roster_member", this);
+        toggleSlide(".show_delete", this);
+    });
+
+    $(".show_edit").click(function (e) {
+        e.preventDefault();
+        toggleSlide("#roster_member_" + this.id, this);
+   
+    });
+
+    $(".cancel_delete").click(function (e) {
+        e.preventDefault();
+        toggleSlide(".delete_roster_member", this);
+        toggleSlide(".show_delete", this);
     });
 
     $(".history_btn").click(function (e) {
         e.preventDefault();
         toggleSlide(".fp_history", this);
+    });
+
+    $(".family_btn").click(function (e) {
+        e.preventDefault();
+        toggleSlide(".add_family", this);
     });
 
     $(".closeCalDay").click(function (e) {
@@ -103,15 +126,19 @@ function handle_events_top() {
     if ($(window).width() <= 880) {
         if (window.location.href.indexOf("events") !== -1) {
             $(".page_title").css("display", "none");
-            $(".html_content").css("margin-top", "48px");
+            $(".html_content").css("margin-top", "60px");
 
         } else {
             $(".page_title").css("display", "block");
             $(".html_content").css("margin-top", "0px");
+            $(".member_profile").css("margin-top", "60px");
         }
+    
     } else {
+        $(".nav_bar").css("display", "inline");
         $(".page_title").css("display", "none");
         $(".html_content").css("margin-top", "0px");
+        $(".member_profile").css("margin-top", "0px");
     }
 }
 
